@@ -62,4 +62,4 @@ setInterval(function() {
 }, 300000); // every 5 minutes (300000)
 
 // Log our bot in using the token
-client.login(process.env.bot_token);
+client.login('NjE0NzI0ODU4Mzk5Njg2NjY0.XWD88w.db89nP2_xC_VLe3DcevWj3HUFJI');
