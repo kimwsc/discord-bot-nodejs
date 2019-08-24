@@ -6,6 +6,9 @@
   "engines": {
     "node": "10.10.0"
   },
+  "scripts": {
+    "start": "index.js"
+  },
   "author": "sphere",
   "license": "ISC",
   "dependencies": {
