@@ -3,7 +3,7 @@ const app       = express();
 const Discord   = require('discord.js');
 const client    = new Discord.Client();
 
-var http        = require("http");
+var https        = require("https");
 
 app.set('port', (process.env.PORT || 5000));
 
