@@ -58,7 +58,7 @@ client.on('message', msg => {
 });
 
 setInterval(function() {
-    http.get("https://u-b.herokuapp.com");
+    https.get("https://u-b.herokuapp.com");
 }, 300000); // every 5 minutes (300000)
 
 // Log our bot in using the token
