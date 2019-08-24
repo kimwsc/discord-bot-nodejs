@@ -1,0 +1,11 @@
+{
+  "name": "u-b",
+  "version": "1.0.0",
+  "description": "unique-bot",
+  "main": "index.js",
+  "engines": {
+    "node": "10.10.0"
+  },
+  "author": "sphere",
+  "license": "ISC"
+}
