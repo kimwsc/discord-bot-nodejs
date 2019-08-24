@@ -1,16 +1,23 @@
-const express = require('express')
-const path = require('path')
-const PORT = process.env.PORT || 5000
+const express   = require('express')
+const app       = express();
+const Discord   = require('discord.js');
+const client    = new Discord.Client();
 
-const Discord = require('discord.js');
-const client = new Discord.Client();
+var http        = require("http");
 
-express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+app.set('port', (process.env.PORT || 5000));
+
+setInterval(function() {
+    http.get("https://u-b.herokuapp.com");
+}, 300000); // every 5 minutes (300000)
+
+//For avoidong Heroku $PORT error
+app.get('/', function(request, response) {
+    var result = 'App is running'
+    response.send(result);
+}).listen(app.get('port'), function() {
+    console.log('App is running, server is listening on port ', app.get('port'));
+});
 
 
 client.on('ready', () => {
