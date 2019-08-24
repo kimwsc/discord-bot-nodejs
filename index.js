@@ -7,10 +7,6 @@ var http        = require("http");
 
 app.set('port', (process.env.PORT || 5000));
 
-setInterval(function() {
-    http.get("https://u-b.herokuapp.com");
-}, 300000); // every 5 minutes (300000)
-
 //For avoidong Heroku $PORT error
 app.get('/', function(request, response) {
     var result = 'App is running'
@@ -32,15 +28,22 @@ client.on('message', msg => {
 
 client.on('message', msg => {
     if (msg.content === "whoiskimsphere") {
-        msg.reply("kimsphere known as kimsphere in Helldivers, the smartest person in the hell");
+        msg.reply("known as kimsphere in Helldivers, a curious cat from hell");
     }
 });
 
 client.on('message', msg => {
     if (msg.content === 'whoisandylam') {
-        msg.reply("andylam known as qqww in Helldivers, he's a 15 years old kid and live in Hong Kong, also a pro cyclist!");
+        msg.reply("known as qqww in Helldivers, a friendly 15 years old pro cyclist from Hong Kong!");
     }
 });
+
+client.on('message', msg => {
+    if (msg.content === 'whoisasarind') {
+        msg.reply("known as Asarind in Helldivers, a pro and supportive teammate, a fan of B.duck!");
+    }
+});
+
 
 client.on('message', msg => {
     if (msg.content === 'ok good') {
@@ -54,6 +57,9 @@ client.on('message', msg => {
     }
 });
 
+setInterval(function() {
+    http.get("https://u-b.herokuapp.com");
+}, 300000); // every 5 minutes (300000)
 
 // Log our bot in using the token
-client.login('NjE0NzI0ODU4Mzk5Njg2NjY0.XWDqhg.bQZnfHfj_SBrifxg0SYucOlS4eE');
+client.login(process.env.bot_token);
