@@ -1,0 +1,11 @@
+{
+    "fu" : "fu",
+    "help": "/help",
+    "ok": "ok good",
+    "ws": 
+    {
+        "kimsphere" : "/ws kimsphere",
+        "andylam"   : "/ws andylam",
+        "asarind"   : "/ws asarind"
+    }
+}

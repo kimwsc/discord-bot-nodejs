@@ -1,13 +1,18 @@
 const express   = require('express');
+const fs        = require('fs');
 const app       = express();
 const Discord   = require('discord.js');
 const client    = new Discord.Client();
 
-var https        = require("https");
+let https       = require("https");
+let jsonMessage = fs.readFileSync('message.json');
+let jsonCommand = fs.readFileSync('command.json');
+let message     = JSON.parse(jsonMessage);
+let cmd         = JSON.parse(jsonCommand);
 
 app.set('port', (process.env.PORT || 5000));
 
-//For avoidong Heroku $PORT error
+// For avoiding Heroku $PORT error
 app.get('/', function(request, response) {
     var result = 'App is running'
     response.send(result);
@@ -21,45 +26,37 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-    if (msg.content === 'fu') {
-        msg.reply('ck!');
+
+    switch(msg.content) {
+        case cmd.fu           : msg.reply(message.ck);
+            break;
+        case cmd.help         : msg.reply(message.help);
+            break;
+        case cmd.ok           : msg.reply(message.ok);
+            break;
+        case cmd.ws.kimsphere : msg.reply(message.kimsphere);
+            break;
+        case cmd.ws.andylam   : msg.reply(message.andylam);
+            break;
+        case cmd.ws.asarind   : msg.reply(message.asarind);
+            break;
     }
 });
 
-client.on('message', msg => {
-    if (msg.content === "whoiskimsphere") {
-        msg.reply("known as kimsphere in Helldivers, a curious cat from hell");
-    }
-});
+// Create an event listener for new guild members
+client.on('guildMemberAdd', member => {
+    // Send the message to a designated channel on a server:
+    const channel = member.guild.channels.find(ch => ch.name === 'unique-bot');
+    // Do nothing if the channel wasn't found on this server
+    if (!channel) return;
+    // Send the message, mentioning the member
+    channel.send(`Oh, it's a new member! Let's welcome ${member} to the server!` );
+  });
 
-client.on('message', msg => {
-    if (msg.content === 'whoisandylam') {
-        msg.reply("known as qqww in Helldivers, a friendly 15 years old pro cyclist from Hong Kong!");
-    }
-});
-
-client.on('message', msg => {
-    if (msg.content === 'whoisasarind') {
-        msg.reply("known as Asarind in Helldivers, a pro and supportive teammate, a fan of B.duck!");
-    }
-});
-
-
-client.on('message', msg => {
-    if (msg.content === 'ok good') {
-        msg.reply("ok bye.");
-    }
-});
-
-client.on('message', msg => {
-    if (msg.content === 'hi u-b') {
-        msg.reply("What can I help you? These are available command: ```whoiskimsphere``````whoisandylam``````whoisasarind``````ok good```");
-    }
-});
-
+// Prevent heroku from idling, send request to url every 5 minutes
 setInterval(function() {
     https.get("https://u-b.herokuapp.com");
-}, 300000); // every 5 minutes (300000)
+}, 300000);
 
 // Log our bot in using the token
-client.login('NjE0NzI0ODU4Mzk5Njg2NjY0.XWD88w.db89nP2_xC_VLe3DcevWj3HUFJI');
+client.login(process.env.bot_token);
