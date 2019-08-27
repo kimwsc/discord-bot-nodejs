@@ -4,6 +4,22 @@
     "help"      : "there are available command: ```/help```- Show command list ```fu```- This will reply 'ck!'```/ws kimsphere```- Checkout kimsphere```/ws andylam```- Checkout andylam```/ws asarind```- Checkout asarind```ok good```",
     "kimsphere" : "known as kimsphere in the game, a curious cat from hell! 😼",
     "andylam"   : "known as qqww in the game, a friendly 15 years old pro cyclist from Hong Kong!",
-    "asarind"   : "known as Asarind in the game, a pro and supportive teammate, and a fan of B.duck!"
+    "asarind"   : "known as Asarind in the game, a pro and supportive teammate, and a fan of B.duck!",
+    "special":
+    {
+        "reinforce" : "Reinforce\n:arrow_up: :arrow_down: :arrow_right: :arrow_left: :arrow_up:",
+        "sos" : "Emergency Beacon\n:arrow_up: :arrow_down: :arrow_right: :arrow_up:"
+    },
+    "offensive":
+    {
+        "nuke" : "Shredder Missile Strike\n:arrow_right: :arrow_left: :arrow_right: :arrow_left: :arrow_down: :arrow_down: :arrow_right:"
+    },
+    "objective":
+    {
+        "trans_1" : "\n10 button presses",
+        "trans_2" : "\n:arrow_up: :arrow_up: :arrow_down: :arrow_left: :arrow_left: :arrow_up: :arrow_up: :arrow_right: :arrow_up:",
+        "trans_3" : "\n25 button presses",
+        "trans_4" : "\n:arrow_down: :arrow_down: :arrow_up: :arrow_down: :arrow_down: :arrow_down: :arrow_left: :arrow_down: :arrow_up: :arrow_down: :arrow_down:"
+    }
 
 }

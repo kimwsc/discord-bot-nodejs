@@ -25,23 +25,51 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
+
+
 client.on('message', msg => {
 
     switch(msg.content) {
-        case cmd.fu           : msg.reply(message.ck);
+        case cmd.fu             : msg.reply(message.ck);
             break;
-        case cmd.help         : msg.reply(message.help);
+        case cmd.help           : msg.reply(message.help);
             break;
-        case cmd.ok           : msg.reply(message.ok);
+        case cmd.ok             : msg.reply(message.ok);
             break;
-        case cmd.ws.kimsphere : msg.reply(message.kimsphere);
+        case cmd.ws.kimsphere   : msg.reply(message.kimsphere);
             break;
-        case cmd.ws.andylam   : msg.reply(message.andylam);
+        case cmd.ws.andylam     : msg.reply(message.andylam);
             break;
-        case cmd.ws.asarind   : msg.reply(message.asarind);
+        case cmd.ws.asarind     : msg.reply(message.asarind);
             break;
+        case cmd.special.reinforce  : msg.reply(message.special.reinforce);
+            break;
+        case cmd.special.sos        : msg.reply(message.special.sos);
+            break;
+        case cmd.offensive.nuke     : msg.reply(message.offensive.nuke);
+            break;
+        case cmd.objective.trans    : msg.reply(message.objective.trans_1 + 
+                                                message.objective.trans_2 + 
+                                                message.objective.trans_3 + 
+                                                message.objective.trans_4);
+            break;
+
     }
 });
+
+// client.on('message', async message => {
+// 	if (message.content === '/reinforce') {
+// 		try {
+// 			await message.react('\u2B06');
+// 			await message.react('\u2B07');
+//             await message.react('\u27A1');
+//             await message.react('\u2B05');
+// 			await message.react('\u2B06');
+// 		} catch (error) {
+// 			console.error('One of the emojis failed to react.');
+// 		}
+// 	}
+// });
 
 // Create an event listener for new guild members
 client.on('guildMemberAdd', member => {
@@ -54,9 +82,9 @@ client.on('guildMemberAdd', member => {
   });
 
 // Prevent heroku from idling, send request to url every 5 minutes
-setInterval(function() {
-    https.get("https://u-b.herokuapp.com");
-}, 300000);
+// setInterval(function() {
+//     https.get("https://u-b.herokuapp.com");
+// }, 300000);
 
 // Log our bot in using the token
-client.login(process.env.bot_token);
+client.login("NjE1MDQ3MTU4OTU3MDgwNTg2.XWQI7A.bXikfm8ZGh61VJFUGxZtq2biTMM");
