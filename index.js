@@ -28,18 +28,30 @@ client.on('ready', () => {
 client.on('message', msg => {
 
     switch(msg.content) {
-        case cmd.fu           : msg.reply(message.ck);
+        case cmd.fu             : msg.reply(message.ck);
             break;
-        case cmd.help         : msg.reply(message.help);
+        case cmd.help           : msg.reply(message.help);
             break;
-        case cmd.ok           : msg.reply(message.ok);
+        case cmd.ok             : msg.reply(message.ok);
             break;
-        case cmd.ws.kimsphere : msg.reply(message.kimsphere);
+        case cmd.ws.kimsphere   : msg.reply(message.kimsphere);
             break;
-        case cmd.ws.andylam   : msg.reply(message.andylam);
+        case cmd.ws.andylam     : msg.reply(message.andylam);
             break;
-        case cmd.ws.asarind   : msg.reply(message.asarind);
+        case cmd.ws.asarind     : msg.reply(message.asarind);
             break;
+        case cmd.special.reinforce  : msg.reply(message.special.reinforce);
+            break;
+        case cmd.special.sos        : msg.reply(message.special.sos);
+            break;
+        case cmd.offensive.nuke     : msg.reply(message.offensive.nuke);
+            break;
+        case cmd.objective.trans    : msg.reply(message.objective.trans_1 + 
+                                                message.objective.trans_2 + 
+                                                message.objective.trans_3 + 
+                                                message.objective.trans_4);
+            break;
+
     }
 });
 
@@ -50,8 +62,19 @@ client.on('guildMemberAdd', member => {
     // Do nothing if the channel wasn't found on this server
     if (!channel) return;
     // Send the message, mentioning the member
+    channel.send(`Oh, it's a new member! Let's welcome ${member} to the channel!` );
+});
+
+// Create an event listener for new guild members
+client.on('guildMemberAdd', member => {
+    // Send the message to a designated channel on a server:
+    const channel = member.guild.channels.find(ch => ch.name === '一般');
+    // Do nothing if the channel wasn't found on this server
+    if (!channel) return;
+    // Send the message, mentioning the member
     channel.send(`Oh, it's a new member! Let's welcome ${member} to the server!` );
-  });
+});
+
 
 // Prevent heroku from idling, send request to url every 5 minutes
 setInterval(function() {
@@ -59,4 +82,4 @@ setInterval(function() {
 }, 300000);
 
 // Log our bot in using the token
-client.login(process.env.bot_token);
+client.login("NjE1MDQ3MTU4OTU3MDgwNTg2.XWQI7A.bXikfm8ZGh61VJFUGxZtq2biTMM");

@@ -7,5 +7,18 @@
         "kimsphere" : "/ws kimsphere",
         "andylam"   : "/ws andylam",
         "asarind"   : "/ws asarind"
+    },
+    "special":
+    {
+        "reinforce" : "/reinforce",
+        "sos" : "/sos"
+    },
+    "offensive":
+    {
+        "nuke" : "/nuke"
+    },
+    "objective":
+    {
+        "trans" : "/trans"
     }
 }
