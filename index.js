@@ -25,8 +25,6 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-
-
 client.on('message', msg => {
 
     switch(msg.content) {
@@ -57,20 +55,6 @@ client.on('message', msg => {
     }
 });
 
-// client.on('message', async message => {
-// 	if (message.content === '/reinforce') {
-// 		try {
-// 			await message.react('\u2B06');
-// 			await message.react('\u2B07');
-//             await message.react('\u27A1');
-//             await message.react('\u2B05');
-// 			await message.react('\u2B06');
-// 		} catch (error) {
-// 			console.error('One of the emojis failed to react.');
-// 		}
-// 	}
-// });
-
 // Create an event listener for new guild members
 client.on('guildMemberAdd', member => {
     // Send the message to a designated channel on a server:
@@ -78,13 +62,24 @@ client.on('guildMemberAdd', member => {
     // Do nothing if the channel wasn't found on this server
     if (!channel) return;
     // Send the message, mentioning the member
+    channel.send(`Oh, it's a new member! Let's welcome ${member} to the channel!` );
+});
+
+// Create an event listener for new guild members
+client.on('guildMemberAdd', member => {
+    // Send the message to a designated channel on a server:
+    const channel = member.guild.channels.find(ch => ch.name === '一般');
+    // Do nothing if the channel wasn't found on this server
+    if (!channel) return;
+    // Send the message, mentioning the member
     channel.send(`Oh, it's a new member! Let's welcome ${member} to the server!` );
-  });
+});
+
 
 // Prevent heroku from idling, send request to url every 5 minutes
-// setInterval(function() {
-//     https.get("https://u-b.herokuapp.com");
-// }, 300000);
+setInterval(function() {
+    https.get("https://u-b.herokuapp.com");
+}, 300000);
 
 // Log our bot in using the token
 client.login("NjE1MDQ3MTU4OTU3MDgwNTg2.XWQI7A.bXikfm8ZGh61VJFUGxZtq2biTMM");
