@@ -2,23 +2,11 @@
     "fu" : "fu",
     "help": "/help",
     "ok": "ok good",
-    "ws": 
-    {
-        "kimsphere" : "/ws kimsphere",
-        "andylam"   : "/ws andylam",
-        "asarind"   : "/ws asarind"
-    },
-    "special":
-    {
-        "reinforce" : "/reinforce",
-        "sos" : "/sos"
-    },
-    "offensive":
-    {
-        "nuke" : "/nuke"
-    },
-    "objective":
-    {
-        "trans" : "/trans"
-    }
+    "kimsphere" : "/ws kimsphere",
+    "andylam"   : "/ws andylam",
+    "asarind"   : "/ws asarind",
+    "reinforce" : "/reinforce",
+    "sos" : "/sos",
+    "nuke" : "/nuke",
+    "trans" : "/trans"
 }

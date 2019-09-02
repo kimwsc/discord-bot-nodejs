@@ -9,6 +9,11 @@ let jsonMessage = fs.readFileSync('message.json');
 let jsonCommand = fs.readFileSync('command.json');
 let message     = JSON.parse(jsonMessage);
 let cmd         = JSON.parse(jsonCommand);
+let cmdValue     = Object.values(cmd);
+
+let cmdList = Object.keys(cmdValue).forEach(function(command) {
+    return cmdValue[command];
+});
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -23,30 +28,34 @@ app.get('/', function(request, response) {
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
+
 });
 
-client.on('message', msg => {
+console.log(cmdList);
 
+
+client.on('message', msg => {
+    
     switch(msg.content) {
         case cmd.fu             : msg.reply(message.ck);
             break;
-        case cmd.help           : msg.reply(message.help);
+        case cmd.help           : msg.reply(cmdList);
             break;
         case cmd.ok             : msg.reply(message.ok);
             break;
-        case cmd.ws.kimsphere   : msg.reply(message.kimsphere);
+        case cmd.kimsphere   : msg.reply(message.kimsphere);
             break;
-        case cmd.ws.andylam     : msg.reply(message.andylam);
+        case cmd.andylam     : msg.reply(message.andylam);
             break;
-        case cmd.ws.asarind     : msg.reply(message.asarind);
+        case cmd.asarind     : msg.reply(message.asarind);
             break;
-        case cmd.special.reinforce  : msg.reply(message.special.reinforce);
+        case cmd.reinforce  : msg.reply(message.special.reinforce);
             break;
-        case cmd.special.sos        : msg.reply(message.special.sos);
+        case cmd.sos        : msg.reply(message.special.sos);
             break;
-        case cmd.offensive.nuke     : msg.reply(message.offensive.nuke);
+        case cmd.nuke     : msg.reply(message.offensive.nuke);
             break;
-        case cmd.objective.trans    : msg.reply(message.objective.trans_1 + 
+        case cmd.trans    : msg.reply(message.objective.trans_1 + 
                                                 message.objective.trans_2 + 
                                                 message.objective.trans_3 + 
                                                 message.objective.trans_4);
@@ -68,7 +77,7 @@ client.on('guildMemberAdd', member => {
 // Create an event listener for new guild members
 client.on('guildMemberAdd', member => {
     // Send the message to a designated channel on a server:
-    const channel = member.guild.channels.find(ch => ch.name === '一般');
+    const channel = member.guild.channels.find(ch => ch.name === 'chat');
     // Do nothing if the channel wasn't found on this server
     if (!channel) return;
     // Send the message, mentioning the member
