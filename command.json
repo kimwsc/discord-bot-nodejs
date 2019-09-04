@@ -1,25 +1,26 @@
 {
     "fu" : "fu",
-    "help": "/help",
     "ok": "ok good",
-    "ck": "fu",
-    "ws": 
+    "kimsphere" : "/ws kimsphere",
+    "andylam"   : "/ws andylam",
+    "asarind"   : "/ws asarind",
+    "reinforce" : "/reinforce",
+    "sos" : "/sos",
+    "offensive" : 
     {
-        "kimsphere" : "/ws kimsphere",
-        "andylam"   : "/ws andylam",
-        "asarind"   : "/ws asarind"
+        "airstrike": "/airstrike",
+        "closeair" : "/closeair",
+        "divebomb": "/divebomb",
+        "hsrun" : "/hsrun",
+        "incendiary" : "/firewall",
+        "missle" : "/missle",
+        "laser" : "/laser",
+        "railcannon" : "/railcannon",
+        "nuke" : "/nuke",
+        "precision" : "/precision",
+        "staticfield" : "/staticfield",
+        "srun" : "/srun",
+        "thunderer" : "/thunderer"
     },
-    "special":
-    {
-        "reinforce" : "/reinforce",
-        "sos" : "/sos"
-    },
-    "offensive":
-    {
-        "nuke" : "/nuke"
-    },
-    "objective":
-    {
-        "trans" : "/trans"
-    }
+    "trans" : "/trans"
 }
