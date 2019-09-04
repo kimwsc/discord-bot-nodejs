@@ -1,5 +1,4 @@
 {
-    "backquote" :"```",
     "ck"       : "ck!",
     "ok"        : "ok bye",
     "kimsphere" : "known as kimsphere in the game, a curious cat from hell! 😼",
@@ -12,7 +11,19 @@
     },
     "offensive":
     {
-        "nuke" : "Shredder Missile Strike\n:arrow_right: :arrow_left: :arrow_right: :arrow_left: :arrow_down: :arrow_down: :arrow_right:"
+        "airstrike": "Heavy Airstrike\n:arrow_right: :arrow_up: :arrow_down: :arrow_right: :arrow_left:",
+        "closeair" : "Close Air Support\n:arrow_right: :arrow_right: :arrow_down: :arrow_left:",
+        "divebomb": "Vindicator Dive Bomb\n:arrow_right: :arrow_right: :arrow_right:",
+        "hsrun" : "Heavy Strafing Run\n:arrow_right: :arrow_right: :arrow_down: :arrow_up:",
+        "incendiary" : "Incendiary Bombs\n:arrow_right: :arrow_up: :arrow_left: :arrow_right:",
+        "missle" : "Missle Barrage\n:arrow_right: :arrow_down: :arrow_down: :arrow_down: :arrow_left: :arrow_down:",
+        "laser" : "Orbital Laser Strike\n:arrow_right: :arrow_up: :arrow_left: :arrow_up: :arrow_right: :arrow_left:",
+        "railcannon" : "Railcannon Strike\n:arrow_right: :arrow_down: :arrow_up: :arrow_down: :arrow_left:",
+        "nuke" : "Shredder Missile Strike\n:arrow_right: :arrow_left: :arrow_right: :arrow_left: :arrow_down: :arrow_down: :arrow_right:",
+        "precision" : "Sledge Precision Artillery\n:arrow_right: :arrow_up: :arrow_left: :arrow_up: :arrow_down::arrow_right:",
+        "staticfield" : "Static Field Conductors\n:arrow_right: :arrow_up: :arrow_left: :arrow_down:",
+        "srun" : "Strafing Run\n:arrow_right: :arrow_right: :arrow_up:",
+        "thunderer" : "Thunderer Barrage\n:arrow_right: :arrow_down: :arrow_up: :arrow_up: :arrow_left: :arrow_down:"
     },
     "objective":
     {
