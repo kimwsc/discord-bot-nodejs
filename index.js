@@ -9,7 +9,6 @@ let jsonMessage = fs.readFileSync('message.json');
 let jsonCommand = fs.readFileSync('command.json');
 let message     = JSON.parse(jsonMessage);
 let cmd         = JSON.parse(jsonCommand);
-let cmdValue    = Object.values(cmd);
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -57,56 +56,117 @@ client.on('message', msg => {
 client.on('message', msg => {
     
     switch(msg.content) {
-        case cmd.offensive.airstrike       : msg.reply(message.offensive.airstrike, {files: ["img_stratagem/airstrike.png"]});
+        case cmd.offensive.airstrike    : msg.reply(message.offensive.airstrike, {files: ["img_stratagem/airstrike.png"]});
         break;
-        case cmd.offensive.closeair       : msg.reply(message.offensive.closeair, {files: ["img_stratagem/close_air.png"]});
+        case cmd.offensive.closeair     : msg.reply(message.offensive.closeair, {files: ["img_stratagem/close_air.png"]});
         break;
-        case cmd.offensive.divebomb       : msg.reply(message.offensive.divebomb, {files: ["img_stratagem/dive_bomb.png"]});
+        case cmd.offensive.divebomb     : msg.reply(message.offensive.divebomb, {files: ["img_stratagem/dive_bomb.png"]});
         break;
-        case cmd.offensive.hsrun       : msg.reply(message.offensive.hsrun, {files: ["img_stratagem/heavy_strafing_run.png"]});
+        case cmd.offensive.hsrun        : msg.reply(message.offensive.hsrun, {files: ["img_stratagem/heavy_strafing_run.png"]});
         break;
-        case cmd.offensive.incendiary       : msg.reply(message.offensive.incendiary, {files: ["img_stratagem/incendiary.png"]});
+        case cmd.offensive.incendiary   : msg.reply(message.offensive.incendiary, {files: ["img_stratagem/incendiary.png"]});
         break;
         case cmd.offensive.missle       : msg.reply(message.offensive.missle, {files: ["img_stratagem/missle.png"]});
         break;
-        case cmd.offensive.laser       : msg.reply(message.offensive.laser, {files: ["img_stratagem/orbital_laser.png"]});
+        case cmd.offensive.laser        : msg.reply(message.offensive.laser, {files: ["img_stratagem/orbital_laser.png"]});
         break;
-        case cmd.offensive.railcannon       : msg.reply(message.offensive.railcannon, {files: ["img_stratagem/railcannon.png"]});
+        case cmd.offensive.railcannon   : msg.reply(message.offensive.railcannon, {files: ["img_stratagem/railcannon.png"]});
         break;
-        case cmd.offensive.nuke       : msg.reply(message.offensive.nuke, {files: ["img_stratagem/shredder_missle.png"]});
+        case cmd.offensive.nuke         : msg.reply(message.offensive.nuke, {files: ["img_stratagem/shredder_missle.png"]});
         break;
-        case cmd.offensive.precision       : msg.reply(message.offensive.precision, {files: ["img_stratagem/sledge_precision.png"]});
+        case cmd.offensive.precision    : msg.reply(message.offensive.precision, {files: ["img_stratagem/sledge_precision.png"]});
         break;
-        case cmd.offensive.staticfield       : msg.reply(message.offensive.staticfield, {files: ["img_stratagem/static_field.png"]});
+        case cmd.offensive.staticfield  : msg.reply(message.offensive.staticfield, {files: ["img_stratagem/static_field.png"]});
         break;
-        case cmd.offensive.srun       : msg.reply(message.offensive.srun, {files: ["img_stratagem/strafing_run.png"]});
+        case cmd.offensive.srun         : msg.reply(message.offensive.srun, {files: ["img_stratagem/strafing_run.png"]});
         break;
-        case cmd.offensive.thunderer  : msg.reply(message.offensive.thunderer, {files: ["img_stratagem/thunderer.png"]});
+        case cmd.offensive.thunderer    : msg.reply(message.offensive.thunderer, {files: ["img_stratagem/thunderer.png"]});
         break;
     
     }
     
 });
 
+client.on('message', msg => {
+
+    switch(msg.content) {
+        case cmd.weapon.shotgun         : msg.reply({files: ["img_weapon/arc_shotgun.png"]});
+        break;
+        case cmd.weapon.thrower         : msg.reply({files: ["img_weapon/arc_thrower.png"]});
+        break;
+        case cmd.weapon.breaker         : msg.reply({files: ["img_weapon/breaker.png"]});
+        break;
+        case cmd.weapon.camper          : msg.reply({files: ["img_weapon/camper.png"]});
+        break;
+        case cmd.weapon.constitution    : msg.reply({files: ["img_weapon/constitution.png"]});
+        break;
+        case cmd.weapon.defender        : msg.reply({files: ["img_weapon/defender.png"]});
+        break;
+        case cmd.weapon.double_freedom  : msg.reply({files: ["img_weapon/double_freedom.png"]});
+        break;
+        case cmd.weapon.gunslinger      : msg.reply({files: ["img_weapon/gunslinger.png"]});
+        break;
+        case cmd.weapon.justice         : msg.reply({files: ["img_weapon/justice.png"]});
+        break;
+        case cmd.weapon.knight          : msg.reply({files: ["img_weapon/knight.png"]});
+        break;
+        case cmd.weapon.liberator       : msg.reply({files: ["img_weapon/liberator.png"]});
+        break;
+        case cmd.weapon.ninja           : msg.reply({files: ["img_weapon/ninja.png"]});
+        break;
+        case cmd.weapon.paragon         : msg.reply({files: ["img_weapon/paragon.png"]});
+        break;
+        case cmd.weapon.patriot         : msg.reply({files: ["img_weapon/patriot.png"]});
+        break;
+        case cmd.weapon.peacemaker      : msg.reply({files: ["img_weapon/peacemaker.png"]});
+        break;
+        case cmd.weapon.punisher        : msg.reply({files: ["img_weapon/punisher.png"]});
+        break;
+        case cmd.weapon.pyro            : msg.reply({files: ["img_weapon/pyro.png"]});
+        break;
+        case cmd.weapon.railgun         : msg.reply({files: ["img_weapon/railgun.png"]});
+        break;
+        case cmd.weapon.scorcher        : msg.reply({files: ["img_weapon/scorcher.png"]});
+        break;
+        case cmd.weapon.scythe          : msg.reply({files: ["img_weapon/scythe.png"]});
+        break;
+        case cmd.weapon.sickle          : msg.reply({files: ["img_weapon/sickle.png"]});
+        break;
+        case cmd.weapon.singe           : msg.reply({files: ["img_weapon/singe.png"]});
+        break;
+        case cmd.weapon.stalwart        : msg.reply({files: ["img_weapon/stalwart.png"]});
+        break;
+        case cmd.weapon.suppressor      : msg.reply({files: ["img_weapon/suppressor.png"]});
+        break;
+        case cmd.weapon.tanto           : msg.reply({files: ["img_weapon/tanto.png"]});
+        break;
+        case cmd.weapon.trident         : msg.reply({files: ["img_weapon/trident.png"]});
+        break;
+
+
+    }
+});
+
 
 // Create an event listener for new guild members
 client.on('guildMemberAdd', member => {
-    // Send the message to a designated channel on a server:
+
     const channel = member.guild.channels.find(ch => ch.name === 'unique-bot');
-    // Do nothing if the channel wasn't found on this server
     if (!channel) return;
-    // Send the message, mentioning the member
-    channel.send(`Oh, it's a new member! Let's welcome ${member} to the channel!` );
+    channel.send(`Let's welcome ${member} to the server!`, {files: ["img_stratagem/shredder_missle.png"]});
+});
+
+client.on('guildMemberAdd', member => {
+    const channel = member.guild.channels.find(ch => ch.name === 'chat');
+    if (!channel) return;
+    channel.send(`Let's welcome ${member} to the server!`, {files: ["img_stratagem/shredder_missle.png"]});
 });
 
 // Create an event listener for new guild members
 client.on('guildMemberAdd', member => {
-    // Send the message to a designated channel on a server:
-    const channel = member.guild.channels.find(ch => ch.name === 'chat');
-    // Do nothing if the channel wasn't found on this server
+    const channel = member.guild.channels.find(ch => ch.name === 'ub-dev');
     if (!channel) return;
-    // Send the message, mentioning the member
-    channel.send(`Oh, it's a new member! Let's welcome ${member} to the server!` );
+    channel.send(`Let's welcome ${member} to the server!`, {files: ["img_stratagem/shredder_missle.png"]});
 });
 
 
@@ -116,4 +176,5 @@ setInterval(function() {
 }, 300000);
 
 // Log our bot in using the token
+// client.login('NjE1MDQ3MTU4OTU3MDgwNTg2.XW_crw.zRax34HTXX2aCb2EZTUczF3uUik');
 client.login(process.env.bot_token);

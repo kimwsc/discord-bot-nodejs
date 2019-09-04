@@ -9,7 +9,7 @@
         "reinforce" : "Reinforce\n:arrow_up: :arrow_down: :arrow_right: :arrow_left: :arrow_up:",
         "sos" : "Emergency Beacon\n:arrow_up: :arrow_down: :arrow_right: :arrow_up:"
     },
-    "offensive":
+    "offensive" :
     {
         "airstrike": "Heavy Airstrike\n:arrow_right: :arrow_up: :arrow_down: :arrow_right: :arrow_left:",
         "closeair" : "Close Air Support\n:arrow_right: :arrow_right: :arrow_down: :arrow_left:",
@@ -25,7 +25,7 @@
         "srun" : "Strafing Run\n:arrow_right: :arrow_right: :arrow_up:",
         "thunderer" : "Thunderer Barrage\n:arrow_right: :arrow_down: :arrow_up: :arrow_up: :arrow_left: :arrow_down:"
     },
-    "objective":
+    "objective" :
     {
         "trans_1" : "\n10 button presses",
         "trans_2" : "\n:arrow_up: :arrow_up: :arrow_down: :arrow_left: :arrow_left: :arrow_up: :arrow_up: :arrow_right: :arrow_up:",
