@@ -22,5 +22,35 @@
         "srun" : "/srun",
         "thunderer" : "/thunderer"
     },
+    "weapon" :
+    {
+        "shotgun" : "/shotgun",
+        "thrower" : "/thrower",
+        "breaker" : "/breaker",
+        "camper" : "/camper",
+        "constitution" : "/constitution",
+        "defender" : "/defender",
+        "double_freedom" : "/doublefreedom",
+        "gunslinger" : "/gunslinger",
+        "justice" : "/justice",
+        "knight" : "/knight",
+        "liberator" : "/liberator",
+        "ninja" : "/ninja",
+        "paragon" : "/paragon",
+        "patriot" : "/patriot",
+        "peacemaker" : "/peacemaker",
+        "punisher" : "/punisher",
+        "pyro" : "/pyro",
+        "railgun" : "/railgun",
+        "scorcher" : "/scorcher",
+        "scythe" : "/scythe",
+        "sickle" : "/sickle",
+        "singe" : "/singe",
+        "stalwart" : "/stalwart",
+        "suppressor" : "/suppressor",
+        "tanto" : "/tanto",
+        "trident" : "/trident"
+
+    },
     "trans" : "/trans"
 }
