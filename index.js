@@ -34,6 +34,18 @@ client.on('message', msg => {
         break;
         case cmd.bdangry      : msg.reply({files: ["stickers/bduck_angry.gif"]});
         break;
+        case cmd.bdass      : msg.reply({files: ["stickers/bduck_ass.gif"]});
+        break;
+        case cmd.bdfaint      : msg.reply({files: ["stickers/bduck_faint.gif"]});
+        break;
+        case cmd.bdfull      : msg.reply({files: ["stickers/bduck_full.gif"]});
+        break;
+        case cmd.bdkeybord      : msg.reply({files: ["stickers/bduck_keybord.gif"]});
+        break;
+        case cmd.bdphone      : msg.reply({files: ["stickers/bduck_phone.gif"]});
+        break;
+        case cmd.bdplay      : msg.reply({files: ["stickers/bduck_play.gif"]});
+        break;
         case cmd.bdlaugh    : msg.reply({files: ["stickers/bduck_laugh.gif"]});
         break;
         case cmd.bdbye      : msg.reply({files: ["stickers/bduck_bye.gif"]});
