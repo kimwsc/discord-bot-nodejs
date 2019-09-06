@@ -30,6 +30,8 @@ client.on('ready', () => {
 client.on('message', msg => {
     
     switch(msg.content) {
+        case cmd.middle_finger      : msg.reply({files: ["stickers/rick_and_morty_mf.gif"]});
+        break;
         case cmd.bdangry      : msg.reply({files: ["stickers/bduck_angry.gif"]});
         break;
         case cmd.bdlaugh    : msg.reply({files: ["stickers/bduck_laugh.gif"]});
