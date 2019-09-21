@@ -108,14 +108,77 @@ client.on('message', msg => {
 
 /*
 |-----------------------------------------------------------------------------
-| Helldivers 
+| Helldivers Command List
 |-----------------------------------------------------------------------------
 */
 
 client.on('message', msg => {
 
     switch(msg.content) {
-        case "/turret" : msg.reply("List of turret stratagem in Helldivers: \n", {files:["img_stratagem/defensive/launcher_turret.png", "img_stratagem/defensive/minigun_turret.png", "img_stratagem/defensive/railcannon_turret.png"]});
+        case "/helldivers" : msg.reply("Here are all available Helldivers Commands: \n" + 
+                                        "prefix: `/` \n" +
+                                        "❯ Ofensive Stratagems \n" + 
+                                        "`airstrike` | " +
+                                        "`closeair` | " +
+                                        "`divebomb` | " +
+                                        "`hsrun` | " +
+                                        "`incendiary` | " +
+                                        "`missle` | " +
+                                        "`laser` | " +
+                                        "`railcannon` | " +
+                                        "`nuke` | " +
+                                        "`precision` | " +
+                                        "`staticfield` | " +
+                                        "`srun` | " +
+                                        "`thunderer` | \n" +
+                                        "❯ Defensive Stratagems \n" + 
+                                        "`at47` | " +
+                                        "`barrier` | " +
+                                        "`beacon` | " +
+                                        "`drone` | " +
+                                        "`mine` | " +
+                                        "`turret launcher` | " +
+                                        "`turret minigun` | " +
+                                        "`turret railcannon` | " +
+                                        "`smokeround` | " +
+                                        "`stunmine` | " +
+                                        "`tesla` | " +
+                                        "`turrets` | \n" +
+                                        "❯ Weapon \n" +
+                                        "`shotgun` | " +
+                                        "`thrower` | " +
+                                        "`breaker` | " +
+                                        "`camper` | " +
+                                        "`constitution` | " +
+                                        "`defender` | " +
+                                        "`doublefreedom` | " +
+                                        "`gunslinger` | " +
+                                        "`justice` | " +
+                                        "`knight` | " +
+                                        "`liberator` | " +
+                                        "`ninja` | " +
+                                        "`paragon` | " +
+                                        "`patriot` | " +
+                                        "`peacemaker` | " +
+                                        "`punisher` | " +
+                                        "`pyro` | " +
+                                        "`railgun` | " +
+                                        "`scorcher` | " +
+                                        "`scythe` | " +
+                                        "`sickle` | " +
+                                        "`singe` | " +
+                                        "`stalwart` | " +
+                                        "`suppressor` | " +
+                                        "`tanto` | " +
+                                        "`trident` | \n" +
+                                        "❯ Special Stratagems \n" +
+                                        "`reinforce` | " +
+                                        "`sos` | " +
+                                        "`offensive` | \n" +
+                                        "❯ Transmitter Objective Key \n" +
+                                        "`trans` | "
+    
+        );
         break;
     }
 
