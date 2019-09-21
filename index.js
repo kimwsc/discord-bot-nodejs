@@ -30,66 +30,66 @@ client.on('ready', () => {
 client.on('message', msg => {
     
     switch(msg.content) {
-        case cmd.middle_finger      : msg.reply({files: ["stickers/rick_and_morty_mf.gif"]});
+        case cmd.middle_finger  : msg.reply({files: ["stickers/rick_and_morty_mf.gif"]});
         break;
-        case cmd.bdangry      : msg.reply({files: ["stickers/bduck_angry.gif"]});
+        case cmd.bdangry        : msg.reply({files: ["stickers/bduck_angry.gif"]});
         break;
-        case cmd.bdass      : msg.reply({files: ["stickers/bduck_ass.gif"]});
+        case cmd.bdass          : msg.reply({files: ["stickers/bduck_ass.gif"]});
         break;
-        case cmd.bdfaint      : msg.reply({files: ["stickers/bduck_faint.gif"]});
+        case cmd.bdfaint        : msg.reply({files: ["stickers/bduck_faint.gif"]});
         break;
-        case cmd.bdfull      : msg.reply({files: ["stickers/bduck_full.gif"]});
+        case cmd.bdfull         : msg.reply({files: ["stickers/bduck_full.gif"]});
         break;
         case cmd.bdkeybord      : msg.reply({files: ["stickers/bduck_keybord.gif"]});
         break;
-        case cmd.bdphone      : msg.reply({files: ["stickers/bduck_phone.gif"]});
+        case cmd.bdphone        : msg.reply({files: ["stickers/bduck_phone.gif"]});
         break;
-        case cmd.bdplay      : msg.reply({files: ["stickers/bduck_play.gif"]});
+        case cmd.bdplay         : msg.reply({files: ["stickers/bduck_play.gif"]});
         break;
-        case cmd.bdlaugh    : msg.reply({files: ["stickers/bduck_laugh.gif"]});
+        case cmd.bdlaugh        : msg.reply({files: ["stickers/bduck_laugh.gif"]});
         break;
-        case cmd.bdbye      : msg.reply({files: ["stickers/bduck_bye.gif"]});
+        case cmd.bdbye          : msg.reply({files: ["stickers/bduck_bye.gif"]});
         break;
-        case cmd.bddizzy      : msg.reply({files: ["stickers/bduck_dizzy.gif"]});
+        case cmd.bddizzy        : msg.reply({files: ["stickers/bduck_dizzy.gif"]});
         break;
-        case cmd.bdhello      : msg.reply({files: ["stickers/bduck_hello.gif"]});
+        case cmd.bdhello        : msg.reply({files: ["stickers/bduck_hello.gif"]});
         break;
-        case cmd.bdlol      : msg.reply({files: ["stickers/bduck_lol.gif"]});
+        case cmd.bdlol          : msg.reply({files: ["stickers/bduck_lol.gif"]});
         break;
-        case cmd.bdlove      : msg.reply({files: ["stickers/bduck_love.gif"]});
+        case cmd.bdlove         : msg.reply({files: ["stickers/bduck_love.gif"]});
         break;
-        case cmd.bdno      : msg.reply({files: ["stickers/bduck_no.gif"]});
+        case cmd.bdno           : msg.reply({files: ["stickers/bduck_no.gif"]});
         break;
-        case cmd.bdnoodle      : msg.reply({files: ["stickers/bduck_noodle.gif"]});
+        case cmd.bdnoodle       : msg.reply({files: ["stickers/bduck_noodle.gif"]});
         break;
-        case cmd.bdok      : msg.reply({files: ["stickers/bduck_ok.gif"]});
+        case cmd.bdok           : msg.reply({files: ["stickers/bduck_ok.gif"]});
         break;
-        case cmd.bdomg      : msg.reply({files: ["stickers/bduck_omg.gif"]});
+        case cmd.bdomg          : msg.reply({files: ["stickers/bduck_omg.gif"]});
         break;
-        case cmd.bdsad      : msg.reply({files: ["stickers/bduck_sad.gif"]});
+        case cmd.bdsad          : msg.reply({files: ["stickers/bduck_sad.gif"]});
         break;
-        case cmd.bdsleep      : msg.reply({files: ["stickers/bduck_sleep.gif"]});
+        case cmd.bdsleep        : msg.reply({files: ["stickers/bduck_sleep.gif"]});
         break;
-        case cmd.bdwoo      : msg.reply({files: ["stickers/bduck_woo.gif"]});
+        case cmd.bdwoo          : msg.reply({files: ["stickers/bduck_woo.gif"]});
         break;
-        case cmd.fu         : msg.reply(message.ck);
+        case cmd.fu             : msg.reply(message.ck);
         break;
-        case cmd.ok         : msg.reply(message.ok);
+        case cmd.ok             : msg.reply(message.ok);
         break;
-        case cmd.kimsphere  : msg.reply(message.kimsphere);
+        case cmd.kimsphere      : msg.reply(message.kimsphere);
         break;
-        case cmd.andylam    : msg.reply(message.andylam);
+        case cmd.andylam        : msg.reply(message.andylam);
         break;
-        case cmd.asarind    : msg.reply(message.asarind);
+        case cmd.asarind        : msg.reply(message.asarind);
         break;
-        case cmd.reinforce  : msg.reply(message.special.reinforce);
+        case cmd.reinforce      : msg.reply(message.special.reinforce);
         break;
-        case cmd.sos        : msg.reply(message.special.sos);
+        case cmd.sos            : msg.reply(message.special.sos);
         break;
-        case cmd.trans      : msg.reply(message.objective.trans_1 + 
-                                        message.objective.trans_2 + 
-                                        message.objective.trans_3 + 
-                                        message.objective.trans_4);
+        case cmd.trans          : msg.reply(message.objective.trans_1 + 
+                                            message.objective.trans_2 + 
+                                            message.objective.trans_3 + 
+                                            message.objective.trans_4);
         break;
 
     }
