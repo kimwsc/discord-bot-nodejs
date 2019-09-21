@@ -114,31 +114,31 @@ client.on('message', msg => {
 client.on('message', msg => {
     
     switch(msg.content) {
-        case cmd.offensive.airstrike    : msg.reply(message.offensive.airstrike, {files: ["img_stratagem/airstrike.png"]});
+        case cmd.offensive.airstrike    : msg.reply(message.offensive.airstrike, {files: ["img_stratagem/offensive/airstrike.png"]});
         break;
-        case cmd.offensive.closeair     : msg.reply(message.offensive.closeair, {files: ["img_stratagem/close_air.png"]});
+        case cmd.offensive.closeair     : msg.reply(message.offensive.closeair, {files: ["img_stratagem/offensive/close_air.png"]});
         break;
-        case cmd.offensive.divebomb     : msg.reply(message.offensive.divebomb, {files: ["img_stratagem/dive_bomb.png"]});
+        case cmd.offensive.divebomb     : msg.reply(message.offensive.divebomb, {files: ["img_stratagem/offensive/dive_bomb.png"]});
         break;
-        case cmd.offensive.hsrun        : msg.reply(message.offensive.hsrun, {files: ["img_stratagem/heavy_strafing_run.png"]});
+        case cmd.offensive.hsrun        : msg.reply(message.offensive.hsrun, {files: ["img_stratagem/offensive/heavy_strafing_run.png"]});
         break;
-        case cmd.offensive.incendiary   : msg.reply(message.offensive.incendiary, {files: ["img_stratagem/incendiary.png"]});
+        case cmd.offensive.incendiary   : msg.reply(message.offensive.incendiary, {files: ["img_stratagem/offensive/incendiary.png"]});
         break;
-        case cmd.offensive.missle       : msg.reply(message.offensive.missle, {files: ["img_stratagem/missle.png"]});
+        case cmd.offensive.missle       : msg.reply(message.offensive.missle, {files: ["img_stratagem/offensive/missle.png"]});
         break;
-        case cmd.offensive.laser        : msg.reply(message.offensive.laser, {files: ["img_stratagem/orbital_laser.png"]});
+        case cmd.offensive.laser        : msg.reply(message.offensive.laser, {files: ["img_stratagem/offensive/orbital_laser.png"]});
         break;
-        case cmd.offensive.railcannon   : msg.reply(message.offensive.railcannon, {files: ["img_stratagem/railcannon.png"]});
+        case cmd.offensive.railcannon   : msg.reply(message.offensive.railcannon, {files: ["img_stratagem/offensive/railcannon.png"]});
         break;
-        case cmd.offensive.nuke         : msg.reply(message.offensive.nuke, {files: ["img_stratagem/shredder_missle.png"]});
+        case cmd.offensive.nuke         : msg.reply(message.offensive.nuke, {files: ["img_stratagem/offensive/shredder_missle.png"]});
         break;
-        case cmd.offensive.precision    : msg.reply(message.offensive.precision, {files: ["img_stratagem/sledge_precision.png"]});
+        case cmd.offensive.precision    : msg.reply(message.offensive.precision, {files: ["img_stratagem/offensive/sledge_precision.png"]});
         break;
-        case cmd.offensive.staticfield  : msg.reply(message.offensive.staticfield, {files: ["img_stratagem/static_field.png"]});
+        case cmd.offensive.staticfield  : msg.reply(message.offensive.staticfield, {files: ["img_stratagem/offensive/static_field.png"]});
         break;
-        case cmd.offensive.srun         : msg.reply(message.offensive.srun, {files: ["img_stratagem/strafing_run.png"]});
+        case cmd.offensive.srun         : msg.reply(message.offensive.srun, {files: ["img_stratagem/offensive/strafing_run.png"]});
         break;
-        case cmd.offensive.thunderer    : msg.reply(message.offensive.thunderer, {files: ["img_stratagem/thunderer.png"]});
+        case cmd.offensive.thunderer    : msg.reply(message.offensive.thunderer, {files: ["img_stratagem/offensive/thunderer.png"]});
         break;
     
     }
@@ -235,14 +235,14 @@ client.on('message', msg => {
 client.on('guildMemberAdd', member => {
     const channel = member.guild.channels.find(ch => ch.name === 'chat');
     if (!channel) return;
-    channel.send(`Let's welcome ${member} to the server!!!`, {files: ["img_stratagem/shredder_missle.png"]});
+    channel.send(`Let's welcome ${member} to the server!!!`, {files: ["img_stratagem/offensive/shredder_missle.png"]});
 });
 
 // Create an event listener for new guild members
 client.on('guildMemberAdd', member => {
     const channel = member.guild.channels.find(ch => ch.name === 'ub-dev');
     if (!channel) return;
-    channel.send(`Let's welcome ${member} to the server!`, {files: ["img_stratagem/shredder_missle.png"]});
+    channel.send(`Let's welcome ${member} to the server!`, {files: ["img_stratagem/offensive/shredder_missle.png"]});
 });
 
 
