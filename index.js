@@ -192,13 +192,6 @@ client.on('message', msg => {
 
 // Create an event listener for new guild members
 client.on('guildMemberAdd', member => {
-
-    const channel = member.guild.channels.find(ch => ch.name === 'unique-bot');
-    if (!channel) return;
-    channel.send(`Let's welcome ${member} to the server!`, {files: ["img_stratagem/shredder_missle.png"]});
-});
-
-client.on('guildMemberAdd', member => {
     const channel = member.guild.channels.find(ch => ch.name === 'chat');
     if (!channel) return;
     channel.send(`Let's welcome ${member} to the server!!!`, {files: ["img_stratagem/shredder_missle.png"]});
