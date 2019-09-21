@@ -55,7 +55,8 @@
         "railcannon_turret" : "/turret railcannon",
         "smoke_round" : "/smokeround",
         "stun_mine" : "/stunmine",
-        "tesla_tower" : "/tesla"
+        "tesla_tower" : "/tesla",
+        "turrets" : "/turrets"
     },
     "weapon" :
     {

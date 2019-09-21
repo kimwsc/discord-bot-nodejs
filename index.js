@@ -101,6 +101,22 @@ client.on('message', msg => {
         break;
         case cmd.asarind        : msg.reply(message.asarind);
         break;
+        
+    }
+
+});
+
+/*
+|-----------------------------------------------------------------------------
+| Helldivers 
+|-----------------------------------------------------------------------------
+*/
+
+client.on('message', msg => {
+
+    switch(msg.content) {
+        case "/turret" : msg.reply("List of turret stratagem in Helldivers: \n", {files:["img_stratagem/defensive/launcher_turret.png", "img_stratagem/defensive/minigun_turret.png", "img_stratagem/defensive/railcannon_turret.png"]});
+        break;
     }
 
 });
@@ -176,6 +192,8 @@ client.on('message', msg => {
         case cmd.defensive.stun_mine : msg.reply(message.defensive.stun_mine, {files: ["img_stratagem/defensive/stun_mine.png"]});
         break;
         case cmd.defensive.tesla_tower : msg.reply(message.defensive.tesla_tower, {files: ["img_stratagem/defensive/tesla_tower.png"]});
+        break;
+        case cmd.defensive.turrets : msg.reply(message.defensive.turrets, {files:["img_stratagem/defensive/launcher_turret.png", "img_stratagem/defensive/minigun_turret.png", "img_stratagem/defensive/railcannon_turret.png"]});
         break;
 
     }

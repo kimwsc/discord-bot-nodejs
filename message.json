@@ -37,7 +37,8 @@
         "railcannon_turret" : "A/RX-34 Railcannon Turret",
         "smoke_round" : "Thunderer Smoke Round",
         "stun_mine" : "Airdropped Stun Mines",
-        "tesla_tower" : "A/AC-6 Tesla Tower"
+        "tesla_tower" : "A/AC-6 Tesla Tower",
+        "turrets" : "List of turret stratagems in Helldivers: \n"
     },
     "objective" :
     {
