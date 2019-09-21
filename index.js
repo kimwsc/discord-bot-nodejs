@@ -116,8 +116,8 @@ client.on('message', msg => {
 
     switch(msg.content) {
         case "/helldivers" : msg.reply("Here are all available Helldivers Commands: \n" + 
-                                        "prefix: `/` \n" +
-                                        "❯ Ofensive Stratagems \n" + 
+                                        "Prefix: `/` \n" +
+                                        "❯ Offensive Stratagems \n" + 
                                         "`airstrike` | " +
                                         "`closeair` | " +
                                         "`divebomb` | " +
@@ -176,7 +176,7 @@ client.on('message', msg => {
                                         "`sos` | " +
                                         "`offensive` | \n" +
                                         "❯ Transmitter Objective Key \n" +
-                                        "`trans` | "
+                                        "`trans`"
     
         );
         break;
