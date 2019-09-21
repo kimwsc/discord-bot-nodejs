@@ -147,6 +147,43 @@ client.on('message', msg => {
 
 /*
 |-----------------------------------------------------------------------------
+| Helldivers Defensive Stratagem Commands
+|-----------------------------------------------------------------------------
+*/
+
+client.on('message', msg => {
+
+    switch(msg.content) {
+
+        case cmd.defensive.at47 : msg.reply(message.defensive.at47, {files: ["img_stratagem/defensive/at47.png"]});
+        break;
+        case cmd.defensive.barrier : msg.reply(message.defensive.barrier, {files: ["img_stratagem/defensive/barrier.png"]});
+        break;
+        case cmd.defensive.beacon : msg.reply(message.defensive.beacon, {files: ["img_stratagem/defensive/beacon.png"]});
+        break;
+        case cmd.defensive.drone : msg.reply(message.defensive.drone, {files: ["img_stratagem/defensive/drone.png"]});
+        break;
+        case cmd.defensive.explosive_mine : msg.reply(message.defensive.explosive_mine, {files: ["img_stratagem/defensive/explosive_mine.png"]});
+        break;
+        case cmd.defensive.launcher_turret : msg.reply(message.defensive.launcher_turret, {files: ["img_stratagem/defensive/launcher_turret.png"]});
+        break;
+        case cmd.defensive.minigun_turret : msg.reply(message.defensive.minigun_turret, {files: ["img_stratagem/defensive/minigun_turret.png"]});
+        break;
+        case cmd.defensive.railcannon_turret : msg.reply(message.defensive.railcannon_turret, {files: ["img_stratagem/defensive/railcannon_turret.png"]});
+        break;
+        case cmd.defensive.smoke_round : msg.reply(message.defensive.smoke_round, {files: ["img_stratagem/defensive/smoke_round.png"]});
+        break;
+        case cmd.defensive.stun_mine : msg.reply(message.defensive.stun_mine, {files: ["img_stratagem/defensive/stun_mine.png"]});
+        break;
+        case cmd.defensive.tesla_tower : msg.reply(message.defensive.tesla_tower, {files: ["img_stratagem/defensive/tesla_tower.png"]});
+        break;
+
+    }
+
+});
+
+/*
+|-----------------------------------------------------------------------------
 | Helldivers Weapon Commands
 |-----------------------------------------------------------------------------
 */

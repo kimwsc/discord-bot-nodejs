@@ -43,6 +43,20 @@
         "srun" : "/srun",
         "thunderer" : "/thunderer"
     },
+    "defensive" : 
+    {
+        "at47" : "/at47",
+        "barrier" : "/barrier",
+        "beacon" : "/beacon",
+        "drone" : "/drone",
+        "explosive_mine" : "/mine",
+        "launcher_turret" : "/turret launcher",
+        "minigun_turret" : "/turret minigun",
+        "railcannon_turret" : "/turret railcannon",
+        "smoke_round" : "/smokeround",
+        "stun_mine" : "/stunmine",
+        "tesla_tower" : "/tesla"
+    },
     "weapon" :
     {
         "shotgun" : "/shotgun",
