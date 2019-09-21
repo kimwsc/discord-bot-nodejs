@@ -211,5 +211,4 @@ setInterval(function() {
 }, 300000);
 
 // Log our bot in using the token
-// client.login('NjE1MDQ3MTU4OTU3MDgwNTg2.XW_crw.zRax34HTXX2aCb2EZTUczF3uUik');
 client.login(process.env.bot_token);
