@@ -30,52 +30,100 @@ client.on('ready', () => {
 
 /*
 |-----------------------------------------------------------------------------
+| B.duck Stickers Command List
+|-----------------------------------------------------------------------------
+*/
+
+client.on('message', msg => {
+
+    if (msg.content.toLowerCase() === "/bduck") {
+        
+        const bduckEmbed = new Discord.RichEmbed()
+        .setColor('#ffd321')
+        .setAuthor('B.Duck', 'https://thumbs.gfycat.com/MajorWatchfulCarp-size_restricted.gif')
+        .setDescription('No prefix')
+        .setThumbnail('https://cdn.streamelements.com/uploads/33f405cc-22ce-45a8-9f92-a01efedb5b62.gif')
+        .addField('❯ Available stickers', 
+                    '`bdlaugh` | '+
+                    '`bdbye` | '+
+                    '`bdangry` | '+
+                    '`bdlol` | '+
+                    '`bdno` | '+
+                    '`bddizzy` | '+
+                    '`bdhello` | '+
+                    '`bdlove` | '+
+                    '`bdsad` | '+
+                    '`bdwoo` | '+
+                    '`bdsleep` | '+
+                    '`bdomg` | '+
+                    '`bdnoodle` | '+
+                    '`bdok` | '+
+                    '`bdass` | '+
+                    '`bdfaint` | '+
+                    '`bdfull` | '+
+                    '`bdkeyboard` | '+
+                    '`bdphone` | '+
+                    '`bdplay`', true)
+        .setTimestamp()
+        .setFooter('UB');
+    
+    msg.channel.send(bduckEmbed);
+            
+   
+    }
+
+});
+
+
+
+/*
+|-----------------------------------------------------------------------------
 | B.duck Stickers Commands
 |-----------------------------------------------------------------------------
 */
 
 client.on('message', msg => {
     
-    switch(msg.content) {
-        case cmd.bdangry        : msg.reply({files: ["stickers/bduck_angry.gif"]});
+    switch(msg.content.toLowerCase()) {
+        case cmd.bdangry        : msg.channel.send({files: ["stickers/bduck_angry.gif"]});
         break;
-        case cmd.bdass          : msg.reply({files: ["stickers/bduck_ass.gif"]});
+        case cmd.bdass          : msg.channel.send({files: ["stickers/bduck_ass.gif"]});
         break;
-        case cmd.bdfaint        : msg.reply({files: ["stickers/bduck_faint.gif"]});
+        case cmd.bdfaint        : msg.channel.send({files: ["stickers/bduck_faint.gif"]});
         break;
-        case cmd.bdfull         : msg.reply({files: ["stickers/bduck_full.gif"]});
+        case cmd.bdfull         : msg.channel.send({files: ["stickers/bduck_full.gif"]});
         break;
-        case cmd.bdkeybord      : msg.reply({files: ["stickers/bduck_keybord.gif"]});
+        case cmd.bdkeyboard      : msg.channel.send({files: ["stickers/bduck_keyboard.gif"]});
         break;
-        case cmd.bdphone        : msg.reply({files: ["stickers/bduck_phone.gif"]});
+        case cmd.bdphone        : msg.channel.send({files: ["stickers/bduck_phone.gif"]});
         break;
-        case cmd.bdplay         : msg.reply({files: ["stickers/bduck_play.gif"]});
+        case cmd.bdplay         : msg.channel.send({files: ["stickers/bduck_play.gif"]});
         break;
-        case cmd.bdlaugh        : msg.reply({files: ["stickers/bduck_laugh.gif"]});
+        case cmd.bdlaugh        : msg.channel.send({files: ["stickers/bduck_laugh.gif"]});
         break;
-        case cmd.bdbye          : msg.reply({files: ["stickers/bduck_bye.gif"]});
+        case cmd.bdbye          : msg.channel.send({files: ["stickers/bduck_bye.gif"]});
         break;
-        case cmd.bddizzy        : msg.reply({files: ["stickers/bduck_dizzy.gif"]});
+        case cmd.bddizzy        : msg.channel.send({files: ["stickers/bduck_dizzy.gif"]});
         break;
-        case cmd.bdhello        : msg.reply({files: ["stickers/bduck_hello.gif"]});
+        case cmd.bdhello        : msg.channel.send({files: ["stickers/bduck_hello.gif"]});
         break;
-        case cmd.bdlol          : msg.reply({files: ["stickers/bduck_lol.gif"]});
+        case cmd.bdlol          : msg.channel.send({files: ["stickers/bduck_lol.gif"]});
         break;
-        case cmd.bdlove         : msg.reply({files: ["stickers/bduck_love.gif"]});
+        case cmd.bdlove         : msg.channel.send({files: ["stickers/bduck_love.gif"]});
         break;
-        case cmd.bdno           : msg.reply({files: ["stickers/bduck_no.gif"]});
+        case cmd.bdno           : msg.channel.send({files: ["stickers/bduck_no.gif"]});
         break;
-        case cmd.bdnoodle       : msg.reply({files: ["stickers/bduck_noodle.gif"]});
+        case cmd.bdnoodle       : msg.channel.send({files: ["stickers/bduck_noodle.gif"]});
         break;
-        case cmd.bdok           : msg.reply({files: ["stickers/bduck_ok.gif"]});
+        case cmd.bdok           : msg.channel.send({files: ["stickers/bduck_ok.gif"]});
         break;
-        case cmd.bdomg          : msg.reply({files: ["stickers/bduck_omg.gif"]});
+        case cmd.bdomg          : msg.channel.send({files: ["stickers/bduck_omg.gif"]});
         break;
-        case cmd.bdsad          : msg.reply({files: ["stickers/bduck_sad.gif"]});
+        case cmd.bdsad          : msg.channel.send({files: ["stickers/bduck_sad.gif"]});
         break;
-        case cmd.bdsleep        : msg.reply({files: ["stickers/bduck_sleep.gif"]});
+        case cmd.bdsleep        : msg.channel.send({files: ["stickers/bduck_sleep.gif"]});
         break;
-        case cmd.bdwoo          : msg.reply({files: ["stickers/bduck_woo.gif"]});
+        case cmd.bdwoo          : msg.channel.send({files: ["stickers/bduck_woo.gif"]});
         break;
     }
 });
@@ -88,7 +136,7 @@ client.on('message', msg => {
 
 client.on('message', msg => {
 
-    switch(msg.content) {
+    switch(msg.content.toLowerCase()) {
         case cmd.middle_finger  : msg.reply({files: ["stickers/rick_and_morty_mf.gif"]});
         break;
         case cmd.fu             : msg.reply(message.ck);
@@ -114,74 +162,74 @@ client.on('message', msg => {
 
 client.on('message', msg => {
 
-    switch(msg.content) {
-        case "/helldivers" : msg.reply("Here are all available Helldivers Commands: \n" + 
-                                        "Prefix: `/` \n" +
-                                        "❯ Offensive Stratagems \n" + 
-                                        "`airstrike` | " +
-                                        "`closeair` | " +
-                                        "`divebomb` | " +
-                                        "`hsrun` | " +
-                                        "`incendiary` | " +
-                                        "`missle` | " +
-                                        "`laser` | " +
-                                        "`railcannon` | " +
-                                        "`nuke` | " +
-                                        "`precision` | " +
-                                        "`staticfield` | " +
-                                        "`srun` | " +
-                                        "`thunderer` | \n" +
-                                        "❯ Defensive Stratagems \n" + 
-                                        "`at47` | " +
-                                        "`barrier` | " +
-                                        "`beacon` | " +
-                                        "`drone` | " +
-                                        "`mine` | " +
-                                        "`turret launcher` | " +
-                                        "`turret minigun` | " +
-                                        "`turret railcannon` | " +
-                                        "`smokeround` | " +
-                                        "`stunmine` | " +
-                                        "`tesla` | " +
-                                        "`turrets` | \n" +
-                                        "❯ Weapon \n" +
-                                        "`shotgun` | " +
-                                        "`thrower` | " +
-                                        "`breaker` | " +
-                                        "`camper` | " +
-                                        "`constitution` | " +
-                                        "`defender` | " +
-                                        "`doublefreedom` | " +
-                                        "`gunslinger` | " +
-                                        "`justice` | " +
-                                        "`knight` | " +
-                                        "`liberator` | " +
-                                        "`ninja` | " +
-                                        "`paragon` | " +
-                                        "`patriot` | " +
-                                        "`peacemaker` | " +
-                                        "`punisher` | " +
-                                        "`pyro` | " +
-                                        "`railgun` | " +
-                                        "`scorcher` | " +
-                                        "`scythe` | " +
-                                        "`sickle` | " +
-                                        "`singe` | " +
-                                        "`stalwart` | " +
-                                        "`suppressor` | " +
-                                        "`tanto` | " +
-                                        "`trident` | \n" +
-                                        "❯ Special Stratagems \n" +
-                                        "`reinforce` | " +
-                                        "`sos` | " +
-                                        "`offensive` | \n" +
-                                        "❯ Transmitter Objective Key \n" +
-                                        "`trans`"
-    
-        );
-        break;
-    }
+    if (msg.content.toLowerCase() === "/helldivers") {
+        
+        const helldiversEmbed = new Discord.RichEmbed()
+        .setColor('#d4d4d4')
+        .setAuthor('HELLDIVERS™', 'https://steamuserimages-a.akamaihd.net/ugc/88224496145598035/E12BE9A061F526B4898A69E81B26D19148525FC3/','https://helldivers.gamepedia.com/Stratagems')
+        .setDescription('Command Prefix : `/`')
+        .setThumbnail('https://steamuserimages-a.akamaihd.net/ugc/88224496145598035/E12BE9A061F526B4898A69E81B26D19148525FC3/')
+        .addField('❯ Offensive Stratagems', 
+                    '`airstrike` | '+ 
+                    '`closeair` | '+ 
+                    '`divebomb` | '+
+                    '`hsrun` | '+
+                    '`incendiary` | '+
+                    '`missle` | '+
+                    '`laser` | '+
+                    '`railcannon` | '+
+                    '`nuke` | '+
+                    '`precision` | '+
+                    '`staticfield` | '+
+                    '`srun` | '+
+                    '`thunderer`', true)
+        .addField('❯ Defensive Stratagems', 
+                    '`at47` | '+
+                    '`barrier` | '+
+                    '`beacon` | '+
+                    '`drone` | '+
+                    '`mine` | '+
+                    '`turret launcher` | '+
+                    '`turret minigun` | '+
+                    '`turret railcannon` | '+
+                    '`smokeround` | '+
+                    '`stunmine` | '+
+                    '`tesla` | '+
+                    '`turrets`' , true)
+        .addField('❯ Weapons', 
+                    '`shotgun` | '+
+                    '`thrower` | '+
+                    '`breaker` | '+
+                    '`camper` | '+
+                    '`constitution` | '+
+                    '`defender` | '+
+                    '`doublefreedom` | '+
+                    '`gunslinger` | '+
+                    '`justice` | '+
+                    '`knight` | '+
+                    '`liberator` | '+
+                    '`ninja` | '+
+                    '`paragon` | '+
+                    '`patriot` | '+
+                    '`peacemaker` | '+
+                    '`punisher` | '+
+                    '`pyro` | '+
+                    '`railgun` | '+
+                    '`scorcher` | '+
+                    '`scythe` | '+
+                    '`sickle` | '+
+                    '`singe` | '+
+                    '`stalwart` | '+
+                    '`suppressor` | '+
+                    '`tanto` | '+
+                    '`trident`', true)
+        .addField('❯ Special Stratagems', '`reinforce` | `sos` | `offensive`', true)
+        .addField('❯ Transmitter Objective Key','`trans`',true)
+        .setTimestamp()
+        .setFooter('UB');
 
+        msg.channel.send(helldiversEmbed);
+    }
 });
 
 /*
@@ -192,7 +240,7 @@ client.on('message', msg => {
 
 client.on('message', msg => {
     
-    switch(msg.content) {
+    switch(msg.content.toLowerCase()) {
         case cmd.offensive.airstrike    : msg.reply(message.offensive.airstrike, {files: ["img_stratagem/offensive/airstrike.png"]});
         break;
         case cmd.offensive.closeair     : msg.reply(message.offensive.closeair, {files: ["img_stratagem/offensive/close_air.png"]});
@@ -232,7 +280,7 @@ client.on('message', msg => {
 
 client.on('message', msg => {
 
-    switch(msg.content) {
+    switch(msg.content.toLowerCase()) {
 
         case cmd.defensive.at47 : msg.reply(message.defensive.at47, {files: ["img_stratagem/defensive/at47.png"]});
         break;
@@ -271,7 +319,7 @@ client.on('message', msg => {
 
 client.on('message', msg => {
 
-    switch(msg.content) {
+    switch(msg.content.toLowerCase()) {
         case cmd.weapon.shotgun         : msg.reply({files: ["img_weapon/arc_shotgun.png"]});
         break;
         case cmd.weapon.thrower         : msg.reply({files: ["img_weapon/arc_thrower.png"]});
@@ -335,7 +383,7 @@ client.on('message', msg => {
 
 client.on('message', msg => {
 
-    switch(msg.content) {
+    switch(msg.content.toLowerCase()) {
         case cmd.reinforce : msg.reply(message.special.reinforce);
         break;
         case cmd.sos       : msg.reply(message.special.sos);
