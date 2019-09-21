@@ -27,11 +27,16 @@ client.on('ready', () => {
 
 });
 
+
+/*
+|-----------------------------------------------------------------------------
+| B.duck Stickers Commands
+|-----------------------------------------------------------------------------
+*/
+
 client.on('message', msg => {
     
     switch(msg.content) {
-        case cmd.middle_finger  : msg.reply({files: ["stickers/rick_and_morty_mf.gif"]});
-        break;
         case cmd.bdangry        : msg.reply({files: ["stickers/bduck_angry.gif"]});
         break;
         case cmd.bdass          : msg.reply({files: ["stickers/bduck_ass.gif"]});
@@ -72,6 +77,20 @@ client.on('message', msg => {
         break;
         case cmd.bdwoo          : msg.reply({files: ["stickers/bduck_woo.gif"]});
         break;
+    }
+});
+
+/*
+|-----------------------------------------------------------------------------
+| Miscellaneous Commands
+|-----------------------------------------------------------------------------
+*/
+
+client.on('message', msg => {
+
+    switch(msg.content) {
+        case cmd.middle_finger  : msg.reply({files: ["stickers/rick_and_morty_mf.gif"]});
+        break;
         case cmd.fu             : msg.reply(message.ck);
         break;
         case cmd.ok             : msg.reply(message.ok);
@@ -82,18 +101,15 @@ client.on('message', msg => {
         break;
         case cmd.asarind        : msg.reply(message.asarind);
         break;
-        case cmd.reinforce      : msg.reply(message.special.reinforce);
-        break;
-        case cmd.sos            : msg.reply(message.special.sos);
-        break;
-        case cmd.trans          : msg.reply(message.objective.trans_1 + 
-                                            message.objective.trans_2 + 
-                                            message.objective.trans_3 + 
-                                            message.objective.trans_4);
-        break;
-
     }
+
 });
+
+/*
+|-----------------------------------------------------------------------------
+| Helldivers Offensive Stratagem Commands
+|-----------------------------------------------------------------------------
+*/
 
 client.on('message', msg => {
     
@@ -128,6 +144,12 @@ client.on('message', msg => {
     }
     
 });
+
+/*
+|-----------------------------------------------------------------------------
+| Helldivers Weapon Commands
+|-----------------------------------------------------------------------------
+*/
 
 client.on('message', msg => {
 
@@ -184,8 +206,27 @@ client.on('message', msg => {
         break;
         case cmd.weapon.trident         : msg.reply({files: ["img_weapon/trident.png"]});
         break;
+    }
+});
 
+/*
+|-----------------------------------------------------------------------------
+| Helldivers Special Stratagem Commands
+|-----------------------------------------------------------------------------
+*/
 
+client.on('message', msg => {
+
+    switch(msg.content) {
+        case cmd.reinforce : msg.reply(message.special.reinforce);
+        break;
+        case cmd.sos       : msg.reply(message.special.sos);
+        break;
+        case cmd.trans     : msg.reply(message.objective.trans_1 + 
+                                       message.objective.trans_2 + 
+                                       message.objective.trans_3 + 
+                                       message.objective.trans_4);
+        break;
     }
 });
 
