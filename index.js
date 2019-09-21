@@ -166,7 +166,7 @@ client.on('guildMemberAdd', member => {
 client.on('guildMemberAdd', member => {
     const channel = member.guild.channels.find(ch => ch.name === 'ub-dev');
     if (!channel) return;
-    channel.send(`Let's welcome ${member} to the server!`, {files: ["img_stratagem/shredder_missle.png"]});
+    channel.send(`Let's welcome ${member} to the server!!`, {files: ["img_stratagem/shredder_missle.png"]});
 });
 
 
