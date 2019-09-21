@@ -25,6 +25,21 @@
         "srun" : "Strafing Run\n:arrow_right: :arrow_right: :arrow_up:",
         "thunderer" : "Thunderer Barrage\n:arrow_right: :arrow_down: :arrow_up: :arrow_up: :arrow_left: :arrow_down:"
     },
+    "defensive" :
+    {
+        "at47" : "AT-47 Anti-Tank Emplacement",
+        "barrier" : "Anti-Personnel Barrier",
+        "beacon" : "Distractor Beacon",
+        "drone" : "Humblebee UAV drone",
+        "explosive_mine" : "Airdropped Anti-Personnel Mines",
+        "launcher_turret" : "A/GL-8 Launcher Turret",
+        "minigun_turret" : "A/MG-11 Minigun Turret",
+        "railcannon_turret" : "A/RX-34 Railcannon Turret",
+        "smoke_round" : "Thunderer Smoke Round",
+        "stun_mine" : "Airdropped Stun Mines",
+        "tesla_tower" : "A/AC-6 Tesla Tower",
+        "turrets" : "List of turret stratagems in Helldivers: \n"
+    },
     "objective" :
     {
         "trans_1" : "\n10 button presses",
