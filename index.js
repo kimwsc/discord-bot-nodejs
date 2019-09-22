@@ -3,6 +3,7 @@ const fs        = require('fs');
 const app       = express();
 const Discord   = require('discord.js');
 const client    = new Discord.Client();
+const path      = require('path');
 
 let https       = require("https");
 let jsonMessage = fs.readFileSync('message.json');
@@ -14,8 +15,7 @@ app.set('port', (process.env.PORT || 5000));
 
 // For avoiding Heroku $PORT error
 app.get('/', function(request, response) {
-    var result = 'App is running'
-    response.send(result);
+    response.sendFile(path.join(__dirname+ 'views/index.html'));
 }).listen(app.get('port'), function() {
     console.log('App is running, server is listening on port ', app.get('port'));
 });
@@ -166,7 +166,7 @@ client.on('message', msg => {
         .attachFile('img_misc/hisako.jpg')
         .setAuthor('MISC', 'attachment://hisako.jpg')
         .setDescription('Here are some MISC commands')
-        .addField('❯ Miscellaneous', '`fu` | `ok good` | `/middlefinger` | `/kimsphere` | `/andylam` | `/asarind` | `/cqface`', true)
+        .addField('❯ Miscellaneous', '`fu` | `ok good` | `/middlefinger` | `/ws kimsphere` | `/ws andylam` | `/ws asarind` | `/cqface`', true)
         .setTimestamp()
         .setFooter('Hisako');
 
