@@ -27,6 +27,7 @@
     "asarind"   : "/ws asarind",
     "reinforce" : "/reinforce",
     "sos" : "/sos",
+    "cqface" : "/cqface",
     "offensive" : 
     {
         "airstrike": "/airstrike",
