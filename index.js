@@ -137,17 +137,17 @@ client.on('message', msg => {
 client.on('message', msg => {
 
     switch(msg.content.toLowerCase()) {
-        case cmd.middle_finger  : msg.reply({files: ["stickers/rick_and_morty_mf.gif"]});
+        case cmd.middle_finger  : msg.channel.send({files: ["stickers/rick_and_morty_mf.gif"]});
         break;
-        case cmd.fu             : msg.reply(message.ck);
+        case cmd.fu             : msg.channel.send(message.ck);
         break;
-        case cmd.ok             : msg.reply(message.ok);
+        case cmd.ok             : msg.channel.send(message.ok);
         break;
-        case cmd.kimsphere      : msg.reply(message.kimsphere);
+        case cmd.kimsphere      : msg.channel.send(message.kimsphere);
         break;
-        case cmd.andylam        : msg.reply(message.andylam);
+        case cmd.andylam        : msg.channel.send(message.andylam);
         break;
-        case cmd.asarind        : msg.reply(message.asarind);
+        case cmd.asarind        : msg.channel.send(message.asarind);
         break;
         
     }
@@ -241,31 +241,31 @@ client.on('message', msg => {
 client.on('message', msg => {
     
     switch(msg.content.toLowerCase()) {
-        case cmd.offensive.airstrike    : msg.reply(message.offensive.airstrike, {files: ["img_stratagem/offensive/airstrike.png"]});
+        case cmd.offensive.airstrike    : msg.channel.send(message.offensive.airstrike, {files: ["img_stratagem/offensive/airstrike.png"]});
         break;
-        case cmd.offensive.closeair     : msg.reply(message.offensive.closeair, {files: ["img_stratagem/offensive/close_air.png"]});
+        case cmd.offensive.closeair     : msg.channel.send(message.offensive.closeair, {files: ["img_stratagem/offensive/close_air.png"]});
         break;
-        case cmd.offensive.divebomb     : msg.reply(message.offensive.divebomb, {files: ["img_stratagem/offensive/dive_bomb.png"]});
+        case cmd.offensive.divebomb     : msg.channel.send(message.offensive.divebomb, {files: ["img_stratagem/offensive/dive_bomb.png"]});
         break;
-        case cmd.offensive.hsrun        : msg.reply(message.offensive.hsrun, {files: ["img_stratagem/offensive/heavy_strafing_run.png"]});
+        case cmd.offensive.hsrun        : msg.channel.send(message.offensive.hsrun, {files: ["img_stratagem/offensive/heavy_strafing_run.png"]});
         break;
-        case cmd.offensive.incendiary   : msg.reply(message.offensive.incendiary, {files: ["img_stratagem/offensive/incendiary.png"]});
+        case cmd.offensive.incendiary   : msg.channel.send(message.offensive.incendiary, {files: ["img_stratagem/offensive/incendiary.png"]});
         break;
-        case cmd.offensive.missle       : msg.reply(message.offensive.missle, {files: ["img_stratagem/offensive/missle.png"]});
+        case cmd.offensive.missle       : msg.channel.send(message.offensive.missle, {files: ["img_stratagem/offensive/missle.png"]});
         break;
-        case cmd.offensive.laser        : msg.reply(message.offensive.laser, {files: ["img_stratagem/offensive/orbital_laser.png"]});
+        case cmd.offensive.laser        : msg.channel.send(message.offensive.laser, {files: ["img_stratagem/offensive/orbital_laser.png"]});
         break;
-        case cmd.offensive.railcannon   : msg.reply(message.offensive.railcannon, {files: ["img_stratagem/offensive/railcannon.png"]});
+        case cmd.offensive.railcannon   : msg.channel.send(message.offensive.railcannon, {files: ["img_stratagem/offensive/railcannon.png"]});
         break;
-        case cmd.offensive.nuke         : msg.reply(message.offensive.nuke, {files: ["img_stratagem/offensive/shredder_missle.png"]});
+        case cmd.offensive.nuke         : msg.channel.send(message.offensive.nuke, {files: ["img_stratagem/offensive/shredder_missle.png"]});
         break;
-        case cmd.offensive.precision    : msg.reply(message.offensive.precision, {files: ["img_stratagem/offensive/sledge_precision.png"]});
+        case cmd.offensive.precision    : msg.channel.send(message.offensive.precision, {files: ["img_stratagem/offensive/sledge_precision.png"]});
         break;
-        case cmd.offensive.staticfield  : msg.reply(message.offensive.staticfield, {files: ["img_stratagem/offensive/static_field.png"]});
+        case cmd.offensive.staticfield  : msg.channel.send(message.offensive.staticfield, {files: ["img_stratagem/offensive/static_field.png"]});
         break;
-        case cmd.offensive.srun         : msg.reply(message.offensive.srun, {files: ["img_stratagem/offensive/strafing_run.png"]});
+        case cmd.offensive.srun         : msg.channel.send(message.offensive.srun, {files: ["img_stratagem/offensive/strafing_run.png"]});
         break;
-        case cmd.offensive.thunderer    : msg.reply(message.offensive.thunderer, {files: ["img_stratagem/offensive/thunderer.png"]});
+        case cmd.offensive.thunderer    : msg.channel.send(message.offensive.thunderer, {files: ["img_stratagem/offensive/thunderer.png"]});
         break;
     
     }
@@ -282,29 +282,29 @@ client.on('message', msg => {
 
     switch(msg.content.toLowerCase()) {
 
-        case cmd.defensive.at47 : msg.reply(message.defensive.at47, {files: ["img_stratagem/defensive/at47.png"]});
+        case cmd.defensive.at47 : msg.channel.send(message.defensive.at47, {files: ["img_stratagem/defensive/at47.png"]});
         break;
-        case cmd.defensive.barrier : msg.reply(message.defensive.barrier, {files: ["img_stratagem/defensive/barrier.png"]});
+        case cmd.defensive.barrier : msg.channel.send(message.defensive.barrier, {files: ["img_stratagem/defensive/barrier.png"]});
         break;
-        case cmd.defensive.beacon : msg.reply(message.defensive.beacon, {files: ["img_stratagem/defensive/beacon.png"]});
+        case cmd.defensive.beacon : msg.channel.send(message.defensive.beacon, {files: ["img_stratagem/defensive/beacon.png"]});
         break;
-        case cmd.defensive.drone : msg.reply(message.defensive.drone, {files: ["img_stratagem/defensive/drone.png"]});
+        case cmd.defensive.drone : msg.channel.send(message.defensive.drone, {files: ["img_stratagem/defensive/drone.png"]});
         break;
-        case cmd.defensive.explosive_mine : msg.reply(message.defensive.explosive_mine, {files: ["img_stratagem/defensive/explosive_mine.png"]});
+        case cmd.defensive.explosive_mine : msg.channel.send(message.defensive.explosive_mine, {files: ["img_stratagem/defensive/explosive_mine.png"]});
         break;
-        case cmd.defensive.launcher_turret : msg.reply(message.defensive.launcher_turret, {files: ["img_stratagem/defensive/launcher_turret.png"]});
+        case cmd.defensive.launcher_turret : msg.channel.send(message.defensive.launcher_turret, {files: ["img_stratagem/defensive/launcher_turret.png"]});
         break;
-        case cmd.defensive.minigun_turret : msg.reply(message.defensive.minigun_turret, {files: ["img_stratagem/defensive/minigun_turret.png"]});
+        case cmd.defensive.minigun_turret : msg.channel.send(message.defensive.minigun_turret, {files: ["img_stratagem/defensive/minigun_turret.png"]});
         break;
-        case cmd.defensive.railcannon_turret : msg.reply(message.defensive.railcannon_turret, {files: ["img_stratagem/defensive/railcannon_turret.png"]});
+        case cmd.defensive.railcannon_turret : msg.channel.send(message.defensive.railcannon_turret, {files: ["img_stratagem/defensive/railcannon_turret.png"]});
         break;
-        case cmd.defensive.smoke_round : msg.reply(message.defensive.smoke_round, {files: ["img_stratagem/defensive/smoke_round.png"]});
+        case cmd.defensive.smoke_round : msg.channel.send(message.defensive.smoke_round, {files: ["img_stratagem/defensive/smoke_round.png"]});
         break;
-        case cmd.defensive.stun_mine : msg.reply(message.defensive.stun_mine, {files: ["img_stratagem/defensive/stun_mine.png"]});
+        case cmd.defensive.stun_mine : msg.channel.send(message.defensive.stun_mine, {files: ["img_stratagem/defensive/stun_mine.png"]});
         break;
-        case cmd.defensive.tesla_tower : msg.reply(message.defensive.tesla_tower, {files: ["img_stratagem/defensive/tesla_tower.png"]});
+        case cmd.defensive.tesla_tower : msg.channel.send(message.defensive.tesla_tower, {files: ["img_stratagem/defensive/tesla_tower.png"]});
         break;
-        case cmd.defensive.turrets : msg.reply(message.defensive.turrets, {files:["img_stratagem/defensive/launcher_turret.png", "img_stratagem/defensive/minigun_turret.png", "img_stratagem/defensive/railcannon_turret.png"]});
+        case cmd.defensive.turrets : msg.channel.send(message.defensive.turrets, {files:["img_stratagem/defensive/launcher_turret.png", "img_stratagem/defensive/minigun_turret.png", "img_stratagem/defensive/railcannon_turret.png"]});
         break;
 
     }
@@ -320,57 +320,57 @@ client.on('message', msg => {
 client.on('message', msg => {
 
     switch(msg.content.toLowerCase()) {
-        case cmd.weapon.shotgun         : msg.reply({files: ["img_weapon/arc_shotgun.png"]});
+        case cmd.weapon.shotgun         : msg.channel.send({files: ["img_weapon/arc_shotgun.png"]});
         break;
-        case cmd.weapon.thrower         : msg.reply({files: ["img_weapon/arc_thrower.png"]});
+        case cmd.weapon.thrower         : msg.channel.send({files: ["img_weapon/arc_thrower.png"]});
         break;
-        case cmd.weapon.breaker         : msg.reply({files: ["img_weapon/breaker.png"]});
+        case cmd.weapon.breaker         : msg.channel.send({files: ["img_weapon/breaker.png"]});
         break;
-        case cmd.weapon.camper          : msg.reply({files: ["img_weapon/camper.png"]});
+        case cmd.weapon.camper          : msg.channel.send({files: ["img_weapon/camper.png"]});
         break;
-        case cmd.weapon.constitution    : msg.reply({files: ["img_weapon/constitution.png"]});
+        case cmd.weapon.constitution    : msg.channel.send({files: ["img_weapon/constitution.png"]});
         break;
-        case cmd.weapon.defender        : msg.reply({files: ["img_weapon/defender.png"]});
+        case cmd.weapon.defender        : msg.channel.send({files: ["img_weapon/defender.png"]});
         break;
-        case cmd.weapon.double_freedom  : msg.reply({files: ["img_weapon/double_freedom.png"]});
+        case cmd.weapon.double_freedom  : msg.channel.send({files: ["img_weapon/double_freedom.png"]});
         break;
-        case cmd.weapon.gunslinger      : msg.reply({files: ["img_weapon/gunslinger.png"]});
+        case cmd.weapon.gunslinger      : msg.channel.send({files: ["img_weapon/gunslinger.png"]});
         break;
-        case cmd.weapon.justice         : msg.reply({files: ["img_weapon/justice.png"]});
+        case cmd.weapon.justice         : msg.channel.send({files: ["img_weapon/justice.png"]});
         break;
-        case cmd.weapon.knight          : msg.reply({files: ["img_weapon/knight.png"]});
+        case cmd.weapon.knight          : msg.channel.send({files: ["img_weapon/knight.png"]});
         break;
-        case cmd.weapon.liberator       : msg.reply({files: ["img_weapon/liberator.png"]});
+        case cmd.weapon.liberator       : msg.channel.send({files: ["img_weapon/liberator.png"]});
         break;
-        case cmd.weapon.ninja           : msg.reply({files: ["img_weapon/ninja.png"]});
+        case cmd.weapon.ninja           : msg.channel.send({files: ["img_weapon/ninja.png"]});
         break;
-        case cmd.weapon.paragon         : msg.reply({files: ["img_weapon/paragon.png"]});
+        case cmd.weapon.paragon         : msg.channel.send({files: ["img_weapon/paragon.png"]});
         break;
-        case cmd.weapon.patriot         : msg.reply({files: ["img_weapon/patriot.png"]});
+        case cmd.weapon.patriot         : msg.channel.send({files: ["img_weapon/patriot.png"]});
         break;
-        case cmd.weapon.peacemaker      : msg.reply({files: ["img_weapon/peacemaker.png"]});
+        case cmd.weapon.peacemaker      : msg.channel.send({files: ["img_weapon/peacemaker.png"]});
         break;
-        case cmd.weapon.punisher        : msg.reply({files: ["img_weapon/punisher.png"]});
+        case cmd.weapon.punisher        : msg.channel.send({files: ["img_weapon/punisher.png"]});
         break;
-        case cmd.weapon.pyro            : msg.reply({files: ["img_weapon/pyro.png"]});
+        case cmd.weapon.pyro            : msg.channel.send({files: ["img_weapon/pyro.png"]});
         break;
-        case cmd.weapon.railgun         : msg.reply({files: ["img_weapon/railgun.png"]});
+        case cmd.weapon.railgun         : msg.channel.send({files: ["img_weapon/railgun.png"]});
         break;
-        case cmd.weapon.scorcher        : msg.reply({files: ["img_weapon/scorcher.png"]});
+        case cmd.weapon.scorcher        : msg.channel.send({files: ["img_weapon/scorcher.png"]});
         break;
-        case cmd.weapon.scythe          : msg.reply({files: ["img_weapon/scythe.png"]});
+        case cmd.weapon.scythe          : msg.channel.send({files: ["img_weapon/scythe.png"]});
         break;
-        case cmd.weapon.sickle          : msg.reply({files: ["img_weapon/sickle.png"]});
+        case cmd.weapon.sickle          : msg.channel.send({files: ["img_weapon/sickle.png"]});
         break;
-        case cmd.weapon.singe           : msg.reply({files: ["img_weapon/singe.png"]});
+        case cmd.weapon.singe           : msg.channel.send({files: ["img_weapon/singe.png"]});
         break;
-        case cmd.weapon.stalwart        : msg.reply({files: ["img_weapon/stalwart.png"]});
+        case cmd.weapon.stalwart        : msg.channel.send({files: ["img_weapon/stalwart.png"]});
         break;
-        case cmd.weapon.suppressor      : msg.reply({files: ["img_weapon/suppressor.png"]});
+        case cmd.weapon.suppressor      : msg.channel.send({files: ["img_weapon/suppressor.png"]});
         break;
-        case cmd.weapon.tanto           : msg.reply({files: ["img_weapon/tanto.png"]});
+        case cmd.weapon.tanto           : msg.channel.send({files: ["img_weapon/tanto.png"]});
         break;
-        case cmd.weapon.trident         : msg.reply({files: ["img_weapon/trident.png"]});
+        case cmd.weapon.trident         : msg.channel.send({files: ["img_weapon/trident.png"]});
         break;
     }
 });
@@ -384,11 +384,11 @@ client.on('message', msg => {
 client.on('message', msg => {
 
     switch(msg.content.toLowerCase()) {
-        case cmd.reinforce : msg.reply(message.special.reinforce);
+        case cmd.reinforce : msg.channel.send(message.special.reinforce);
         break;
-        case cmd.sos       : msg.reply(message.special.sos);
+        case cmd.sos       : msg.channel.send(message.special.sos);
         break;
-        case cmd.trans     : msg.reply(message.objective.trans_1 + 
+        case cmd.trans     : msg.channel.send(message.objective.trans_1 + 
                                        message.objective.trans_2 + 
                                        message.objective.trans_3 + 
                                        message.objective.trans_4);
