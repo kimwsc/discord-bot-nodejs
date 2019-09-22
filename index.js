@@ -23,6 +23,7 @@ app.get('/', function(request, response) {
 
 client.on('ready', () => {
 
+    client.user.setActivity('/help', {type: 'PLAYING'});
     console.log(`Logged in as ${client.user.tag}!`);
 
 });
