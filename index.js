@@ -27,6 +27,31 @@ client.on('ready', () => {
 
 });
 
+/*
+|-----------------------------------------------------------------------------
+| /help Command
+|-----------------------------------------------------------------------------
+*/
+
+client.on('message', msg => {
+
+    if (msg.content.toLowerCase() === "/help") {
+        
+        const helpCommandEmbed = new Discord.RichEmbed()
+        .setColor('#fbb3ff')
+        .attachFile('img_misc/hisako.jpg')
+        .setAuthor("Hi, I'm Hisako, how can I help you?", 'attachment://hisako.jpg')
+        .setDescription('Command Prefix : `/`')
+        .setThumbnail('attachment://hisako.jpg')
+        .addField('❯ B.Duck Stickers', '`bduck`', true)
+        .addField('❯ HELLDIVERS™', '`helldivers`', true)
+        .addField('❯ Miscellaneous', '`misc`', true)
+        .setTimestamp()
+        .setFooter('Hisako');
+
+        msg.channel.send(helpCommandEmbed);
+    }
+});
 
 /*
 |-----------------------------------------------------------------------------
@@ -65,7 +90,7 @@ client.on('message', msg => {
                     '`bdphone` | '+
                     '`bdplay`', true)
         .setTimestamp()
-        .setFooter('UB');
+        .setFooter('Hisako');
     
     msg.channel.send(bduckEmbed);
             
@@ -73,8 +98,6 @@ client.on('message', msg => {
     }
 
 });
-
-
 
 /*
 |-----------------------------------------------------------------------------
@@ -133,6 +156,25 @@ client.on('message', msg => {
 | Miscellaneous Commands
 |-----------------------------------------------------------------------------
 */
+
+client.on('message', msg => {
+
+    if (msg.content.toLowerCase() === "/misc") {
+        
+        const miscEmbed = new Discord.RichEmbed()
+        .setColor('#fafafa')
+        .attachFile('img_misc/hisako.jpg')
+        .setAuthor('MISC', 'attachment://hisako.jpg')
+        .setDescription('Here are some MISC commands')
+        .addField('❯ Miscellaneous', '`fu` | `ok good` | `/middlefinger` | `/kimsphere` | `/andylam` | `/asarind` | `/cqface`', true)
+        .setTimestamp()
+        .setFooter('Hisako');
+
+        msg.channel.send(miscEmbed);
+    }
+});
+
+
 
 client.on('message', msg => {
 
@@ -228,7 +270,7 @@ client.on('message', msg => {
         .addField('❯ Special Stratagems', '`reinforce` | `sos` | `offensive`', true)
         .addField('❯ Transmitter Objective Key','`trans`',true)
         .setTimestamp()
-        .setFooter('UB');
+        .setFooter('Hisako');
 
         msg.channel.send(helldiversEmbed);
     }
@@ -420,4 +462,5 @@ setInterval(function() {
 }, 300000);
 
 // Log our bot in using the token
-client.login(process.env.bot_token);
+client.login('NjE1MDQ3MTU4OTU3MDgwNTg2.XYcnYQ.Vh9R98C3j635cQokm7cQ46EK64E');
+// client.login(process.env.bot_token);
