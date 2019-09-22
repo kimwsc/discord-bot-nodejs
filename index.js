@@ -459,7 +459,7 @@ client.on('guildMemberAdd', member => {
 
 // Prevent heroku from idling, send request to url every 5 minutes
 setInterval(function() {
-    https.get("https://u-b.herokuapp.com");
+    https.get("https://hisakobot.herokuapp.com");
 }, 300000);
 
 // Log our bot in using the token
