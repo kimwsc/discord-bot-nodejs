@@ -139,7 +139,7 @@ client.on('message', msg => {
     switch(msg.content.toLowerCase()) {
         case cmd.middle_finger  : msg.channel.send({files: ["stickers/rick_and_morty_mf.gif"]});
         break;
-        case cmd.cqface         : msg.channel.send({files: ["stickers/cqface.png"]});
+        case cmd.cqface         : msg.channel.send({files: ["stickers/cqface.gif"]});
         break;
         case cmd.fu             : msg.channel.send(message.ck);
         break;
