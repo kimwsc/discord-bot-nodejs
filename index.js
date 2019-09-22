@@ -166,7 +166,7 @@ client.on('message', msg => {
         .attachFile('img_misc/hisako.jpg')
         .setAuthor('MISC', 'attachment://hisako.jpg')
         .setDescription('Here are some MISC commands')
-        .addField('❯ Miscellaneous', '`fu` | `ok good` | `/middlefinger` | `/kimsphere` | `/andylam` | `/asarind` | `/cqface`', true)
+        .addField('❯ Miscellaneous', '`fu` | `ok good` | `/middlefinger` | `/ws kimsphere` | `/ws andylam` | `/ws asarind` | `/cqface`', true)
         .setTimestamp()
         .setFooter('Hisako');
 
