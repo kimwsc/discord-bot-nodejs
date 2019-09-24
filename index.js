@@ -20,14 +20,13 @@ app.get('/', function(request, response) {
     console.log('App is running, server is listening on port ', app.get('port'));
 });
 
-
 client.on('ready', () => {
 
     client.user.setActivity('/help', {type: 'PLAYING'});
     console.log(`Logged in as ${client.user.tag}!`);
 
 });
-
+  
 /*
 |-----------------------------------------------------------------------------
 | /help Command
@@ -35,8 +34,10 @@ client.on('ready', () => {
 */
 
 client.on('message', msg => {
+    
+    let msgContent  = msg.content.toLowerCase();
 
-    if (msg.content.toLowerCase() === "/help") {
+    if (msgContent === "/help") {
         
         const helpCommandEmbed = new Discord.RichEmbed()
         .setColor('#fbb3ff')
@@ -52,7 +53,6 @@ client.on('message', msg => {
 
         msg.channel.send(helpCommandEmbed);
     }
-});
 
 /*
 |-----------------------------------------------------------------------------
@@ -60,9 +60,7 @@ client.on('message', msg => {
 |-----------------------------------------------------------------------------
 */
 
-client.on('message', msg => {
-
-    if (msg.content.toLowerCase() === "/bduck") {
+    if (msgContent === "/bduck") {
         
         const bduckEmbed = new Discord.RichEmbed()
         .setColor('#ffd321')
@@ -94,21 +92,16 @@ client.on('message', msg => {
         .setFooter('Hisako');
     
     msg.channel.send(bduckEmbed);
-            
    
     }
-
-});
 
 /*
 |-----------------------------------------------------------------------------
 | B.duck Stickers Commands
 |-----------------------------------------------------------------------------
 */
-
-client.on('message', msg => {
     
-    switch(msg.content.toLowerCase()) {
+    switch(msgContent) {
         case cmd.bdangry        : msg.channel.send({files: ["stickers/bduck_angry.gif"]});
         break;
         case cmd.bdass          : msg.channel.send({files: ["stickers/bduck_ass.gif"]});
@@ -150,7 +143,6 @@ client.on('message', msg => {
         case cmd.bdwoo          : msg.channel.send({files: ["stickers/bduck_woo.gif"]});
         break;
     }
-});
 
 /*
 |-----------------------------------------------------------------------------
@@ -158,9 +150,7 @@ client.on('message', msg => {
 |-----------------------------------------------------------------------------
 */
 
-client.on('message', msg => {
-
-    if (msg.content.toLowerCase() === "/misc") {
+    if (msgContent === "/misc") {
         
         const miscEmbed = new Discord.RichEmbed()
         .setColor('#fafafa')
@@ -173,13 +163,9 @@ client.on('message', msg => {
 
         msg.channel.send(miscEmbed);
     }
-});
 
 
-
-client.on('message', msg => {
-
-    switch(msg.content.toLowerCase()) {
+    switch(msgContent) {
         case cmd.middle_finger  : msg.channel.send({files: ["stickers/rick_and_morty_mf.gif"]});
         break;
         case cmd.cqface         : msg.channel.send({files: ["stickers/cqface.gif"]});
@@ -197,17 +183,13 @@ client.on('message', msg => {
         
     }
 
-});
-
 /*
 |-----------------------------------------------------------------------------
 | Helldivers Command List
 |-----------------------------------------------------------------------------
 */
 
-client.on('message', msg => {
-
-    if (msg.content.toLowerCase() === "/helldivers") {
+    if (msgContent === "/helldivers") {
         
         const helldiversEmbed = new Discord.RichEmbed()
         .setColor('#d4d4d4')
@@ -275,17 +257,14 @@ client.on('message', msg => {
 
         msg.channel.send(helldiversEmbed);
     }
-});
 
 /*
 |-----------------------------------------------------------------------------
 | Helldivers Offensive Stratagem Commands
 |-----------------------------------------------------------------------------
 */
-
-client.on('message', msg => {
     
-    switch(msg.content.toLowerCase()) {
+    switch(msgContent) {
         case cmd.offensive.airstrike    : msg.channel.send(message.offensive.airstrike, {files: ["img_stratagem/offensive/airstrike.png"]});
         break;
         case cmd.offensive.closeair     : msg.channel.send(message.offensive.closeair, {files: ["img_stratagem/offensive/close_air.png"]});
@@ -315,17 +294,13 @@ client.on('message', msg => {
     
     }
     
-});
-
 /*
 |-----------------------------------------------------------------------------
 | Helldivers Defensive Stratagem Commands
 |-----------------------------------------------------------------------------
 */
 
-client.on('message', msg => {
-
-    switch(msg.content.toLowerCase()) {
+    switch(msgContent) {
 
         case cmd.defensive.at47 : msg.channel.send(message.defensive.at47, {files: ["img_stratagem/defensive/at47.png"]});
         break;
@@ -354,17 +329,13 @@ client.on('message', msg => {
 
     }
 
-});
-
 /*
 |-----------------------------------------------------------------------------
 | Helldivers Weapon Commands
 |-----------------------------------------------------------------------------
 */
 
-client.on('message', msg => {
-
-    switch(msg.content.toLowerCase()) {
+    switch(msgContent) {
         case cmd.weapon.shotgun         : msg.channel.send({files: ["img_weapon/arc_shotgun.png"]});
         break;
         case cmd.weapon.thrower         : msg.channel.send({files: ["img_weapon/arc_thrower.png"]});
@@ -418,7 +389,6 @@ client.on('message', msg => {
         case cmd.weapon.trident         : msg.channel.send({files: ["img_weapon/trident.png"]});
         break;
     }
-});
 
 /*
 |-----------------------------------------------------------------------------
@@ -426,9 +396,7 @@ client.on('message', msg => {
 |-----------------------------------------------------------------------------
 */
 
-client.on('message', msg => {
-
-    switch(msg.content.toLowerCase()) {
+    switch(msgContent) {
         case cmd.reinforce : msg.channel.send(message.special.reinforce);
         break;
         case cmd.sos       : msg.channel.send(message.special.sos);
@@ -439,7 +407,55 @@ client.on('message', msg => {
                                        message.objective.trans_4);
         break;
     }
+
+/*
+|-----------------------------------------------------------------------------
+| Portal Knights Commands
+|-----------------------------------------------------------------------------
+*/
+    
+    if (msgContent === "/pk") {
+        
+        const helpCommandEmbed = new Discord.RichEmbed()
+        .setColor('#6583fc')
+        .attachFile('img_misc/portal_knights.png')
+        .setAuthor("Portal Knights", 'attachment://hisako.jpg')
+        .setDescription('Command Prefix : `pk`')
+        .setThumbnail('attachment://portal_knights.png')
+        .addField('❯ Wiki', '`weapons` | `armor` | `blocks` | `ingredients` | `portal` | `crafting` | `tools` | `skills` | `consume` | `recipes` | `misc`', true)
+        .setTimestamp()
+        .setFooter('Hisako');
+
+        msg.channel.send(helpCommandEmbed);
+    }
+
+    switch (msgContent) {
+
+        case "pk weapons" : msg.channel.send("https://portalknights.gamepedia.com/Weapons");
+        break;
+        case "pk armor" : msg.channel.send("https://portalknights.gamepedia.com/Armor");
+        break;
+        case "pk blocks" : msg.channel.send("https://portalknights.gamepedia.com/Blocks");
+        break;
+        case "pk ingredients" : msg.channel.send("https://portalknights.gamepedia.com/Ingredients");
+        break;
+        case "pk portal" : msg.channel.send("https://portalknights.gamepedia.com/Portal_Stones");
+        break;
+        case "pk crafting" : msg.channel.send("https://portalknights.gamepedia.com/Crafting_Stations");
+        break;
+        case "pk tools" : msg.channel.send("https://portalknights.gamepedia.com/Tools");
+        break;
+        case "pk skills" : msg.channel.send("https://portalknights.gamepedia.com/Skills");
+        break;
+        case "pk consume" : msg.channel.send("https://portalknights.gamepedia.com/Consumables");
+        break;
+        case "pk misc" : msg.channel.send("https://portalknights.gamepedia.com/Misc");
+        break;
+        case "pk recipes" : msg.channel.send("https://portalknights.gamepedia.com/Recipes");
+        break;
+    }
 });
+
 
 
 // Create an event listener for new guild members
@@ -449,18 +465,18 @@ client.on('guildMemberAdd', member => {
     channel.send(`Let's welcome ${member} to the server!!!`, {files: ["img_stratagem/offensive/shredder_missle.png"]});
 });
 
-// Create an event listener for new guild members
-client.on('guildMemberAdd', member => {
-    const channel = member.guild.channels.find(ch => ch.name === 'ub-dev');
-    if (!channel) return;
-    channel.send(`Let's welcome ${member} to the server!`, {files: ["img_stratagem/offensive/shredder_missle.png"]});
-});
-
-
 // Prevent heroku from idling, send request to url every 5 minutes
 setInterval(function() {
     https.get("https://hisakobot.herokuapp.com");
 }, 300000);
+
+// Auto message every 24 hours
+client.on('ready', () => {
+    var channel = client.channels.find(ch => ch.name === 'cmd-hisako');
+        setInterval(function() {
+            channel.send("Hi guys, just to inform you that I'm still alive!");
+        }, 1000 * 60 * 60 * 24);
+});
 
 // Log our bot in using the token
 client.login(process.env.bot_token);
