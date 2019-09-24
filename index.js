@@ -47,6 +47,7 @@ client.on('message', msg => {
         .setThumbnail('attachment://hisako.jpg')
         .addField('❯ B.Duck Stickers', '`bduck`', true)
         .addField('❯ HELLDIVERS™', '`helldivers`', true)
+        .addField('❯ Portal Knights Wiki', '`pk`', true)
         .addField('❯ Miscellaneous', '`misc`', true)
         .setTimestamp()
         .setFooter('Hisako');
