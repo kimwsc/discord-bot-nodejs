@@ -468,7 +468,7 @@ client.on('guildMemberAdd', member => {
 
 // Prevent heroku from idling, send request to url every 5 minutes
 setInterval(function() {
-    https.get("https://hisakobot2.herokuapp.com");
+    https.get("https://hisakobot3.herokuapp.com");
 }, 300000);
 
 // Log our bot in using the token
