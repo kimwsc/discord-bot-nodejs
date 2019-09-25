@@ -471,13 +471,5 @@ setInterval(function() {
     https.get("https://hisakobot.herokuapp.com");
 }, 300000);
 
-// Auto message every 24 hours
-client.on('ready', () => {
-    var channel = client.channels.find(ch => ch.name === 'cmd-hisako');
-        setInterval(function() {
-            channel.send("Hi guys, just to inform you that I'm still alive!");
-        }, 1000 * 60 * 60 * 24);
-});
-
 // Log our bot in using the token
 client.login(process.env.bot_token);
