@@ -423,7 +423,7 @@ client.on('message', msg => {
         .setAuthor("Portal Knights", 'attachment://hisako.jpg')
         .setDescription('Command Prefix : `pk`')
         .setThumbnail('attachment://portal_knights.png')
-        .addField('❯ Wiki', '`weapons` | `armor` | `blocks` | `ingredients` | `portal` | `crafting` | `tools` | `skills` | `consume` | `recipes` | `misc`', true)
+        .addField('❯ Wiki', '`weapons` | `armor` | `blocks` | `ingredients` | `portal` | `crafting` | `tools` | `skills` | `consume` | `recipes` | `pets` | `events` | `islands` | `misc`', true)
         .setTimestamp()
         .setFooter('Hisako');
 
@@ -453,6 +453,12 @@ client.on('message', msg => {
         case "pk misc" : msg.channel.send("https://portalknights.gamepedia.com/Misc");
         break;
         case "pk recipes" : msg.channel.send("https://portalknights.gamepedia.com/Recipes");
+        break;
+        case "pk pets"        : msg.channel.send("https://portalknights.gamepedia.com/Pets");
+        break;
+        case "pk events"      : msg.channel.send("https://portalknights.gamepedia.com/Events");
+        break;
+        case "pk islands"      : msg.channel.send("https://portalknights.gamepedia.com/Islands");
         break;
     }
 });
