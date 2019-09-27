@@ -423,7 +423,7 @@ client.on('message', msg => {
         .setAuthor("Portal Knights", 'attachment://hisako.jpg')
         .setDescription('Command Prefix : `pk`')
         .setThumbnail('attachment://portal_knights.png')
-        .addField('❯ Wiki', '`weapons` | `armor` | `blocks` | `ingredients` | `portal` | `crafting` | `tools` | `skills` | `consume` | `recipes` | `pets` | `events` | `islands` | `misc`', true)
+        .addField('❯ Wiki', '`weapons` | `armor` | `blocks` | `ingredients` | `portal` | `crafting` | `tools` | `skills` | `consume` | `recipes` | `pets` | `events` | `islands` | `boss` | `misc`', true)
         .setTimestamp()
         .setFooter('Hisako');
 
