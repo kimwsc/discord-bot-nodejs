@@ -460,6 +460,8 @@ client.on('message', msg => {
         break;
         case "pk islands"      : msg.channel.send("https://portalknights.gamepedia.com/Islands");
         break;
+        case "pk boss"      : msg.channel.send("https://portalknights.gamepedia.com/Bosses");
+        break;
     }
 });
 
