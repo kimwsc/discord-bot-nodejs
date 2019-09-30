@@ -2,17 +2,18 @@
   "name": "u-b",
   "version": "1.0.0",
   "description": "unique-bot",
-  "main": "index.js",
+  "main": "server.js",
   "engines": {
     "node": "10.10.0"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "author": "sphere",
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.5.1",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-glitch-keepalive": "^0.2.0"
   }
 }
