@@ -408,10 +408,14 @@ client.on('message', msg => {
 */
 
     switch(msgContent) {
-        case cmd.reinforce : msg.channel.send(message.special.reinforce, {files: ["img_stratagem/defensive/beacon.png"]});
+        case cmd.reinforce : msg.channel.send(message.special.reinforce, {files: ["img_stratagem/special/reinforce.png"]});
         break;
-        case cmd.sos       : msg.channel.send(message.special.sos);
+        case cmd.sos       : msg.channel.send(message.special.sos, {files: ["img_stratagem/special/beacon.png"]});
         break;
+        // case cmd.hellbomb  : msg.channel.send(message.special.hellbomb, {files: ["img_stratagem/special/hellbomb.png"]});
+        // break;
+        // case cmd.sniffer   : msg.channel.send(message.special.sniffer, {files: ["img_stratagem/special/sniffer.png"]});
+        // break;
         case cmd.trans     : msg.channel.send(message.objective.trans_1 + 
                                        message.objective.trans_2 + 
                                        message.objective.trans_3 + 
