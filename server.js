@@ -1,38 +1,45 @@
 const express   = require('express');
 const app       = express();
+const keepAlive = express();
 const fs        = require('fs');
 const Discord   = require('discord.js');
 const path      = require('path');
 const client    = new Discord.Client();
 const keepalive = require('express-glitch-keepalive');
+const flatten   = require('flat')
 
 let https       = require("https");
 let jsonMessage = fs.readFileSync('message.json');
 let jsonCommand = fs.readFileSync('command.json');
 let message     = JSON.parse(jsonMessage);
-let cmd         = JSON.parse(jsonCommand);
+let command     = JSON.parse(jsonCommand);
+let flattenCmd  = flatten({command});
 
-// app.use(express.static('public'));
+keepAlive.use(keepalive);
 
-app.use(keepalive, express.static('public'));
+app.use(express.static('public'));
  
 app.get('/', (request, response) => {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-// app.get('/', function(request, response) {
-//   response.sendFile(__dirname + '/views/index.html');
-// });
+app.get('/commands', (request, response) => {
+  response.sendFile(__dirname + '/views/command.html');
+});
+
+app.get('/json', function(request, response) {
+  response.send(flattenCmd);
+});
 
 const listener = app.listen(process.env.PORT, function() {
   console.log('Your app is listening on port ' + listener.address().port);
 });
 
 client.on('ready', () => {
-
-    client.user.setActivity('/help', {type: 'PLAYING'});
+  
+    client.user.setActivity('you', {type: 'WATCHING'});
     console.log(`Logged in as ${client.user.tag}!`);
-
+  
 });
   
 /*
@@ -43,9 +50,14 @@ client.on('ready', () => {
 
 client.on('message', msg => {
     
-    let msgContent  = msg.content.toLowerCase();
+    var msgContent  = msg.content.toLowerCase();
+    var bduckStickerPath = "stickers/bduck_";
+    var prefix = "/";
+    var commandList = [];
+    var cmd = '';
 
-    if (msgContent === "/help") {
+
+    if (msgContent === command.help) {
         
         const helpCommandEmbed = new Discord.RichEmbed()
         .setColor('#fbb3ff')
@@ -54,7 +66,7 @@ client.on('message', msg => {
         .setDescription('Command Prefix : `/`')
         .setThumbnail('attachment://hisako.jpg')
         .addField('❯ B.Duck Stickers', '`bduck`', true)
-        .addField('❯ HELLDIVERS™', '`helldivers`', true)
+        .addField('❯ HELLDIVERS™', '`hd`', true)
         .addField('❯ Portal Knights Wiki', '`pk`', true)
         .addField('❯ Miscellaneous', '`misc`', true)
         .setTimestamp()
@@ -69,38 +81,22 @@ client.on('message', msg => {
 |-----------------------------------------------------------------------------
 */
 
-    if (msgContent === "/bduck") {
-        
+    if (msgContent === prefix+command.help_bduck) {
+                    
+        for (cmd in command.bduck) {
+          commandList.push("`"+command.bduck[cmd]+"` | ");
+        }
+      
         const bduckEmbed = new Discord.RichEmbed()
         .setColor('#ffd321')
         .setAuthor('B.Duck', 'https://cdn.glitch.com/57f834b4-edf0-4a1e-87fa-b3b6ed3b8dcf%2Fbd_yes.gif?v=1569554599171')
         .setDescription('No prefix')
         .setThumbnail('https://cdn.streamelements.com/uploads/33f405cc-22ce-45a8-9f92-a01efedb5b62.gif')
-        .addField('❯ Available stickers', 
-                    '`bdlaugh` | '+
-                    '`bdbye` | '+
-                    '`bdangry` | '+
-                    '`bdlol` | '+
-                    '`bdno` | '+
-                    '`bddizzy` | '+
-                    '`bdhello` | '+
-                    '`bdlove` | '+
-                    '`bdsad` | '+
-                    '`bdwoo` | '+
-                    '`bdsleep` | '+
-                    '`bdomg` | '+
-                    '`bdnoodle` | '+
-                    '`bdok` | '+
-                    '`bdass` | '+
-                    '`bdfaint` | '+
-                    '`bdfull` | '+
-                    '`bdkeyboard` | '+
-                    '`bdphone` | '+
-                    '`bdplay`', true)
+        .addField('❯ Available stickers', commandList.join(" "), true)
         .setTimestamp()
         .setFooter('Hisako');
     
-    msg.channel.send(bduckEmbed);
+        msg.channel.send(bduckEmbed);
    
     }
 
@@ -108,50 +104,47 @@ client.on('message', msg => {
 |-----------------------------------------------------------------------------
 | B.duck Stickers Commands
 |-----------------------------------------------------------------------------
-*/
-    
+*/    
     switch(msgContent) {
-        case cmd.bdyes          : msg.channel.send("https://cdn.glitch.com/57f834b4-edf0-4a1e-87fa-b3b6ed3b8dcf%2Fbd_yes.gif?v=1569554599171");
+        case command.bduck.angry        : msg.channel.send({files: [bduckStickerPath+"angry.gif"]});
         break;
-        case cmd.bdangry        : msg.channel.send({files: ["stickers/bduck_angry.gif"]});
+        case command.bduck.ass          : msg.channel.send({files: [bduckStickerPath+"ass.gif"]});
         break;
-        case cmd.bdass          : msg.channel.send({files: ["stickers/bduck_ass.gif"]});
+        case command.bduck.faint        : msg.channel.send({files: [bduckStickerPath+"faint.gif"]});
         break;
-        case cmd.bdfaint        : msg.channel.send({files: ["stickers/bduck_faint.gif"]});
+        case command.bduck.full         : msg.channel.send({files: [bduckStickerPath+"full.gif"]});
         break;
-        case cmd.bdfull         : msg.channel.send({files: ["stickers/bduck_full.gif"]});
+        case command.bduck.keyboard     : msg.channel.send({files: [bduckStickerPath+"keyboard.gif"]});
         break;
-        case cmd.bdkeyboard     : msg.channel.send({files: ["stickers/bduck_keyboard.gif"]});
+        case command.bduck.phone        : msg.channel.send({files: [bduckStickerPath+"phone.gif"]});
         break;
-        case cmd.bdphone        : msg.channel.send({files: ["stickers/bduck_phone.gif"]});
+        case command.bduck.play         : msg.channel.send({files: [bduckStickerPath+"play.gif"]});
         break;
-        case cmd.bdplay         : msg.channel.send({files: ["stickers/bduck_play.gif"]});
+        case command.bduck.laugh        : msg.channel.send({files: [bduckStickerPath+"laugh.gif"]});
         break;
-        case cmd.bdlaugh        : msg.channel.send({files: ["stickers/bduck_laugh.gif"]});
+        case command.bduck.bye          : msg.channel.send({files: [bduckStickerPath+"bye.gif"]});
         break;
-        case cmd.bdbye          : msg.channel.send({files: ["stickers/bduck_bye.gif"]});
+        case command.bduck.dizzy        : msg.channel.send({files: [bduckStickerPath+"dizzy.gif"]});
         break;
-        case cmd.bddizzy        : msg.channel.send({files: ["stickers/bduck_dizzy.gif"]});
+        case command.bduck.hello        : msg.channel.send({files: [bduckStickerPath+"hello.gif"]});
         break;
-        case cmd.bdhello        : msg.channel.send({files: ["stickers/bduck_hello.gif"]});
+        case command.bduck.lol          : msg.channel.send({files: [bduckStickerPath+"lol.gif"]});
         break;
-        case cmd.bdlol          : msg.channel.send({files: ["stickers/bduck_lol.gif"]});
+        case command.bduck.love         : msg.channel.send({files: [bduckStickerPath+"love.gif"]});
         break;
-        case cmd.bdlove         : msg.channel.send({files: ["stickers/bduck_love.gif"]});
+        case command.bduck.no           : msg.channel.send({files: [bduckStickerPath+"no.gif"]});
         break;
-        case cmd.bdno           : msg.channel.send({files: ["stickers/bduck_no.gif"]});
+        case command.bduck.noodle       : msg.channel.send({files: [bduckStickerPath+"noodle.gif"]});
         break;
-        case cmd.bdnoodle       : msg.channel.send({files: ["stickers/bduck_noodle.gif"]});
+        case command.bduck.ok           : msg.channel.send({files: [bduckStickerPath+"ok.gif"]});
         break;
-        case cmd.bdok           : msg.channel.send({files: ["stickers/bduck_ok.gif"]});
+        case command.bduck.omg          : msg.channel.send({files: [bduckStickerPath+"omg.gif"]});
         break;
-        case cmd.bdomg          : msg.channel.send({files: ["stickers/bduck_omg.gif"]});
+        case command.bduck.sad          : msg.channel.send({files: [bduckStickerPath+"sad.gif"]});
         break;
-        case cmd.bdsad          : msg.channel.send({files: ["stickers/bduck_sad.gif"]});
+        case command.bduck.sleep        : msg.channel.send({files: [bduckStickerPath+"sleep.gif"]});
         break;
-        case cmd.bdsleep        : msg.channel.send({files: ["stickers/bduck_sleep.gif"]});
-        break;
-        case cmd.bdwoo          : msg.channel.send({files: ["stickers/bduck_woo.gif"]});
+        case command.bduck.woo          : msg.channel.send({files: [bduckStickerPath+"woo.gif"]});
         break;
     }
 
@@ -161,14 +154,18 @@ client.on('message', msg => {
 |-----------------------------------------------------------------------------
 */
 
-    if (msgContent === "/misc") {
+    if (msgContent === prefix+command.help_misc) {
+      
+        for (cmd in command.misc) {
+          commandList.push("`"+command.misc[cmd]+"` | ");
+        }
         
         const miscEmbed = new Discord.RichEmbed()
         .setColor('#fafafa')
         .attachFile('img_misc/hisako.jpg')
         .setAuthor('MISC', 'attachment://hisako.jpg')
         .setDescription('Here are some MISC commands')
-        .addField('❯ Miscellaneous', '`fu` | `ok good` | `/middlefinger` | `/ws kimsphere` | `/ws andylam` | `/ws asarind` | `/cqface`', true)
+        .addField('❯ Miscellaneous', commandList.join(" "), true)
         .setTimestamp()
         .setFooter('Hisako');
 
@@ -177,19 +174,19 @@ client.on('message', msg => {
 
 
     switch(msgContent) {
-        case cmd.middle_finger  : msg.channel.send({files: ["stickers/rick_and_morty_mf.gif"]});
+        case command.middle_finger  : msg.channel.send({files: ["stickers/rick_and_morty_mf.gif"]});
         break;
-        case cmd.cqface         : msg.channel.send({files: ["stickers/cqface.gif"]});
+        case command.cqface         : msg.channel.send({files: ["stickers/cqface.gif"]});
         break;
-        case cmd.fu             : msg.channel.send(message.ck);
+        case command.fu             : msg.channel.send(message.ck);
         break;
-        case cmd.ok             : msg.channel.send(message.ok);
+        case command.ok             : msg.channel.send(message.ok);
         break;
-        case cmd.kimsphere      : msg.channel.send(message.kimsphere);
+        case command.kimsphere      : msg.channel.send(message.kimsphere);
         break;
-        case cmd.andylam        : msg.channel.send(message.andylam);
+        case command.andylam        : msg.channel.send(message.andylam);
         break;
-        case cmd.asarind        : msg.channel.send(message.asarind);
+        case command.asarind        : msg.channel.send(message.asarind);
         break;
         
     }
@@ -200,68 +197,35 @@ client.on('message', msg => {
 |-----------------------------------------------------------------------------
 */
 
-    if (msgContent === "/helldivers") {
+    if (msgContent === prefix+command.help_helldivers) {
         
+        var offensive   = [];
+        var defensive   = [];
+        var weapon      = [];
+        var special     = [];
+      
+        for (cmd in command.hd.offensive) {
+          offensive.push("`"+command.hd.offensive[cmd]+"` | ");
+        }
+        for (cmd in command.hd.defensive) {
+          defensive.push("`"+command.hd.defensive[cmd]+"` | ");
+        }
+        for (cmd in command.hd.weapon) {
+          weapon.push("`"+command.hd.weapon[cmd]+"` | ");
+        }
+        for (cmd in command.hd.special) {
+          special.push("`"+command.hd.special[cmd]+"` | ");
+        }
+      
         const helldiversEmbed = new Discord.RichEmbed()
         .setColor('#d4d4d4')
         .setAuthor('HELLDIVERS™', 'https://steamuserimages-a.akamaihd.net/ugc/88224496145598035/E12BE9A061F526B4898A69E81B26D19148525FC3/','https://helldivers.gamepedia.com/Stratagems')
         .setDescription('Command Prefix : `/`')
         .setThumbnail('https://steamuserimages-a.akamaihd.net/ugc/88224496145598035/E12BE9A061F526B4898A69E81B26D19148525FC3/')
-        .addField('❯ Offensive Stratagems', 
-                    '`airstrike` | '+ 
-                    '`closeair` | '+ 
-                    '`divebomb` | '+
-                    '`hsrun` | '+
-                    '`incendiary` | '+
-                    '`missle` | '+
-                    '`laser` | '+
-                    '`railcannon` | '+
-                    '`nuke` | '+
-                    '`precision` | '+
-                    '`staticfield` | '+
-                    '`srun` | '+
-                    '`thunderer`', true)
-        .addField('❯ Defensive Stratagems', 
-                    '`at47` | '+
-                    '`barrier` | '+
-                    '`beacon` | '+
-                    '`drone` | '+
-                    '`mine` | '+
-                    '`turret launcher` | '+
-                    '`turret minigun` | '+
-                    '`turret railcannon` | '+
-                    '`smokeround` | '+
-                    '`stunmine` | '+
-                    '`tesla` | '+
-                    '`turrets`' , true)
-        .addField('❯ Weapons', 
-                    '`shotgun` | '+
-                    '`thrower` | '+
-                    '`breaker` | '+
-                    '`camper` | '+
-                    '`constitution` | '+
-                    '`defender` | '+
-                    '`doublefreedom` | '+
-                    '`gunslinger` | '+
-                    '`justice` | '+
-                    '`knight` | '+
-                    '`liberator` | '+
-                    '`ninja` | '+
-                    '`paragon` | '+
-                    '`patriot` | '+
-                    '`peacemaker` | '+
-                    '`punisher` | '+
-                    '`pyro` | '+
-                    '`railgun` | '+
-                    '`scorcher` | '+
-                    '`scythe` | '+
-                    '`sickle` | '+
-                    '`singe` | '+
-                    '`stalwart` | '+
-                    '`suppressor` | '+
-                    '`tanto` | '+
-                    '`trident`', true)
-        .addField('❯ Special Stratagems', '`reinforce` | `sos` | `offensive`', true)
+        .addField('❯ Offensive Stratagems', offensive.join(" "), true)
+        .addField('❯ Defensive Stratagems', defensive.join(" "), true)
+        .addField('❯ Weapons', weapon.join(" "), true)
+        .addField('❯ Special Stratagems', special.join(" "), true)
         .addField('❯ Transmitter Objective Key','`trans`',true)
         .setTimestamp()
         .setFooter('Hisako');
@@ -276,31 +240,31 @@ client.on('message', msg => {
 */
     
     switch(msgContent) {
-        case cmd.offensive.airstrike    : msg.channel.send(message.offensive.airstrike, {files: ["img_stratagem/offensive/airstrike.png"]});
+        case prefix+command.hd.offensive.airstrike    : msg.channel.send(message.offensive.airstrike, {files: ["img_stratagem/offensive/airstrike.png"]});
         break;
-        case cmd.offensive.closeair     : msg.channel.send(message.offensive.closeair, {files: ["img_stratagem/offensive/close_air.png"]});
+        case prefix+command.hd.offensive.closeair     : msg.channel.send(message.offensive.closeair, {files: ["img_stratagem/offensive/close_air.png"]});
         break;
-        case cmd.offensive.divebomb     : msg.channel.send(message.offensive.divebomb, {files: ["img_stratagem/offensive/dive_bomb.png"]});
+        case prefix+command.hd.offensive.divebomb     : msg.channel.send(message.offensive.divebomb, {files: ["img_stratagem/offensive/dive_bomb.png"]});
         break;
-        case cmd.offensive.hsrun        : msg.channel.send(message.offensive.hsrun, {files: ["img_stratagem/offensive/heavy_strafing_run.png"]});
+        case prefix+command.hd.offensive.hsrun        : msg.channel.send(message.offensive.hsrun, {files: ["img_stratagem/offensive/heavy_strafing_run.png"]});
         break;
-        case cmd.offensive.incendiary   : msg.channel.send(message.offensive.incendiary, {files: ["img_stratagem/offensive/incendiary.png"]});
+        case prefix+command.hd.offensive.incendiary   : msg.channel.send(message.offensive.incendiary, {files: ["img_stratagem/offensive/incendiary.png"]});
         break;
-        case cmd.offensive.missle       : msg.channel.send(message.offensive.missle, {files: ["img_stratagem/offensive/missle.png"]});
+        case prefix+command.hd.offensive.missle       : msg.channel.send(message.offensive.missle, {files: ["img_stratagem/offensive/missle.png"]});
         break;
-        case cmd.offensive.laser        : msg.channel.send(message.offensive.laser, {files: ["img_stratagem/offensive/orbital_laser.png"]});
+        case prefix+command.hd.offensive.laser        : msg.channel.send(message.offensive.laser, {files: ["img_stratagem/offensive/orbital_laser.png"]});
         break;
-        case cmd.offensive.railcannon   : msg.channel.send(message.offensive.railcannon, {files: ["img_stratagem/offensive/railcannon.png"]});
+        case prefix+command.hd.offensive.railcannon   : msg.channel.send(message.offensive.railcannon, {files: ["img_stratagem/offensive/railcannon.png"]});
         break;
-        case cmd.offensive.nuke         : msg.channel.send(message.offensive.nuke, {files: ["img_stratagem/offensive/shredder_missle.png"]});
+        case prefix+command.hd.offensive.nuke         : msg.channel.send(message.offensive.nuke, {files: ["img_stratagem/offensive/shredder_missle.png"]});
         break;
-        case cmd.offensive.precision    : msg.channel.send(message.offensive.precision, {files: ["img_stratagem/offensive/sledge_precision.png"]});
+        case prefix+command.hd.offensive.precision    : msg.channel.send(message.offensive.precision, {files: ["img_stratagem/offensive/sledge_precision.png"]});
         break;
-        case cmd.offensive.staticfield  : msg.channel.send(message.offensive.staticfield, {files: ["img_stratagem/offensive/static_field.png"]});
+        case prefix+command.hd.offensive.staticfield  : msg.channel.send(message.offensive.staticfield, {files: ["img_stratagem/offensive/static_field.png"]});
         break;
-        case cmd.offensive.srun         : msg.channel.send(message.offensive.srun, {files: ["img_stratagem/offensive/strafing_run.png"]});
+        case prefix+command.hd.offensive.srun         : msg.channel.send(message.offensive.srun, {files: ["img_stratagem/offensive/strafing_run.png"]});
         break;
-        case cmd.offensive.thunderer    : msg.channel.send(message.offensive.thunderer, {files: ["img_stratagem/offensive/thunderer.png"]});
+        case prefix+command.hd.offensive.thunderer    : msg.channel.send(message.offensive.thunderer, {files: ["img_stratagem/offensive/thunderer.png"]});
         break;
     
     }
@@ -313,29 +277,29 @@ client.on('message', msg => {
 
     switch(msgContent) {
 
-        case cmd.defensive.at47 : msg.channel.send(message.defensive.at47, {files: ["img_stratagem/defensive/at47.png"]});
+        case prefix+command.hd.defensive.at47 : msg.channel.send(message.defensive.at47, {files: ["img_stratagem/defensive/at47.png"]});
         break;
-        case cmd.defensive.barrier : msg.channel.send(message.defensive.barrier, {files: ["img_stratagem/defensive/barrier.png"]});
+        case prefix+command.hd.defensive.barrier : msg.channel.send(message.defensive.barrier, {files: ["img_stratagem/defensive/barrier.png"]});
         break;
-        case cmd.defensive.beacon : msg.channel.send(message.defensive.beacon, {files: ["img_stratagem/defensive/beacon.png"]});
+        case prefix+command.hd.defensive.beacon : msg.channel.send(message.defensive.beacon, {files: ["img_stratagem/defensive/beacon.png"]});
         break;
-        case cmd.defensive.drone : msg.channel.send(message.defensive.drone, {files: ["img_stratagem/defensive/drone.png"]});
+        case prefix+command.hd.defensive.drone : msg.channel.send(message.defensive.drone, {files: ["img_stratagem/defensive/drone.png"]});
         break;
-        case cmd.defensive.explosive_mine : msg.channel.send(message.defensive.explosive_mine, {files: ["img_stratagem/defensive/explosive_mine.png"]});
+        case prefix+command.hd.defensive.explosive_mine : msg.channel.send(message.defensive.explosive_mine, {files: ["img_stratagem/defensive/explosive_mine.png"]});
         break;
-        case cmd.defensive.launcher_turret : msg.channel.send(message.defensive.launcher_turret, {files: ["img_stratagem/defensive/launcher_turret.png"]});
+        case prefix+command.hd.defensive.launcher_turret : msg.channel.send(message.defensive.launcher_turret, {files: ["img_stratagem/defensive/launcher_turret.png"]});
         break;
-        case cmd.defensive.minigun_turret : msg.channel.send(message.defensive.minigun_turret, {files: ["img_stratagem/defensive/minigun_turret.png"]});
+        case prefix+command.hd.defensive.minigun_turret : msg.channel.send(message.defensive.minigun_turret, {files: ["img_stratagem/defensive/minigun_turret.png"]});
         break;
-        case cmd.defensive.railcannon_turret : msg.channel.send(message.defensive.railcannon_turret, {files: ["img_stratagem/defensive/railcannon_turret.png"]});
+        case prefix+command.hd.defensive.railcannon_turret : msg.channel.send(message.defensive.railcannon_turret, {files: ["img_stratagem/defensive/railcannon_turret.png"]});
         break;
-        case cmd.defensive.smoke_round : msg.channel.send(message.defensive.smoke_round, {files: ["img_stratagem/defensive/smoke_round.png"]});
+        case prefix+command.hd.defensive.smoke_round : msg.channel.send(message.defensive.smoke_round, {files: ["img_stratagem/defensive/smoke_round.png"]});
         break;
-        case cmd.defensive.stun_mine : msg.channel.send(message.defensive.stun_mine, {files: ["img_stratagem/defensive/stun_mine.png"]});
+        case prefix+command.hd.defensive.stun_mine : msg.channel.send(message.defensive.stun_mine, {files: ["img_stratagem/defensive/stun_mine.png"]});
         break;
-        case cmd.defensive.tesla_tower : msg.channel.send(message.defensive.tesla_tower, {files: ["img_stratagem/defensive/tesla_tower.png"]});
+        case prefix+command.hd.defensive.tesla_tower : msg.channel.send(message.defensive.tesla_tower, {files: ["img_stratagem/defensive/tesla_tower.png"]});
         break;
-        case cmd.defensive.turrets : msg.channel.send(message.defensive.turrets, {files:["img_stratagem/defensive/launcher_turret.png", "img_stratagem/defensive/minigun_turret.png", "img_stratagem/defensive/railcannon_turret.png"]});
+        case prefix+command.hd.defensive.turrets : msg.channel.send(message.defensive.turrets, {files:["img_stratagem/defensive/launcher_turret.png", "img_stratagem/defensive/minigun_turret.png", "img_stratagem/defensive/railcannon_turret.png"]});
         break;
 
     }
@@ -347,57 +311,57 @@ client.on('message', msg => {
 */
 
     switch(msgContent) {
-        case cmd.weapon.shotgun         : msg.channel.send({files: ["img_weapon/arc_shotgun.png"]});
+        case prefix+command.hd.weapon.shotgun         : msg.channel.send({files: ["img_weapon/arc_shotgun.png"]});
         break;
-        case cmd.weapon.thrower         : msg.channel.send({files: ["img_weapon/arc_thrower.png"]});
+        case prefix+command.hd.weapon.thrower         : msg.channel.send({files: ["img_weapon/arc_thrower.png"]});
         break;
-        case cmd.weapon.breaker         : msg.channel.send({files: ["img_weapon/breaker.png"]});
+        case prefix+command.hd.weapon.breaker         : msg.channel.send({files: ["img_weapon/breaker.png"]});
         break;
-        case cmd.weapon.camper          : msg.channel.send({files: ["img_weapon/camper.png"]});
+        case prefix+command.hd.weapon.camper          : msg.channel.send({files: ["img_weapon/camper.png"]});
         break;
-        case cmd.weapon.constitution    : msg.channel.send({files: ["img_weapon/constitution.png"]});
+        case prefix+command.hd.weapon.constitution    : msg.channel.send({files: ["img_weapon/constitution.png"]});
         break;
-        case cmd.weapon.defender        : msg.channel.send({files: ["img_weapon/defender.png"]});
+        case prefix+command.hd.weapon.defender        : msg.channel.send({files: ["img_weapon/defender.png"]});
         break;
-        case cmd.weapon.double_freedom  : msg.channel.send({files: ["img_weapon/double_freedom.png"]});
+        case prefix+command.hd.weapon.double_freedom  : msg.channel.send({files: ["img_weapon/double_freedom.png"]});
         break;
-        case cmd.weapon.gunslinger      : msg.channel.send({files: ["img_weapon/gunslinger.png"]});
+        case prefix+command.hd.weapon.gunslinger      : msg.channel.send({files: ["img_weapon/gunslinger.png"]});
         break;
-        case cmd.weapon.justice         : msg.channel.send({files: ["img_weapon/justice.png"]});
+        case prefix+command.hd.weapon.justice         : msg.channel.send({files: ["img_weapon/justice.png"]});
         break;
-        case cmd.weapon.knight          : msg.channel.send({files: ["img_weapon/knight.png"]});
+        case prefix+command.hd.weapon.knight          : msg.channel.send({files: ["img_weapon/knight.png"]});
         break;
-        case cmd.weapon.liberator       : msg.channel.send({files: ["img_weapon/liberator.png"]});
+        case prefix+command.hd.weapon.liberator       : msg.channel.send({files: ["img_weapon/liberator.png"]});
         break;
-        case cmd.weapon.ninja           : msg.channel.send({files: ["img_weapon/ninja.png"]});
+        case prefix+command.hd.weapon.ninja           : msg.channel.send({files: ["img_weapon/ninja.png"]});
         break;
-        case cmd.weapon.paragon         : msg.channel.send({files: ["img_weapon/paragon.png"]});
+        case prefix+command.hd.weapon.paragon         : msg.channel.send({files: ["img_weapon/paragon.png"]});
         break;
-        case cmd.weapon.patriot         : msg.channel.send({files: ["img_weapon/patriot.png"]});
+        case prefix+command.hd.weapon.patriot         : msg.channel.send({files: ["img_weapon/patriot.png"]});
         break;
-        case cmd.weapon.peacemaker      : msg.channel.send({files: ["img_weapon/peacemaker.png"]});
+        case prefix+command.hd.weapon.peacemaker      : msg.channel.send({files: ["img_weapon/peacemaker.png"]});
         break;
-        case cmd.weapon.punisher        : msg.channel.send({files: ["img_weapon/punisher.png"]});
+        case prefix+command.hd.weapon.punisher        : msg.channel.send({files: ["img_weapon/punisher.png"]});
         break;
-        case cmd.weapon.pyro            : msg.channel.send({files: ["img_weapon/pyro.png"]});
+        case prefix+command.hd.weapon.pyro            : msg.channel.send({files: ["img_weapon/pyro.png"]});
         break;
-        case cmd.weapon.railgun         : msg.channel.send({files: ["img_weapon/railgun.png"]});
+        case prefix+command.hd.weapon.railgun         : msg.channel.send({files: ["img_weapon/railgun.png"]});
         break;
-        case cmd.weapon.scorcher        : msg.channel.send({files: ["img_weapon/scorcher.png"]});
+        case prefix+command.hd.weapon.scorcher        : msg.channel.send({files: ["img_weapon/scorcher.png"]});
         break;
-        case cmd.weapon.scythe          : msg.channel.send({files: ["img_weapon/scythe.png"]});
+        case prefix+command.hd.weapon.scythe          : msg.channel.send({files: ["img_weapon/scythe.png"]});
         break;
-        case cmd.weapon.sickle          : msg.channel.send({files: ["img_weapon/sickle.png"]});
+        case prefix+command.hd.weapon.sickle          : msg.channel.send({files: ["img_weapon/sickle.png"]});
         break;
-        case cmd.weapon.singe           : msg.channel.send({files: ["img_weapon/singe.png"]});
+        case prefix+command.hd.weapon.singe           : msg.channel.send({files: ["img_weapon/singe.png"]});
         break;
-        case cmd.weapon.stalwart        : msg.channel.send({files: ["img_weapon/stalwart.png"]});
+        case prefix+command.hd.weapon.stalwart        : msg.channel.send({files: ["img_weapon/stalwart.png"]});
         break;
-        case cmd.weapon.suppressor      : msg.channel.send({files: ["img_weapon/suppressor.png"]});
+        case prefix+command.hd.weapon.suppressor      : msg.channel.send({files: ["img_weapon/suppressor.png"]});
         break;
-        case cmd.weapon.tanto           : msg.channel.send({files: ["img_weapon/tanto.png"]});
+        case prefix+command.hd.weapon.tanto           : msg.channel.send({files: ["img_weapon/tanto.png"]});
         break;
-        case cmd.weapon.trident         : msg.channel.send({files: ["img_weapon/trident.png"]});
+        case prefix+command.hd.weapon.trident         : msg.channel.send({files: ["img_weapon/trident.png"]});
         break;
     }
 
@@ -408,11 +372,15 @@ client.on('message', msg => {
 */
 
     switch(msgContent) {
-        case cmd.reinforce : msg.channel.send(message.special.reinforce, {files: ["img_stratagem/defensive/beacon.png"]});
+        case prefix+command.hd.special.reinforce : msg.channel.send(message.special.reinforce, {files: ["img_stratagem/special/reinforce.png"]});
         break;
-        case cmd.sos       : msg.channel.send(message.special.sos);
+        case prefix+command.hd.special.sos       : msg.channel.send(message.special.sos, {files: ["img_stratagem/special/beacon.png"]});
         break;
-        case cmd.trans     : msg.channel.send(message.objective.trans_1 + 
+        // case command.hellbomb  : msg.channel.send(message.special.hellbomb, {files: ["img_stratagem/special/hellbomb.png"]});
+        // break;
+        // case command.sniffer   : msg.channel.send(message.special.sniffer, {files: ["img_stratagem/special/sniffer.png"]});
+        // break;
+        case prefix+command.hd.trans     : msg.channel.send(message.objective.trans_1 + 
                                        message.objective.trans_2 + 
                                        message.objective.trans_3 + 
                                        message.objective.trans_4);
@@ -425,7 +393,7 @@ client.on('message', msg => {
 |-----------------------------------------------------------------------------
 */
     
-    if (msgContent === "/pk") {
+    if (msgContent === prefix+command.help_portalknights) {
         
         const helpCommandEmbed = new Discord.RichEmbed()
         .setColor('#6583fc')
@@ -486,7 +454,7 @@ client.on('guildMemberAdd', member => {
 
 // Prevent from idling, send request to url every 5 minutes
 setInterval(function() {
-    https.get("https://hisako.glitch.me");
+    https.get("https://hisako-dev.glitch.me");
     console.log("ping!");
 }, 200000);
 
