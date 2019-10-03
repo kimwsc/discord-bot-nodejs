@@ -14,6 +14,7 @@
   "dependencies": {
     "discord.js": "^11.5.1",
     "express": "^4.17.1",
-    "express-glitch-keepalive": "^0.2.0"
+    "express-glitch-keepalive": "^0.2.0",
+    "flat": "^4.1.0"
   }
 }

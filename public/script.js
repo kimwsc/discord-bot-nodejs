@@ -1,10 +1,28 @@
-import 'require';
-const fs = require('fs');
-
-let jsonCommand = fs.readFileSync('../command.json');
-let cmd         = JSON.parse(jsonCommand);
+var data = '';
 
 $( document ).ready(function() {
-    console.log( cmd );
+  
+$.ajax({
+  type: 'GET',
+  url: 'https://hisako.glitch.me/json',
+  data: data,
+  dataType: 'json',
+  success: function (data) {
+
+      console.log(data);
+      var command = '';
+
+			$.each(data, function(cmd) {
+        
+          command += "<tr>"
+          command += "<td scope='row'>" + data[cmd] + "</td>";
+          command += "</tr>"
+              
+      });
+    	$('#commandList tbody').append(command);
+
+  }
+
 });
 
+});
