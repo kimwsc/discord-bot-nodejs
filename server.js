@@ -37,7 +37,7 @@ const listener = app.listen(process.env.PORT, function() {
 
 client.on('ready', () => {
   
-    client.user.setActivity('you', {type: 'WATCHING'});
+    client.user.setActivity('/help', {type: 'LISTENING'});
     console.log(`Logged in as ${client.user.tag}!`);
   
 });
@@ -55,9 +55,16 @@ client.on('message', msg => {
     var prefix = "/";
     var commandList = [];
     var cmd = '';
+  
+    var receivedContent = '';
 
+    if (msgContent === prefix+"update " + receivedContent) {
+    //const channel = client.channels.find(ch => ch.name === 'hisako🌐');
+    //if (!channel) return;
+    //channel.send("'" + receivedContent + "'");
+    }
 
-    if (msgContent === command.help) {
+    if (msgContent === prefix+command.help) {
         
         const helpCommandEmbed = new Discord.RichEmbed()
         .setColor('#fbb3ff')
@@ -447,7 +454,7 @@ client.on('message', msg => {
 
 // Create an event listener for new guild members
 client.on('guildMemberAdd', member => {
-    const channel = member.guild.channels.find(ch => ch.name === 'chat');
+    const channel = member.guild.channels.find(ch => ch.name === 'ub-prod');
     if (!channel) return;
     channel.send(`Let's welcome ${member} to the server!!!`, {files: ["img_stratagem/offensive/shredder_missle.png"]});
 });
