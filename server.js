@@ -12,11 +12,9 @@ const contentful  = require('contentful-management');
 let https       = require("https");
 let jsonMessage = fs.readFileSync('message.json');
 let jsonCommand = fs.readFileSync('command.json');
-let jsonData    = fs.readFileSync('data/save.json');
 
 let message     = JSON.parse(jsonMessage);
 let command     = JSON.parse(jsonCommand);
-let saveData    = JSON.parse(jsonData);
 let flattenCmd  = flatten({command});
 
 keepAlive.use(keepalive);
@@ -55,7 +53,7 @@ var contentfulClient = contentful.createClient({
 
 /*
 |-----------------------------------------------------------------------------
-| /save Command
+| /list Command
 |-----------------------------------------------------------------------------
 */
 
