@@ -1,18 +1,22 @@
-const express   = require('express');
-const app       = express();
-const keepAlive = express();
-const fs        = require('fs');
-const Discord   = require('discord.js');
-const path      = require('path');
-const client    = new Discord.Client();
-const keepalive = require('express-glitch-keepalive');
-const flatten   = require('flat')
+const express     = require('express');
+const app         = express();
+const keepAlive   = express();
+const fs          = require('fs');
+const Discord     = require('discord.js');
+const path        = require('path');
+const client      = new Discord.Client();
+const keepalive   = require('express-glitch-keepalive');
+const flatten     = require('flat');
+const contentful  = require('contentful-management');
 
 let https       = require("https");
 let jsonMessage = fs.readFileSync('message.json');
 let jsonCommand = fs.readFileSync('command.json');
+let jsonData    = fs.readFileSync('data/save.json');
+
 let message     = JSON.parse(jsonMessage);
 let command     = JSON.parse(jsonCommand);
+let saveData    = JSON.parse(jsonData);
 let flattenCmd  = flatten({command});
 
 keepAlive.use(keepalive);
@@ -35,13 +39,93 @@ const listener = app.listen(process.env.PORT, function() {
   console.log('Your app is listening on port ' + listener.address().port);
 });
 
+
 client.on('ready', () => {
   
     client.user.setActivity('/help', {type: 'LISTENING'});
     console.log(`Logged in as ${client.user.tag}!`);
-  
 });
   
+var contentfulClient = contentful.createClient({
+  accessToken: process.env.CONTENTFUL_APIKEY
+})
+
+/*
+|-----------------------------------------------------------------------------
+| /save Command
+|-----------------------------------------------------------------------------
+*/
+
+client.on('message', (receivedMessage) => {
+    // Prevent bot from responding to its own messages
+    if (receivedMessage.author == client.user) {
+        return
+    }
+  
+    if (receivedMessage.content.startsWith("/list")) {
+        processCommand(receivedMessage);
+    }
+
+  
+function processCommand(receivedMessage) {
+    let fullCommand = receivedMessage.content.substr(5); // Remove the leading exclamation mark
+    let splitCommand = fullCommand.split(" "); // Split the message up in to pieces for each space
+    let primaryCommand = splitCommand[1]; // The first word directly after the exclamation is the command
+    let cmdArguments = splitCommand.slice(2).join(" "); // All other words are cmdArguments/parameters/options for the command
+
+    console.log("Command received: " + primaryCommand);
+    console.log("Arguments: " + cmdArguments); // There may not be any cmdArguments
+
+    if (primaryCommand == "add") {
+                  
+      if(cmdArguments.length < 1){
+        receivedMessage.channel.send("I don't add empty input, please try again.");
+      } else {
+          contentfulClient.getSpace(process.env.SPACE_ID)
+            .then((space) => space.getEnvironment('master'))
+            .then((environment) => environment.getEntry('1cO19gsKy4xmXzyHK4PYgD'))
+            .then((entry) => {
+
+            var allEntry = entry.fields.list['en-US'].msg;
+
+            allEntry.push(cmdArguments +" - "+receivedMessage.author.tag);
+            entry.fields.list['en-US'].msg = allEntry;
+
+            return entry.update()
+
+          })
+          .catch(console.error)
+
+          receivedMessage.channel.send("Ok list has been added. Type `/list all` to see all list")
+  
+     }
+    }
+  
+    if (primaryCommand == "all") {
+      contentfulClient.getSpace(process.env.SPACE_ID)
+        .then((space) => space.getEnvironment('master'))
+        .then((environment) => environment.getEntry('1cO19gsKy4xmXzyHK4PYgD'))
+        .then((entry) => {
+        
+          var allEntry = entry.fields.list['en-US'].msg;
+        
+          if(allEntry === undefined || allEntry.length == 0) {
+            receivedMessage.channel.send("List is empty");
+          } else {
+            receivedMessage.channel.send("```Hisako's personal bucket : \n" +allEntry.join("\n")+"```")
+
+          }
+      })
+      .catch(console.error)
+
+    } else {
+        receivedMessage.channel.send(":thinking: I only understand the following command: \n `/list add` \n `/list all`");
+    }
+  
+}
+
+});
+
 /*
 |-----------------------------------------------------------------------------
 | /help Command
@@ -49,22 +133,19 @@ client.on('ready', () => {
 */
 
 client.on('message', msg => {
-    
+        
+    // Prevent bot from responding to its own messages
+    if (msg.author == client.user) {
+        return
+    }
+
     var msgContent  = msg.content.toLowerCase();
     var bduckStickerPath = "stickers/bduck_";
     var prefix = "/";
     var commandList = [];
     var cmd = '';
-  
-    var receivedContent = '';
-
-    if (msgContent === prefix+"update " + receivedContent) {
-    //const channel = client.channels.find(ch => ch.name === 'hisako🌐');
-    //if (!channel) return;
-    //channel.send("'" + receivedContent + "'");
-    }
-
-    if (msgContent === prefix+command.help) {
+    
+    if (msgContent == prefix+command.help) {
         
         const helpCommandEmbed = new Discord.RichEmbed()
         .setColor('#fbb3ff')
@@ -181,19 +262,19 @@ client.on('message', msg => {
 
 
     switch(msgContent) {
-        case command.middle_finger  : msg.channel.send({files: ["stickers/rick_and_morty_mf.gif"]});
+        case command.misc.middle_finger  : msg.channel.send({files: ["stickers/rick_and_morty_mf.gif"]});
         break;
-        case command.cqface         : msg.channel.send({files: ["stickers/cqface.gif"]});
+        case command.misc.cqface         : msg.channel.send({files: ["stickers/cqface.gif"]});
         break;
-        case command.fu             : msg.channel.send(message.ck);
+        case command.misc.fu             : msg.channel.send(message.ck);
         break;
-        case command.ok             : msg.channel.send(message.ok);
+        case command.misc.ok             : msg.channel.send(message.ok);
         break;
-        case command.kimsphere      : msg.channel.send(message.kimsphere);
+        case command.misc.kimsphere      : msg.channel.send(message.kimsphere);
         break;
-        case command.andylam        : msg.channel.send(message.andylam);
+        case command.misc.andylam        : msg.channel.send(message.andylam);
         break;
-        case command.asarind        : msg.channel.send(message.asarind);
+        case command.misc.asarind        : msg.channel.send(message.asarind);
         break;
         
     }
@@ -453,11 +534,11 @@ client.on('message', msg => {
 
 
 // Create an event listener for new guild members
-client.on('guildMemberAdd', member => {
-    const channel = member.guild.channels.find(ch => ch.name === 'ub-prod');
-    if (!channel) return;
-    channel.send(`Let's welcome ${member} to the server!!!`, {files: ["img_stratagem/offensive/shredder_missle.png"]});
-});
+// client.on('guildMemberAdd', member => {
+//     const channel = member.guild.channels.find(ch => ch.name === 'ub-prod');
+//     if (!channel) return;
+//     channel.send(`Let's welcome ${member} to the server!!!`, {files: ["img_stratagem/offensive/shredder_missle.png"]});
+// });
 
 // Prevent from idling, send request to url every 5 minutes
 setInterval(function() {

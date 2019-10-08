@@ -15,6 +15,10 @@
     "discord.js": "^11.5.1",
     "express": "^4.17.1",
     "express-glitch-keepalive": "^0.2.0",
-    "flat": "^4.1.0"
+    "flat": "^4.1.0",
+    "firebase-admin": "^8.6.0",
+    "firebase-tools": "^5.1.1",
+    "contentful-management": "^5.11.2",
+    "contentful": "^7.10.0"
   }
 }
