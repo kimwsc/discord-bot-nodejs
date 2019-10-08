@@ -118,8 +118,8 @@ function processCommand(receivedMessage) {
           } else {            
               const allListEmbed = new Discord.RichEmbed()
               .setColor('#fafafa')
-              .attachFile('img_misc/hisako.jpg')
-              .setAuthor("Hisako's Personal Bucket", 'attachment://hisako.jpg')
+              .attachFile('img_misc/bucket.png')
+              .setAuthor("Hisako's Personal Bucket", 'attachment://bucket.png')
               .setDescription('The list the currently able to add')
               .addField("❯ Page 1", allEntry.slice(0, 15).join("\n"), true)
               .setTimestamp()
@@ -150,8 +150,8 @@ function processCommand(receivedMessage) {
 
                 const allListEmbed = new Discord.RichEmbed()
                 .setColor('#fafafa')
-                .attachFile('img_misc/hisako.jpg')
-                .setAuthor("Hisako's Personal Bucket", 'attachment://hisako.jpg')
+                .attachFile('img_misc/bucket.png')
+                .setAuthor("Hisako's Personal Bucket", 'attachment://bucket.png')
                 .setDescription('The list the currently able to add')
                 .addField("❯ Page 2", allEntry.slice(15).join("\n"), true)
                 .setTimestamp()
@@ -167,8 +167,8 @@ function processCommand(receivedMessage) {
     else {
         const listEmbed = new Discord.RichEmbed()
         .setColor('#fafafa')
-        .attachFile('img_misc/hisako.jpg')
-        .setAuthor('Personal Bucket List', 'attachment://hisako.jpg')
+        .attachFile('img_misc/bucket.png')
+        .setAuthor("Hisako's Personal Bucket", 'attachment://bucket.png')
         .setDescription('Command Prefix : `/`')
         .addField('❯ Personal Bucket List', "`list add` | `list all`", true)
         .setTimestamp()
@@ -318,19 +318,39 @@ client.on('message', msg => {
 
 
     switch(msgContent) {
-        case command.misc.middle_finger  : msg.channel.send({files: ["stickers/rick_and_morty_mf.gif"]});
+        case command.misc.middle_finger     : msg.channel.send({files: ["stickers/rick_and_morty_mf.gif"]});
         break;
-        case command.misc.cqface         : msg.channel.send({files: ["stickers/cqface.gif"]});
+        case command.misc.cqface            : msg.channel.send({files: ["stickers/cqface.gif"]});
         break;
-        case command.misc.fu             : msg.channel.send(message.ck);
+        case command.misc.aco               : msg.channel.send({files: ["stickers/avo.gif"]});
         break;
-        case command.misc.ok             : msg.channel.send(message.ok);
+        case command.misc.beesting          : msg.channel.send({files: ["stickers/beesting.gif"]});
         break;
-        case command.misc.kimsphere      : msg.channel.send(message.kimsphere);
+        case command.misc.crase             : msg.channel.send({files: ["stickers/crase.gif"]});
         break;
-        case command.misc.andylam        : msg.channel.send(message.andylam);
+        case command.misc.foxydance         : msg.channel.send({files: ["stickers/foxydance.gif"]});
         break;
-        case command.misc.asarind        : msg.channel.send(message.asarind);
+        case command.misc.kuatcat           : msg.channel.send({files: ["stickers/kuatcat.gif"]});
+        break;
+        case command.misc.patrick           : msg.channel.send({files: ["stickers/patrick.gif"]});
+        break;
+        case command.misc.rainbowcat        : msg.channel.send({files: ["stickers/rainbowcat.gif"]});
+        break;
+        case command.misc.shtd              : msg.channel.send({files: ["stickers/shtd.gif"]});
+        break;
+        case command.misc.twita             : msg.channel.send({files: ["stickers/twita.gif"]});
+        break;
+        case command.misc.walkthekid        : msg.channel.send({files: ["stickers/walkthekid.gif"]});
+        break;
+        case command.misc.fu                : msg.channel.send(message.ck);
+        break;
+        case command.misc.ok                : msg.channel.send(message.ok);
+        break;
+        case command.misc.kimsphere         : msg.channel.send(message.kimsphere);
+        break;
+        case command.misc.andylam           : msg.channel.send(message.andylam);
+        break;
+        case command.misc.asarind           : msg.channel.send(message.asarind);
         break;
         
     }
@@ -585,7 +605,55 @@ client.on('message', msg => {
         case "pk npc"         : msg.channel.send("https://portalknights.gamepedia.com/NPCs");
         break;
     }
+
+
+    switch(msgContent) {
+      case command.intensecat.cat1212     : msg.channel.send({files: ["stickers_intensecat/1212.gif"]});
+      break;
+      case command.intensecat.andy        : msg.channel.send({files: ["stickers_intensecat/andy.gif"]});
+      break;
+      case command.intensecat.angry_1     : msg.channel.send({files: ["stickers_intensecat/angry_1.gif"]});
+      break;
+      case command.intensecat.angry_2     : msg.channel.send({files: ["stickers_intensecat/angry_2.gif"]});
+      break;
+      case command.intensecat.areyouok    : msg.channel.send({files: ["stickers_intensecat/areyouok.gif"]});
+      break;
+      case command.intensecat.bad         : msg.channel.send({files: ["stickers_intensecat/bad.gif"]});
+      break;
+      case command.intensecat.busy        : msg.channel.send({files: ["stickers_intensecat/busy.gif"]});
+      break;
+      case command.intensecat.cheer_up     : msg.channel.send({files: ["stickers_intensecat/cheer_up.gif"]});
+      break;
+      case command.intensecat.dead        : msg.channel.send({files: ["stickers_intensecat/dead.gif"]});
+      break;
+      case command.intensecat.deal        : msg.channel.send({files: ["stickers_intensecat/deal.gif"]});
+      break;
+      case command.intensecat.dizzy       : msg.channel.send({files: ["stickers_intensecat/dizzy.gif"]});
+      break;
+      case command.intensecat.easy        : msg.channel.send({files: ["stickers_intensecat/easy.gif"]});
+      break;
+      case command.intensecat.eat         : msg.channel.send({files: ["stickers_intensecat/eat.gif"]});
+      break;
+      case command.intensecat.evil_1      : msg.channel.send({files: ["stickers_intensecat/evil_1.gif"]});
+      break;
+      case command.intensecat.evil_2      : msg.channel.send({files: ["stickers_intensecat/evil_2.gif"]});
+      break;
+      case command.intensecat.feedme      : msg.channel.send({files: ["stickers_intensecat/feedme.gif"]});
+      break;
+      case command.intensecat.finally     : msg.channel.send({files: ["stickers_intensecat/finally.gif"]});
+      break;
+      
+
+
+
+
+
+
+    }
+
 });
+
+
 
 
 
