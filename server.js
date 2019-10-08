@@ -44,6 +44,9 @@ client.on('ready', () => {
   
     client.user.setActivity('/help', {type: 'LISTENING'});
     console.log(`Logged in as ${client.user.tag}!`);
+    // const channel = client.channels.find(ch => ch.name === 'hisako🌐');
+    // channel.send(":new: Command \n You're now able to add some text into my personal bucket by `/list add` command \n To see all list by using `/list all` command");
+  
 });
   
 var contentfulClient = contentful.createClient({
@@ -88,7 +91,7 @@ function processCommand(receivedMessage) {
 
             var allEntry = entry.fields.list['en-US'].msg;
 
-            allEntry.push(cmdArguments +" - "+receivedMessage.author.tag);
+            allEntry.push(receivedMessage.author.username +" :speech_balloon:  "+ cmdArguments.trim());
             entry.fields.list['en-US'].msg = allEntry;
 
             return entry.update()
@@ -101,7 +104,36 @@ function processCommand(receivedMessage) {
      }
     }
   
-    if (primaryCommand == "all") {
+    // List page 1
+    if (primaryCommand == "all" || primaryCommand == "all1") {
+      contentfulClient.getSpace(process.env.SPACE_ID)
+        .then((space) => space.getEnvironment('master'))
+        .then((environment) => environment.getEntry('1cO19gsKy4xmXzyHK4PYgD'))
+        .then((entry) => {
+        
+          var allEntry = entry.fields.list['en-US'].msg;
+        
+          if(allEntry === undefined || allEntry.length == 0) {
+            receivedMessage.channel.send("List is empty");
+          } else {            
+              const allListEmbed = new Discord.RichEmbed()
+              .setColor('#fafafa')
+              .attachFile('img_misc/hisako.jpg')
+              .setAuthor("Hisako's Personal Bucket", 'attachment://hisako.jpg')
+              .setDescription('The list the currently able to add, `list all2` to go page 2')
+              .addField("❯ Page 1/2", allEntry.slice(0, 15).join("\n"), true)
+              .setTimestamp()
+              .setFooter('Hisako');
+
+              receivedMessage.channel.send(allListEmbed);
+
+          }
+      })
+      .catch(console.error)
+    } 
+  
+    // List page 2
+    if (primaryCommand == "all2") {
       contentfulClient.getSpace(process.env.SPACE_ID)
         .then((space) => space.getEnvironment('master'))
         .then((environment) => environment.getEntry('1cO19gsKy4xmXzyHK4PYgD'))
@@ -112,15 +144,26 @@ function processCommand(receivedMessage) {
           if(allEntry === undefined || allEntry.length == 0) {
             receivedMessage.channel.send("List is empty");
           } else {
-            receivedMessage.channel.send("```Hisako's personal bucket : \n" +allEntry.join("\n")+"```")
+            // receivedMessage.channel.send("```Hisako's personal bucket : \n" +allEntry.join("\n") +"```")
+            
+              const allListEmbed = new Discord.RichEmbed()
+              .setColor('#fafafa')
+              .attachFile('img_misc/hisako.jpg')
+              .setAuthor("Hisako's Personal Bucket", 'attachment://hisako.jpg')
+              .setDescription('The list the currently able to add')
+              .addField("❯ Page 2/2", allEntry.slice(15).join("\n"), true)
+              .setTimestamp()
+              .setFooter('Hisako');
+
+              receivedMessage.channel.send(allListEmbed);
 
           }
       })
       .catch(console.error)
-
-    } else {
-        receivedMessage.channel.send(":thinking: I only understand the following command: \n `/list add` \n `/list all`");
-    }
+    }  
+    // else {
+    //   receivedMessage.channel.send(":thinking: I only understand the following command: \n `/list add` \n `/list all`");
+    // }
   
 }
 
@@ -156,6 +199,7 @@ client.on('message', msg => {
         .addField('❯ B.Duck Stickers', '`bduck`', true)
         .addField('❯ HELLDIVERS™', '`hd`', true)
         .addField('❯ Portal Knights Wiki', '`pk`', true)
+        .addField('❯ Personal bucket list', '`list`', true)
         .addField('❯ Miscellaneous', '`misc`', true)
         .setTimestamp()
         .setFooter('Hisako');
@@ -235,6 +279,27 @@ client.on('message', msg => {
         case command.bduck.woo          : msg.channel.send({files: [bduckStickerPath+"woo.gif"]});
         break;
     }
+  
+/*
+|-----------------------------------------------------------------------------
+| Personal Bucket Command List
+|-----------------------------------------------------------------------------
+*/
+
+    if (msgContent === prefix+command.help_list) {
+              
+        const listEmbed = new Discord.RichEmbed()
+        .setColor('#fafafa')
+        .attachFile('img_misc/hisako.jpg')
+        .setAuthor('Personal Bucket List', 'attachment://hisako.jpg')
+        .setDescription('Command Prefix : `/`')
+        .addField('❯ Personal Bucket List', "`list add` | `list all`", true)
+        .setTimestamp()
+        .setFooter('Hisako');
+
+        msg.channel.send(listEmbed);
+    }
+
 
 /*
 |-----------------------------------------------------------------------------
