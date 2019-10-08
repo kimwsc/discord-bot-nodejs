@@ -4,7 +4,7 @@ $( document ).ready(function() {
   
 $.ajax({
   type: 'GET',
-  url: 'https://hisako.glitch.me/json',
+  url: 'https://hisako-dev.glitch.me/json',
   data: data,
   dataType: 'json',
   success: function (data) {
