@@ -43,7 +43,7 @@ client.on('ready', () => {
     client.user.setActivity('/help', {type: 'LISTENING'});
     console.log(`Logged in as ${client.user.tag}!`);
     // const channel = client.channels.find(ch => ch.name === 'hisako🌐');
-    // channel.send(":new: Command \n You're now able to add some text into my personal bucket by `/list add` command \n To see all list by using `/list all` command");
+    // channel.send(":new: Command \nYou're now able to delete lists from Hisako's personal bucket by using `/list del` command");
   
 });
   
@@ -605,7 +605,7 @@ client.on('message', msg => {
         .setAuthor("Portal Knights", 'attachment://hisako.jpg')
         .setDescription('Command Prefix : `pk`')
         .setThumbnail('attachment://portal_knights.png')
-        .addField('❯ Wiki', '`weapons` | `armor` | `blocks` | `ingredients` | `portal` | `crafting` | `tools` | `skills` | `consume` | `recipes` | `pets` | `events` | `islands` | `misc`', true)
+        .addField('❯ Wiki', '`weapons` | `armor` | `blocks` | `ingredients` | `portal` | `crafting` | `tools` | `skills` | `consume` | `recipes` | `pets` | `events` | `islands` | `misc` | `bosses`', true)
         .setTimestamp()
         .setFooter('Hisako');
 
@@ -644,6 +644,8 @@ client.on('message', msg => {
         break;
         case "pk npc"         : msg.channel.send("https://portalknights.gamepedia.com/NPCs");
         break;
+        case "pk bosses"        : msg.channel.send("https://portalknights.gamepedia.com/Bosses");
+        break;
     }
 
 
@@ -663,7 +665,7 @@ client.on('message', msg => {
         const iCatEmbed = new Discord.RichEmbed()
         .setColor('#fafafa')
         .attachFile('stickers_intensecat/evil1.gif')
-        .setAuthor('MISC', 'attachment://evil1.gif')
+        .setAuthor('Intense Cat', 'attachment://evil1.gif')
         .setDescription('Command Prefix : `ic`')
         .setThumbnail('attachment://evil1.gif')
         .addField('❯ Available stickers', commandList.join(" "), true)
@@ -784,7 +786,7 @@ client.on('message', msg => {
 
 // Prevent from idling, send request to url every 5 minutes
 setInterval(function() {
-    https.get("https://hisako.glitch.me");
+    https.get("https://hisako-dev.glitch.me");
     console.log("ping!");
 }, 200000);
 
