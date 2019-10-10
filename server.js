@@ -77,14 +77,22 @@ function processCommand(receivedMessage) {
     console.log("Command received: " + primaryCommand);
     console.log("Arguments: " + cmdArguments); // There may not be any cmdArguments
 
+    var id = 1;
+
+    function setId (entry) {
+      var setEntryWithId = id++ +". " + entry;
+      return setEntryWithId;
+    }
+  
     if (primaryCommand == "add") {
                   
       if(cmdArguments.length < 1){
-        receivedMessage.channel.send("I don't add empty input, please try again.");
-      } else {
+        receivedMessage.channel.send(":x: I don't add empty input, please try `list add` [ text ]");
+      } 
+      else {
           contentfulClient.getSpace(process.env.SPACE_ID)
             .then((space) => space.getEnvironment('master'))
-            .then((environment) => environment.getEntry('1cO19gsKy4xmXzyHK4PYgD'))
+            .then((environment) => environment.getEntry(process.env.MESSAGE_LIST_ENTRY_ID))
             .then((entry) => {
 
             var allEntry = entry.fields.list['en-US'].msg;
@@ -97,8 +105,40 @@ function processCommand(receivedMessage) {
           })
           .catch(console.error)
 
-          receivedMessage.channel.send("Ok list has been added. Type `/list all` to see all list")
+          receivedMessage.channel.send(":white_check_mark: List has been added. Use `/list all` command to check the list")
   
+     }
+    }
+    else if (primaryCommand == "del") {
+                  
+      if(cmdArguments.length < 1){
+        receivedMessage.channel.send(":x: Please try `list del` [ number ]");
+      } 
+      else {
+        contentfulClient.getSpace(process.env.SPACE_ID)
+          .then((space) => space.getEnvironment('master'))
+          .then((environment) => environment.getEntry(process.env.MESSAGE_LIST_ENTRY_ID))
+          .then((entry) => {
+
+          var allEntry = entry.fields.list['en-US'].msg;
+
+          if (cmdArguments <= 0 || cmdArguments > allEntry.length)
+          {
+            receivedMessage.channel.send(":x: Trying to delete something not in the list? LMAO!");
+          } 
+          else {
+            var entryIndex = cmdArguments-1;
+
+            allEntry.splice(entryIndex, 1);
+            entry.fields.list['en-US'].msg = allEntry;
+            
+            receivedMessage.channel.send(":white_check_mark: List number `"+ cmdArguments +"` has been deleted. Use `/list all` command to check the list")
+            
+            return entry.update()
+          }
+        })
+        .catch(console.error)
+        
      }
     }
   
@@ -106,20 +146,22 @@ function processCommand(receivedMessage) {
     else if (primaryCommand == "all" || primaryCommand == "all1") {
       contentfulClient.getSpace(process.env.SPACE_ID)
         .then((space) => space.getEnvironment('master'))
-        .then((environment) => environment.getEntry('1cO19gsKy4xmXzyHK4PYgD'))
+        .then((environment) => environment.getEntry(process.env.MESSAGE_LIST_ENTRY_ID))
         .then((entry) => {
         
           var allEntry = entry.fields.list['en-US'].msg;
-        
-          if(allEntry === undefined || allEntry.length == 0) {
-            receivedMessage.channel.send("Bucket is empty");
-          } else {            
+          var entryWithId = allEntry.map(setId);
+                  
+          if (allEntry === undefined || allEntry.length == 0) {
+            receivedMessage.channel.send(":x: Bucket is empty.");
+          } 
+          else {            
               const allListEmbed = new Discord.RichEmbed()
               .setColor('#fafafa')
               .attachFile('img_misc/bucket.png')
               .setAuthor("Hisako's Personal Bucket", 'attachment://bucket.png')
               .setDescription('A bucket list or notes you are able to add by using `/list add` command')
-              .addField("❯ Page 1", allEntry.slice(0, 15).join("\n"), true)
+              .addField("❯ Page 1", entryWithId.slice(0, 15).join("\n"), true)
               .setTimestamp()
               .setFooter('Hisako');
 
@@ -134,15 +176,14 @@ function processCommand(receivedMessage) {
       else if (primaryCommand == "all2") {
         contentfulClient.getSpace(process.env.SPACE_ID)
           .then((space) => space.getEnvironment('master'))
-          .then((environment) => environment.getEntry('1cO19gsKy4xmXzyHK4PYgD'))
+          .then((environment) => environment.getEntry(process.env.MESSAGE_LIST_ENTRY_ID))
           .then((entry) => {
 
             var allEntry = entry.fields.list['en-US'].msg;
+            var entryWithId = allEntry.map(setId);
 
-            if(allEntry === undefined || allEntry.length == 0) {
-              receivedMessage.channel.send("Bucket is empty");
-            } else if(allEntry.length < 15) {
-              receivedMessage.channel.send("There's no page 2! LMAO");
+            if(allEntry.length < 15) {
+              receivedMessage.channel.send(":x: There's no page 2! LMAO");
             }
             else {
 
@@ -151,7 +192,7 @@ function processCommand(receivedMessage) {
                 .attachFile('img_misc/bucket.png')
                 .setAuthor("Hisako's Personal Bucket", 'attachment://bucket.png')
                 .setDescription('A bucket list or notes you are able to add by using `/list add` command')
-                .addField("❯ Page 2", allEntry.slice(15).join("\n"), true)
+                .addField("❯ Page 2", entryWithId.slice(15).join("\n"), true)
                 .setTimestamp()
                 .setFooter('Hisako');
 
