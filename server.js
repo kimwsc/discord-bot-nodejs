@@ -58,6 +58,7 @@ var contentfulClient = contentful.createClient({
 */
 
 client.on('message', (receivedMessage) => {
+  
     // Prevent bot from responding to its own messages
     if (receivedMessage.author == client.user) {
         return
@@ -86,9 +87,11 @@ function processCommand(receivedMessage) {
   
     if (primaryCommand == "add") {
                   
-      if(cmdArguments.length < 1){
-        receivedMessage.channel.send(":x: I don't add empty input, please try `list add` [ text ]");
-      } 
+      if (cmdArguments.length < 1){
+        receivedMessage.channel.send(":x: Empty input, please try `list add` [ text ]");
+      } else if (cmdArguments.length > 200) {
+        receivedMessage.channel.send(":x: 太長氣 \n Maximum `200` characters in one list.");
+      }
       else {
           contentfulClient.getSpace(process.env.SPACE_ID)
             .then((space) => space.getEnvironment('master'))
@@ -97,7 +100,7 @@ function processCommand(receivedMessage) {
 
             var allEntry = entry.fields.list['en-US'].msg;
 
-            allEntry.push(receivedMessage.author.username +" :speech_balloon:  "+ cmdArguments.trim());
+            allEntry.push(receivedMessage.author.username +" :thought_balloon:  "+ cmdArguments.trim());
             entry.fields.list['en-US'].msg = allEntry;
 
             return entry.update()
@@ -160,7 +163,7 @@ function processCommand(receivedMessage) {
               .setColor('#fafafa')
               .attachFile('img_misc/bucket.png')
               .setAuthor("Hisako's Personal Bucket", 'attachment://bucket.png')
-              .setDescription('A bucket list or notes you are able to add by using `/list add` command')
+              .setDescription('A bucket list to keep some notes for you')
               .addField("❯ Page 1", entryWithId.slice(0, 15).join("\n"), true)
               .setTimestamp()
               .setFooter('Hisako');
@@ -191,7 +194,7 @@ function processCommand(receivedMessage) {
                 .setColor('#fafafa')
                 .attachFile('img_misc/bucket.png')
                 .setAuthor("Hisako's Personal Bucket", 'attachment://bucket.png')
-                .setDescription('A bucket list or notes you are able to add by using `/list add` command')
+                .setDescription('A bucket list to keep some notes for you')
                 .addField("❯ Page 2", entryWithId.slice(15).join("\n"), true)
                 .setTimestamp()
                 .setFooter('Hisako');
@@ -238,7 +241,30 @@ client.on('message', msg => {
     var prefix = "/";
     var commandList = [];
     var cmd = '';
-    
+    var timezoneAsia = new Date().toLocaleString("en-US", {timeZone: "Asia/Singapore"});
+    var datetimeAsia = new Date(timezoneAsia);
+    var hours = datetimeAsia.getHours();
+    var minutes = datetimeAsia.getMinutes();
+    var kimsphereId = process.env.KIMSPHERE_ID
+      
+    if (hours >= 23 || hours <= 7) {
+      if (msg.isMentioned(kimsphereId)) {
+        
+        hours = hours % 12; // Use modulus operator to get remainder of hours-12
+        hours = hours ? hours : 12; // conditon, when the remainder is '0', should be '12'
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        
+        msg.reply(" `(GMT+8) "+hours+":"+minutes+" "+ampm+ "`  Kim is sleeping like a DEAD now :joy:");
+      }
+    }
+  
+    // Bot auto reply
+//     if (msg.isMentioned(kimsphereId))
+//     {
+//       msg.reply("`(GMT+8) "+hours+":"+minutes+" "+ampm+ "` Kim is having lunch :joy:");
+//     }
+
+  
     if (msgContent == prefix+command.help) {
         
         const helpCommandEmbed = new Discord.RichEmbed()
@@ -644,7 +670,7 @@ client.on('message', msg => {
         break;
         case "pk npc"         : msg.channel.send("https://portalknights.gamepedia.com/NPCs");
         break;
-        case "pk bosses"        : msg.channel.send("https://portalknights.gamepedia.com/Bosses");
+        case "pk bosses"      : msg.channel.send("https://portalknights.gamepedia.com/Bosses");
         break;
     }
 
@@ -676,113 +702,103 @@ client.on('message', msg => {
    
     }
     var cmdPrefix = "ic ";
+    var iCatStickerPath = "stickers_intensecat/";
   
     switch(msgContent) {
-      case cmdPrefix+command.intensecat.cat1212     : msg.channel.send({files: ["stickers_intensecat/1212.gif"]});
+      case cmdPrefix+command.intensecat.cat1212     : msg.channel.send({files: [iCatStickerPath+"1212.gif"]});
       break;
-      case cmdPrefix+command.intensecat.andy        : msg.channel.send({files: ["stickers_intensecat/andy.gif"]});
+      case cmdPrefix+command.intensecat.andy        : msg.channel.send({files: [iCatStickerPath+"andy.gif"]});
       break;
-      case cmdPrefix+command.intensecat.angry1     : msg.channel.send({files: ["stickers_intensecat/angry1.gif"]});
+      case cmdPrefix+command.intensecat.angry1      : msg.channel.send({files: [iCatStickerPath+"angry1.gif"]});
       break;
-      case cmdPrefix+command.intensecat.angry2     : msg.channel.send({files: ["stickers_intensecat/angry2.gif"]});
+      case cmdPrefix+command.intensecat.angry2      : msg.channel.send({files: [iCatStickerPath+"angry2.gif"]});
       break;
-      case cmdPrefix+command.intensecat.areyouok    : msg.channel.send({files: ["stickers_intensecat/areyouok.gif"]});
+      case cmdPrefix+command.intensecat.ruok        : msg.channel.send({files: [iCatStickerPath+"ruok.gif"]});
       break;
-      case cmdPrefix+command.intensecat.bad         : msg.channel.send({files: ["stickers_intensecat/bad.gif"]});
+      case cmdPrefix+command.intensecat.bad         : msg.channel.send({files: [iCatStickerPath+"bad.gif"]});
       break;
-      case cmdPrefix+command.intensecat.busy        : msg.channel.send({files: ["stickers_intensecat/busy.gif"]});
+      case cmdPrefix+command.intensecat.busy        : msg.channel.send({files: [iCatStickerPath+"busy.gif"]});
       break;
-      case cmdPrefix+command.intensecat.cheerup     : msg.channel.send({files: ["stickers_intensecat/cheerup.gif"]});
+      case cmdPrefix+command.intensecat.cheerup     : msg.channel.send({files: [iCatStickerPath+"cheerup.gif"]});
       break;
-      case cmdPrefix+command.intensecat.dead        : msg.channel.send({files: ["stickers_intensecat/dead.gif"]});
+      case cmdPrefix+command.intensecat.dead        : msg.channel.send({files: [iCatStickerPath+"dead.gif"]});
       break;
-      case cmdPrefix+command.intensecat.deal        : msg.channel.send({files: ["stickers_intensecat/deal.gif"]});
+      case cmdPrefix+command.intensecat.deal        : msg.channel.send({files: [iCatStickerPath+"deal.gif"]});
       break;
-      case cmdPrefix+command.intensecat.dizzy       : msg.channel.send({files: ["stickers_intensecat/dizzy.gif"]});
+      case cmdPrefix+command.intensecat.dizzy       : msg.channel.send({files: [iCatStickerPath+"dizzy.gif"]});
       break;
-      case cmdPrefix+command.intensecat.easy        : msg.channel.send({files: ["stickers_intensecat/easy.gif"]});
+      case cmdPrefix+command.intensecat.easy        : msg.channel.send({files: [iCatStickerPath+"easy.gif"]});
       break;
-      case cmdPrefix+command.intensecat.eat         : msg.channel.send({files: ["stickers_intensecat/eat.gif"]});
+      case cmdPrefix+command.intensecat.eat         : msg.channel.send({files: [iCatStickerPath+"eat.gif"]});
       break;
-      case cmdPrefix+command.intensecat.evil1      : msg.channel.send({files: ["stickers_intensecat/evil1.gif"]});
+      case cmdPrefix+command.intensecat.evil1       : msg.channel.send({files: [iCatStickerPath+"evil1.gif"]});
       break;
-      case cmdPrefix+command.intensecat.evil2      : msg.channel.send({files: ["stickers_intensecat/evil2.gif"]});
+      case cmdPrefix+command.intensecat.evil2       : msg.channel.send({files: [iCatStickerPath+"evil2.gif"]});
       break;
-      case cmdPrefix+command.intensecat.feedme      : msg.channel.send({files: ["stickers_intensecat/feedme.gif"]});
+      case cmdPrefix+command.intensecat.feedme      : msg.channel.send({files: [iCatStickerPath+"feedme.gif"]});
       break;
-      case cmdPrefix+command.intensecat.finally     : msg.channel.send({files: ["stickers_intensecat/finally.gif"]});
+      case cmdPrefix+command.intensecat.finally     : msg.channel.send({files: [iCatStickerPath+"finally.gif"]});
       break; 
-      case cmdPrefix+command.intensecat.finish_eat   : msg.channel.send({files: ["stickers_intensecat/finish_eat.gif"]});
+      case cmdPrefix+command.intensecat.finish_eat  : msg.channel.send({files: [iCatStickerPath+"finish_eat.gif"]});
       break;
-      case cmdPrefix+command.intensecat.goal     : msg.channel.send({files: ["stickers_intensecat/goal.gif"]});
+      case cmdPrefix+command.intensecat.goal        : msg.channel.send({files: [iCatStickerPath+"goal.gif"]});
       break;
-      case cmdPrefix+command.intensecat.goodjob     : msg.channel.send({files: ["stickers_intensecat/goodjob.gif"]});
+      case cmdPrefix+command.intensecat.goodjob     : msg.channel.send({files: [iCatStickerPath+"goodjob.gif"]});
       break;
-      case cmdPrefix+command.intensecat.happy     : msg.channel.send({files: ["stickers_intensecat/happy.gif"]});
+      case cmdPrefix+command.intensecat.happy       : msg.channel.send({files: [iCatStickerPath+"happy.gif"]});
       break;
-      case cmdPrefix+command.intensecat.hey     : msg.channel.send({files: ["stickers_intensecat/hey.gif"]});
+      case cmdPrefix+command.intensecat.hey         : msg.channel.send({files: [iCatStickerPath+"hey.gif"]});
       break;
-      case cmdPrefix+command.intensecat.high     : msg.channel.send({files: ["stickers_intensecat/high.gif"]});
+      case cmdPrefix+command.intensecat.high        : msg.channel.send({files: [iCatStickerPath+"high.gif"]});
       break;
-      case cmdPrefix+command.intensecat.hmm     : msg.channel.send({files: ["stickers_intensecat/hmm.gif"]});
+      case cmdPrefix+command.intensecat.hmm         : msg.channel.send({files: [iCatStickerPath+"hmm.gif"]});
       break;
-      case cmdPrefix+command.intensecat.icecream     : msg.channel.send({files: ["stickers_intensecat/icecream.gif"]});
+      case cmdPrefix+command.intensecat.icecream    : msg.channel.send({files: [iCatStickerPath+"icecream.gif"]});
       break;
-      case cmdPrefix+command.intensecat.launch     : msg.channel.send({files: ["stickers_intensecat/launch.gif"]});
+      case cmdPrefix+command.intensecat.launch      : msg.channel.send({files: [iCatStickerPath+"launch.gif"]});
       break;
-      case cmdPrefix+command.intensecat.lol     : msg.channel.send({files: ["stickers_intensecat/lol.gif"]});
+      case cmdPrefix+command.intensecat.lol         : msg.channel.send({files: [iCatStickerPath+"lol.gif"]});
       break;
-      case cmdPrefix+command.intensecat.meh     : msg.channel.send({files: ["stickers_intensecat/meh.gif"]});
+      case cmdPrefix+command.intensecat.meh         : msg.channel.send({files: [iCatStickerPath+"meh.gif"]});
       break;
-      case cmdPrefix+command.intensecat.melt     : msg.channel.send({files: ["stickers_intensecat/melt.gif"]});
+      case cmdPrefix+command.intensecat.melt        : msg.channel.send({files: [iCatStickerPath+"melt.gif"]});
       break;
-      case cmdPrefix+command.intensecat.ohno     : msg.channel.send({files: ["stickers_intensecat/ohno.gif"]});
+      case cmdPrefix+command.intensecat.ohno        : msg.channel.send({files: [iCatStickerPath+"ohno.gif"]});
       break;
-      case cmdPrefix+command.intensecat.okok     : msg.channel.send({files: ["stickers_intensecat/okok.gif"]});
+      case cmdPrefix+command.intensecat.okok        : msg.channel.send({files: [iCatStickerPath+"okok.gif"]});
       break;
-      case cmdPrefix+command.intensecat.plsdun     : msg.channel.send({files: ["stickers_intensecat/plsdun.gif"]});
+      case cmdPrefix+command.intensecat.plsdun      : msg.channel.send({files: [iCatStickerPath+"plsdun.gif"]});
       break;
-      case cmdPrefix+command.intensecat.seeyou     : msg.channel.send({files: ["stickers_intensecat/seeyou.gif"]});
+      case cmdPrefix+command.intensecat.seeyou      : msg.channel.send({files: [iCatStickerPath+"seeyou.gif"]});
       break;
-      case cmdPrefix+command.intensecat.serious     : msg.channel.send({files: ["stickers_intensecat/serious.gif"]});
+      case cmdPrefix+command.intensecat.serious     : msg.channel.send({files: [iCatStickerPath+"serious.gif"]});
       break;
-      case cmdPrefix+command.intensecat.shy     : msg.channel.send({files: ["stickers_intensecat/shy.gif"]});
+      case cmdPrefix+command.intensecat.shy         : msg.channel.send({files: [iCatStickerPath+"shy.gif"]});
       break;
-      case cmdPrefix+command.intensecat.sillyyou     : msg.channel.send({files: ["stickers_intensecat/sillyyou.gif"]});
+      case cmdPrefix+command.intensecat.rudumb      : msg.channel.send({files: [iCatStickerPath+"rudumb.gif"]});
       break;
-      case cmdPrefix+command.intensecat.slap     : msg.channel.send({files: ["stickers_intensecat/slap.gif"]});
+      case cmdPrefix+command.intensecat.slap        : msg.channel.send({files: [iCatStickerPath+"slap.gif"]});
       break;
-      case cmdPrefix+command.intensecat.snack     : msg.channel.send({files: ["stickers_intensecat/snack.gif"]});
+      case cmdPrefix+command.intensecat.snack       : msg.channel.send({files: [iCatStickerPath+"snack.gif"]});
       break;
-      case cmdPrefix+command.intensecat.start_eat     : msg.channel.send({files: ["stickers_intensecat/start_eat.gif"]});
+      case cmdPrefix+command.intensecat.start_eat   : msg.channel.send({files: [iCatStickerPath+"start_eat.gif"]});
       break;
-      case cmdPrefix+command.intensecat.stop_play_me     : msg.channel.send({files: ["stickers_intensecat/stop_play_me.gif"]});
+      case cmdPrefix+command.intensecat.stop_play_me: msg.channel.send({files: [iCatStickerPath+"stop_play_me.gif"]});
       break;
-      case cmdPrefix+command.intensecat.strike     : msg.channel.send({files: ["stickers_intensecat/strike.gif"]});
+      case cmdPrefix+command.intensecat.strike      : msg.channel.send({files: [iCatStickerPath+"strike.gif"]});
       break;
-      case cmdPrefix+command.intensecat.throw     : msg.channel.send({files: ["stickers_intensecat/throw.gif"]});
+      case cmdPrefix+command.intensecat.throw       : msg.channel.send({files: [iCatStickerPath+"throw.gif"]});
       break;
-      case cmdPrefix+command.intensecat.wait     : msg.channel.send({files: ["stickers_intensecat/wait.gif"]});
+      case cmdPrefix+command.intensecat.wait        : msg.channel.send({files: [iCatStickerPath+"wait.gif"]});
       break;
-      case cmdPrefix+command.intensecat.wakeup     : msg.channel.send({files: ["stickers_intensecat/wakeup.gif"]});
+      case cmdPrefix+command.intensecat.wakeup      : msg.channel.send({files: [iCatStickerPath+"wakeup.gif"]});
       break;
-      case cmdPrefix+command.intensecat.woah     : msg.channel.send({files: ["stickers_intensecat/woah.gif"]});
+      case cmdPrefix+command.intensecat.woah        : msg.channel.send({files: [iCatStickerPath+"woah.gif"]});
       break;
       
     }
 
 });
-
-
-
-
-
-// Create an event listener for new guild members
-// client.on('guildMemberAdd', member => {
-//     const channel = member.guild.channels.find(ch => ch.name === 'ub-prod');
-//     if (!channel) return;
-//     channel.send(`Let's welcome ${member} to the server!!!`, {files: ["img_stratagem/offensive/shredder_missle.png"]});
-// });
 
 // Prevent from idling, send request to url every 5 minutes
 setInterval(function() {
