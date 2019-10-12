@@ -35,7 +35,7 @@
       "andy": "andy",
       "angry1" : "angry1",
       "angry2" : "angry2",
-      "areyouok" : "areyouok",
+      "ruok" : "ruok",
       "bad" : "bad",
       "busy" : "busy",
       "cheerup" : "cheerup",
@@ -66,7 +66,7 @@
       "seeyou" : "seeyou",
       "serious" : "serious",
       "shy" : "shy",
-      "silly" : "silly",
+      "rudumb" : "rudumb",
       "slap" : "slap",
       "snack" : "snack",
       "start_eat" : "starteat",
@@ -74,7 +74,7 @@
       "strike" : "strike",
       "throw" : "throw",
       "wait" : "wait",
-      "wakey" : "wakup",
+      "wakeup" : "wakeup",
       "woah" : "woah"      
     },
     "misc" : 
