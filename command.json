@@ -6,6 +6,7 @@
     "help_portalknights" : "pk",
     "help_list" : "list",
     "help_icat" : "icat",
+    "help_reminder": "reminder",
     "bduck" : 
     {
       "yes" : "bdyes",
@@ -85,12 +86,13 @@
       "kimsphere" : "/ws kimsphere",
       "andylam"   : "/ws andylam",
       "asarind"   : "/ws asarind",
+      "nerokecq"  : "/ws cq",
       "cqface" : "/cqface",
       "avo": "/avo",
       "beesting" : "/beesting",
       "crase" : "/crase",
-      "foxydance" : "foxydance",
-      "kuatcat" : "kuatcat",
+      "foxydance" : "/foxydance",
+      "kuatcat" : "/kuatcat",
       "patrick" : "/patrick",
       "rainbowcat" : "/rainbowcat",
       "shtd" : "/shtd",

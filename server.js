@@ -37,19 +37,19 @@ const listener = app.listen(process.env.PORT, function() {
   console.log('Your app is listening on port ' + listener.address().port);
 });
 
+const contentfulClient = contentful.createClient({
+  accessToken: process.env.CONTENTFUL_APIKEY
+})
 
 client.on('ready', () => {
   
     client.user.setActivity('/help', {type: 'LISTENING'});
-    console.log(`Logged in as ${client.user.tag}!`);
+    console.log(`Logged in as ${client.user.tag}!`);  
+  
     // const channel = client.channels.find(ch => ch.name === 'hisako🌐');
     // channel.send(":new: Command \nYou're now able to delete lists from Hisako's personal bucket by using `/list del` command");
-  
 });
-  
-var contentfulClient = contentful.createClient({
-  accessToken: process.env.CONTENTFUL_APIKEY
-})
+
 
 /*
 |-----------------------------------------------------------------------------
@@ -66,6 +66,10 @@ client.on('message', (receivedMessage) => {
   
     if (receivedMessage.content.startsWith("/list")) {
         processCommand(receivedMessage);
+    }
+  
+    if (receivedMessage.content.startsWith("/reminder")) {
+        processReminderCommand(receivedMessage);
     }
 
   
@@ -164,7 +168,7 @@ function processCommand(receivedMessage) {
               .attachFile('img_misc/bucket.png')
               .setAuthor("Hisako's Personal Bucket", 'attachment://bucket.png')
               .setDescription('A bucket list to keep some notes for you')
-              .addField("❯ Page 1", entryWithId.slice(0, 15).join("\n"), true)
+              .addField("❯ Page 1", entryWithId.slice(0, 10).join("\n"), true)
               .setTimestamp()
               .setFooter('Hisako');
 
@@ -185,7 +189,7 @@ function processCommand(receivedMessage) {
             var allEntry = entry.fields.list['en-US'].msg;
             var entryWithId = allEntry.map(setId);
 
-            if(allEntry.length < 15) {
+            if(allEntry.length < 10) {
               receivedMessage.channel.send(":x: There's no page 2! LMAO");
             }
             else {
@@ -195,7 +199,7 @@ function processCommand(receivedMessage) {
                 .attachFile('img_misc/bucket.png')
                 .setAuthor("Hisako's Personal Bucket", 'attachment://bucket.png')
                 .setDescription('A bucket list to keep some notes for you')
-                .addField("❯ Page 2", entryWithId.slice(15).join("\n"), true)
+                .addField("❯ Page 2", entryWithId.slice(10).join("\n"), true)
                 .setTimestamp()
                 .setFooter('Hisako');
 
@@ -220,7 +224,73 @@ function processCommand(receivedMessage) {
     }
   
 }
+  
+  function processReminderCommand (receivedMessage) {
 
+      let fullCommand = receivedMessage.content.substr(7); // Remove the leading exclamation mark
+      let splitCommand = fullCommand.split(" "); // Split the message up in to pieces for each space
+      let primaryCommand = splitCommand[1]; // The first word directly after the exclamation is the command
+      let cmdArguments = splitCommand.slice(2).join(" "); // All other words are cmdArguments/parameters/options for the command
+      let timeOut = 20000;
+          
+      if (primaryCommand == "set") {
+        
+        receivedMessage.channel.send("What time would you like to set? e.g. `01:00am/pm` to `12:59am/pm`");
+                                
+          const collectTime = new Discord.MessageCollector(receivedMessage.channel, m => m.author.id === receivedMessage.author.id, { max:1, time: timeOut });
+
+          collectTime.on('collect', timeInput => {
+
+            var timeRegex = /(1[012]|[1-9]):[0-5][0-9](am|pm)\s*/
+            var validTimeInput = timeRegex.test(timeInput);
+            
+            console.log(validTimeInput);
+                        
+            if (validTimeInput === false || validTimeInput === undefined) {
+              timeInput.channel.send(":x: Invalid time format");
+            } 
+            else {              
+              timeInput.channel.send("What is the reminder about?");
+              
+                const collectText = new Discord.MessageCollector(receivedMessage.channel, m => m.author.id === receivedMessage.author.id, {max: 1, time: timeOut});
+
+                collectText.on('collect', textInput => {
+                  
+                  if (textInput.content <= 0) {
+                    textInput.channel.send(":x: You have to tell me what is this reminder about :sob:")
+                  } 
+                  else if (textInput.content > 100) {
+                    textInput.channel.send(":x: Too long :sob: maximum character `100`")
+                  }
+                  else {
+                    contentfulClient.getSpace(process.env.SPACE_ID)
+                      .then((space) => space.getEnvironment('master'))
+                      .then((environment) => environment.getEntry(process.env.REMINDER_ENTRY_ID))
+                      .then((entry) => {
+
+                      var reminder = entry.fields.reminder['en-US'].reminder;
+                      var usernameWithTag = timeInput.author.id;
+
+                      reminder.time = timeInput.content;
+                      reminder.text = textInput.content;
+                      reminder.user = "<@"+usernameWithTag+">";
+
+                      reminder.push({time:reminder.time, text:reminder.text, user:reminder.user});
+                      entry.fields.reminder['en-US'].reminder = reminder;
+
+                      textInput.channel.send(":white_check_mark: Reminder has been set.");
+                      return entry.update()
+
+                    })
+                    .catch(console.error)
+                  }
+                  
+                });
+                            
+            } 
+          });
+      }
+  }  
 });
 
 /*
@@ -241,23 +311,24 @@ client.on('message', msg => {
     var prefix = "/";
     var commandList = [];
     var cmd = '';
+    
     var timezoneAsia = new Date().toLocaleString("en-US", {timeZone: "Asia/Singapore"});
     var datetimeAsia = new Date(timezoneAsia);
     var hours = datetimeAsia.getHours();
     var minutes = datetimeAsia.getMinutes();
     var kimsphereId = process.env.KIMSPHERE_ID
-      
-    if (hours >= 23 || hours <= 7) {
-      if (msg.isMentioned(kimsphereId)) {
-        
-        hours = hours % 12; // Use modulus operator to get remainder of hours-12
-        hours = hours ? hours : 12; // conditon, when the remainder is '0', should be '12'
-        var ampm = hours >= 12 ? 'PM' : 'AM';
-        
-        msg.reply(" `(GMT+8) "+hours+":"+minutes+" "+ampm+ "`  Kim is sleeping like a DEAD now :joy:");
-      }
-    }
+    var ampm = hours >= 12 ? 'pm' : 'am';
   
+//     if (hours >= 23 || hours <= 7) {
+//       if (msg.isMentioned(kimsphereId)) {
+        
+//         hours = hours % 12; // Use modulus operator to get remainder of hours-12
+//         hours = hours ? hours : 12; // conditon, when the remainder is '0', should be '12'
+        
+//         msg.reply(" `(GMT+8) "+hours+":"+minutes+" "+ampm+ "`  Kim is sleeping like a DEAD now :joy:");
+//       }
+//     }
+
     // Bot auto reply
 //     if (msg.isMentioned(kimsphereId))
 //     {
@@ -417,6 +488,8 @@ client.on('message', msg => {
         case command.misc.andylam           : msg.channel.send(message.andylam);
         break;
         case command.misc.asarind           : msg.channel.send(message.asarind);
+        break;
+        case command.misc.nerokecq          : msg.channel.send(message.nerokecq);
         break;
         
     }
@@ -798,13 +871,92 @@ client.on('message', msg => {
       
     }
 
+/*
+|-----------------------------------------------------------------------------
+| Reminder Command Help
+|-----------------------------------------------------------------------------
+*/
+
+    if (msgContent === prefix+command.help_reminder) {
+      
+      msg.channel.send("Use `/reminder set` command to set a time reminder");
+      
+    }
+  
+
+  
 });
+
+
+
 
 // Prevent from idling, send request to url every 5 minutes
 setInterval(function() {
     https.get("https://hisako-dev.glitch.me");
     console.log("ping!");
-}, 200000);
+  
+    const channel = client.channels.find(ch => ch.name === 'chat💬');
+  
+    var date = new Date();
+    var newDate =     date.toLocaleTimeString;
+    var timezoneAsia = date.toLocaleString("en-US", {timeZone: "Asia/Singapore"});
+    var datetimeAsia = new Date(timezoneAsia);
+    var hours        = datetimeAsia.getHours();
+    var minutes      = datetimeAsia.getMinutes();
+    var ampm         = hours >= 12 ? 'pm' : 'am';
+  
+    hours = hours % 12; // Use modulus operator to get remainder of hours-12
+    hours = hours ? hours : 12; // conditon, when the remainder is '0', should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var currentTime   = hours+":"+minutes+ampm;
+  
+    // To get the array index by matching attribute and value
+    function findByAttr(array, attr, value) {
+      for (var i = 0; i < array.length; i += 1) {
+          if (array[i][attr] === value) {              
+            return i;
+          }
+        }
+    }
+  
+    contentfulClient.getSpace(process.env.SPACE_ID)
+    .then((space) => space.getEnvironment('master'))
+    .then((environment) => environment.getEntry(process.env.REMINDER_ENTRY_ID))
+    .then((entry) => {
+    
+      let reminders = entry.fields.reminder['en-US'].reminder;
+      
+      for (var i = 0; i < reminders.length; i++) {
+        
+        var allReminderTime = reminders[i].time;
+        var matchTime = currentTime;
+        var regexTime = new RegExp( matchTime, 'g' );
+        
+        var getTime = allReminderTime.match(regexTime);
+        if (getTime != null) {
+
+          var newTime = getTime.toString();
+
+          if (currentTime === newTime) {
+          var found = findByAttr(reminders, 'time', newTime)
+            var username = reminders[found].user;
+            var text = reminders[found].text;
+
+            console.log("Time is matched");
+            channel.send(":bell: `"+newTime+"`\n"+text+"\n `by` "+username);
+            
+            reminders.splice(found, 1);
+            entry.fields.reminder['en-US'].reminder = reminders;
+            return entry.update()
+          }
+        }
+      }
+    })  
+
+  .catch(console.error)
+
+
+}, 60 * 1000);
 
 // Log our bot in using the token
 client.login(process.env.SECRET);
