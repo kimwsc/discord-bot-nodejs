@@ -938,12 +938,22 @@ setInterval(function() {
           var newTime = getTime.toString();
 
           if (currentTime === newTime) {
-          var found = findByAttr(reminders, 'time', newTime)
+            var found = findByAttr(reminders, 'time', newTime)
             var username = reminders[found].user;
             var text = reminders[found].text;
 
             console.log("Time is matched");
-            channel.send(":bell: `"+newTime+"`\n"+text+"\n `by` "+username);
+            
+            const reminderEmbed = new Discord.RichEmbed()
+            .setColor('#bf00ff')
+            .attachFile('img_misc/hisako.jpg')
+            .setAuthor("Reminder", 'attachment://hisako.jpg')
+            .setDescription('Set reminder by using `/reminder set` command')
+            .addField(':bell: Beep beep boop :bell: ', username+" "+text, true)
+            .setTimestamp()
+            .setFooter("Hisako");
+
+            channel.send(reminderEmbed);
             
             reminders.splice(found, 1);
             entry.fields.reminder['en-US'].reminder = reminders;
