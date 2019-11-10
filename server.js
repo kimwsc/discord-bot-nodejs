@@ -639,6 +639,8 @@ client.on('message', msg => {
         break;
         case prefix+command.hd.supply.dumdum : msg.channel.send(message.supply.dumdum, {files: ["img_stratagem/supply/dumdum.png"]});
         break;
+        case prefix+command.hd.supply.eat17 : msg.channel.send(message.supply.eat17, {files: ["img_stratagem/supply/eat17.png"]});
+        break;
         case prefix+command.hd.supply.exo44 : msg.channel.send(message.supply.exo44, {files: ["img_stratagem/supply/exo44.png"]});
         break;
         case prefix+command.hd.supply.exo48 : msg.channel.send(message.supply.exo48, {files: ["img_stratagem/supply/exo48.png"]});
