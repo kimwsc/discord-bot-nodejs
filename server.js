@@ -235,7 +235,7 @@ function processCommand(receivedMessage) {
           
       if (primaryCommand == "set") {
         
-        receivedMessage.channel.send("What time would you like to set? e.g. `01:00am/pm` to `12:59am/pm`");
+        receivedMessage.channel.send("What time would you like to set? e.g. `1:00am/pm` to `12:59am/pm`");
                                 
           const collectTime = new Discord.MessageCollector(receivedMessage.channel, m => m.author.id === receivedMessage.author.id, { max:1, time: timeOut });
 
@@ -269,13 +269,15 @@ function processCommand(receivedMessage) {
                       .then((entry) => {
 
                       var reminder = entry.fields.reminder['en-US'].reminder;
-                      var usernameWithTag = timeInput.author.id;
+                      var userId = timeInput.author.id;
+                      var usernameWithTag = timeInput.author.tag;
 
                       reminder.time = timeInput.content;
                       reminder.text = textInput.content;
-                      reminder.user = "<@"+usernameWithTag+">";
+                      reminder.userid = "<@"+userId+">";
+                      reminder.username = usernameWithTag;
 
-                      reminder.push({time:reminder.time, text:reminder.text, user:reminder.user});
+                      reminder.push({time:reminder.time, text:reminder.text, userid:reminder.userid, username:reminder.username});
                       entry.fields.reminder['en-US'].reminder = reminder;
 
                       textInput.channel.send(":white_check_mark: Reminder has been set.");
@@ -894,9 +896,7 @@ client.on('message', msg => {
 setInterval(function() {
     https.get("https://hisako-dev.glitch.me");
     console.log("ping!");
-  
-    const channel = client.channels.find(ch => ch.name === 'chat💬');
-  
+    
     var date = new Date();
     var newDate =     date.toLocaleTimeString;
     var timezoneAsia = date.toLocaleString("en-US", {timeZone: "Asia/Singapore"});
@@ -939,19 +939,18 @@ setInterval(function() {
 
           if (currentTime === newTime) {
             var found = findByAttr(reminders, 'time', newTime)
-            var username = reminders[found].user;
+            var username = reminders[found].username;
             var text = reminders[found].text;
-
+            var userId = reminders[found].userid
+        
             console.log("Time is matched");
             
+            const channel = client.channels.find(ch => ch.id === process.env.CHAT_CHANNEL_ID);
             const reminderEmbed = new Discord.RichEmbed()
             .setColor('#bf00ff')
-            .attachFile('img_misc/hisako.jpg')
-            .setAuthor("Reminder", 'attachment://hisako.jpg')
-            .setDescription('Set reminder by using `/reminder set` command')
-            .addField(':bell: Beep beep boop :bell: ', username+" "+text, true)
+            .addField(':bell: Reminder ',text, true)
             .setTimestamp()
-            .setFooter("Hisako");
+            .setFooter(username)
 
             channel.send(reminderEmbed);
             
