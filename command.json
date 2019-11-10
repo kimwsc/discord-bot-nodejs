@@ -131,6 +131,35 @@
           "tesla_tower" : "tesla",
           "turrets" : "turrets"
       },
+      "supply" :
+      {
+          "ammo" : "ammo",
+          "angel" : "angel",
+          "apc" : "apc",
+          "bastion" : "bastion",
+          "bike" : "bike",
+          "commando" : "commando",
+          "demolisher" : "demolisher",
+          "dumdum" : "dumdum",
+          "exo44" : "exo44",
+          "exo48" : "exo48",
+          "exo51" : "exo51",
+          "flam40" : "flam40",
+          "guard_dog" : "guarddog",
+          "hav" : "hav",
+          "las98" : "las98",
+          "lift850" : "lift850",
+          "mg94" : "mg94",
+          "mgx42" : "mgx42",
+          "obliterator" : "obliterator",
+          "rep80" : "rep80",
+          "resupply" : "resupply",
+          "rl112" : "rl112",
+          "rumbler" : "rumbler",
+          "sh20" : "sh20",
+          "sh32" : "sh32",
+          "tox13" : "tox13"
+      },
       "weapon" :
       {
           "shotgun" : "shotgun",
@@ -163,7 +192,9 @@
       "special" : 
       {
           "reinforce" : "reinforce",
-          "sos" : "sos"
+          "sos" : "sos",
+          "hellbomb" : "hellbomb",
+          "sniffer" : "sniffer"
       },
     
       "trans" : "trans"

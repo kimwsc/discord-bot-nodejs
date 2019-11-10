@@ -47,6 +47,35 @@
         "trans_2" : "\n:arrow_up: :arrow_up: :arrow_down: :arrow_left: :arrow_left: :arrow_up: :arrow_up: :arrow_right: :arrow_up:",
         "trans_3" : "\n25 button presses",
         "trans_4" : "\n:arrow_down: :arrow_down: :arrow_up: :arrow_down: :arrow_down: :arrow_down: :arrow_left: :arrow_down: :arrow_up: :arrow_down: :arrow_down:"
+    },
+    "supply" :
+    {
+          "ammo" : "Ammunition / Resupply",
+          "angel" : "AD-289 Angel",
+          "apc" : "M5 APC",
+          "bastion" : "TD-110 Bastion",
+          "bike" : "MC-109 Hammer Motorcycle",
+          "commando" : "MLS-4X Commando",
+          "demolisher" : "REC-6 Demolisher",
+          "dumdum" : "AC-22 Dum-Dum",
+          "exo44" : "EXO-44 Walker Exosuit",
+          "exo48" : "EXO-48 Obsidian Exosuit",
+          "exo51" : "EXO-51 Lumberer Exosuit",
+          "flam40" : "FLAM-40 Incinerator",
+          "guard_dog" : "AD-334 Guard Dog",
+          "hav" : "M5-32 HAV",
+          "las98" : "LAS-98 Laser Cannon",
+          "lift850" : "LIFT-850 Jump Pack",
+          "mg94" : "MG-94 Machine Gun",
+          "mgx42" : "MGX-42 Machine Gun",
+          "obliterator" : "Obliterator Grenade Launcher",
+          "rep80" : "REP-80",
+          "resupply" : "Resupply Pack",
+          "rl112" : "RL-112 Recoilless Rifle",
+          "rumbler" : "M-25 Rumbler",
+          "sh20" : "SH-20 Shield Generator Pack",
+          "sh32" : "SH-32 Directional Kinetic Shield",
+          "tox13" : "TOX-13 Avenger"
     }
 
 }
