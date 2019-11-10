@@ -506,6 +506,7 @@ client.on('message', msg => {
         
         var offensive   = [];
         var defensive   = [];
+        var supply      = [];
         var weapon      = [];
         var special     = [];
       
@@ -514,6 +515,9 @@ client.on('message', msg => {
         }
         for (cmd in command.hd.defensive) {
           defensive.push("`"+command.hd.defensive[cmd]+"` | ");
+        }
+        for (cmd in command.hd.supply) {
+          supply.push("`"+command.hd.supply[cmd]+"` | ");
         }
         for (cmd in command.hd.weapon) {
           weapon.push("`"+command.hd.weapon[cmd]+"` | ");
@@ -529,6 +533,7 @@ client.on('message', msg => {
         .setThumbnail('https://steamuserimages-a.akamaihd.net/ugc/88224496145598035/E12BE9A061F526B4898A69E81B26D19148525FC3/')
         .addField('❯ Offensive Stratagems', offensive.join(" "), true)
         .addField('❯ Defensive Stratagems', defensive.join(" "), true)
+        .addField('❯ Supply Stratagems', supply.join(" "), true)
         .addField('❯ Weapons', weapon.join(" "), true)
         .addField('❯ Special Stratagems', special.join(" "), true)
         .addField('❯ Transmitter Objective Key','`trans`',true)
@@ -611,6 +616,71 @@ client.on('message', msg => {
 
 /*
 |-----------------------------------------------------------------------------
+| Helldivers Supply Stratagem Commands
+|-----------------------------------------------------------------------------
+*/
+  
+  
+    switch(msgContent) {
+
+        case prefix+command.hd.supply.ammo : msg.channel.send(message.supply.ammo, {files: ["img_stratagem/supply/ammo.png"]});
+        break;
+        case prefix+command.hd.supply.angel : msg.channel.send(message.supply.angel, {files: ["img_stratagem/supply/angel.png"]});
+        break;
+        case prefix+command.hd.supply.apc : msg.channel.send(message.supply.apc, {files: ["img_stratagem/supply/apc.png"]});
+        break;
+        case prefix+command.hd.supply.bastion : msg.channel.send(message.supply.bastion, {files: ["img_stratagem/supply/bastion.png"]});
+        break;
+        case prefix+command.hd.supply.bike : msg.channel.send(message.supply.bike, {files: ["img_stratagem/supply/bike.png"]});
+        break;
+        case prefix+command.hd.supply.commando : msg.channel.send(message.supply.commando, {files: ["img_stratagem/supply/commando.png"]});
+        break;
+        case prefix+command.hd.supply.demolisher : msg.channel.send(message.supply.demolisher, {files: ["img_stratagem/supply/demolisher.png"]});
+        break;
+        case prefix+command.hd.supply.dumdum : msg.channel.send(message.supply.dumdum, {files: ["img_stratagem/supply/dumdum.png"]});
+        break;
+        case prefix+command.hd.supply.exo44 : msg.channel.send(message.supply.exo44, {files: ["img_stratagem/supply/exo44.png"]});
+        break;
+        case prefix+command.hd.supply.exo48 : msg.channel.send(message.supply.exo48, {files: ["img_stratagem/supply/exo48.png"]});
+        break;
+        case prefix+command.hd.supply.exo51 : msg.channel.send(message.supply.exo51, {files: ["img_stratagem/supply/exo51.png"]});
+        break;
+        case prefix+command.hd.supply.flam40 : msg.channel.send(message.supply.flam40, {files: ["img_stratagem/supply/flam40.png"]});
+        break;
+        case prefix+command.hd.supply.guard_dog : msg.channel.send(message.supply.guard_dog, {files: ["img_stratagem/supply/guarddog.png"]});
+        break;
+        case prefix+command.hd.supply.hav : msg.channel.send(message.supply.hav, {files: ["img_stratagem/supply/hav.png"]});
+        break;
+        case prefix+command.hd.supply.las98 : msg.channel.send(message.supply.las98, {files: ["img_stratagem/supply/las98.png"]});
+        break;
+        case prefix+command.hd.supply.lift850 : msg.channel.send(message.supply.lift850, {files: ["img_stratagem/supply/lift850.png"]});
+        break;
+        case prefix+command.hd.supply.mg94 : msg.channel.send(message.supply.mg94, {files: ["img_stratagem/supply/mg94.png"]});
+        break;
+        case prefix+command.hd.supply.mgx42 : msg.channel.send(message.supply.mgx42, {files: ["img_stratagem/supply/mgx42.png"]});
+        break;
+        case prefix+command.hd.supply.obliterator : msg.channel.send(message.supply.obliterator, {files: ["img_stratagem/supply/obliterator.png"]});
+        break;
+        case prefix+command.hd.supply.rep80 : msg.channel.send(message.supply.rep80, {files: ["img_stratagem/supply/rep80.png"]});
+        break;
+        case prefix+command.hd.supply.resupply : msg.channel.send(message.supply.resupply, {files: ["img_stratagem/supply/resupply.png"]});
+        break;
+        case prefix+command.hd.supply.rl112 : msg.channel.send(message.supply.rl112, {files: ["img_stratagem/supply/rl112.png"]});
+        break;
+        case prefix+command.hd.supply.rumbler : msg.channel.send(message.supply.rumbler, {files: ["img_stratagem/supply/rumbler.png"]});
+        break;
+        case prefix+command.hd.supply.sh20 : msg.channel.send(message.supply.sh20, {files: ["img_stratagem/supply/sh20.png"]});
+        break;
+        case prefix+command.hd.supply.sh32 : msg.channel.send(message.supply.sh32, {files: ["img_stratagem/supply/sh32.png"]});
+        break;
+        case prefix+command.hd.supply.tox13 : msg.channel.send(message.supply.tox13, {files: ["img_stratagem/supply/tox13.png"]});
+        break;
+                
+        
+    }
+  
+/*
+|-----------------------------------------------------------------------------
 | Helldivers Weapon Commands
 |-----------------------------------------------------------------------------
 */
@@ -681,14 +751,14 @@ client.on('message', msg => {
         break;
         case prefix+command.hd.special.sos       : msg.channel.send(message.special.sos, {files: ["img_stratagem/special/beacon.png"]});
         break;
-        // case command.hellbomb  : msg.channel.send(message.special.hellbomb, {files: ["img_stratagem/special/hellbomb.png"]});
-        // break;
-        // case command.sniffer   : msg.channel.send(message.special.sniffer, {files: ["img_stratagem/special/sniffer.png"]});
-        // break;
-        case prefix+command.hd.trans     : msg.channel.send(message.objective.trans_1 + 
-                                       message.objective.trans_2 + 
-                                       message.objective.trans_3 + 
-                                       message.objective.trans_4);
+        case prefix+command.hd.special.hellbomb  : msg.channel.send(message.special.hellbomb, {files: ["img_stratagem/special/hellbomb.png"]});
+        break;
+        case prefix+command.hd.special.sniffer   : msg.channel.send(message.special.sniffer, {files: ["img_stratagem/special/sniffer.png"]});
+        break;
+        case prefix+command.hd.trans : msg.channel.send(message.objective.trans_1 + 
+                                                        message.objective.trans_2 + 
+                                                        message.objective.trans_3 + 
+                                                        message.objective.trans_4);
         break;
     }
 
