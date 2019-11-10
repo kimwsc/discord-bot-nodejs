@@ -292,7 +292,26 @@ function processCommand(receivedMessage) {
             } 
           });
       }
-  }  
+  }
+    
+});
+
+client.on('message', (msg) => {
+    if (msg.author == client.user) {
+        return
+    }
+    var content = msg.content.toLowerCase();
+    var bduckStickerPath = __dirname +"/stickers/"+content+".gif";
+
+      // B.duck stickers
+      if (content) {
+          if (fs.existsSync(bduckStickerPath)) {
+            msg.channel.send({files: [bduckStickerPath]});
+          } else {
+            msg.channel.send(":x: No such B.duck sticker :(");
+          }
+      }
+  
 });
 
 /*
@@ -382,54 +401,7 @@ client.on('message', msg => {
         msg.channel.send(bduckEmbed);
    
     }
-
-/*
-|-----------------------------------------------------------------------------
-| B.duck Stickers Commands
-|-----------------------------------------------------------------------------
-*/    
-    switch(msgContent) {
-        case command.bduck.angry        : msg.channel.send({files: [bduckStickerPath+"angry.gif"]});
-        break;
-        case command.bduck.ass          : msg.channel.send({files: [bduckStickerPath+"ass.gif"]});
-        break;
-        case command.bduck.faint        : msg.channel.send({files: [bduckStickerPath+"faint.gif"]});
-        break;
-        case command.bduck.full         : msg.channel.send({files: [bduckStickerPath+"full.gif"]});
-        break;
-        case command.bduck.keyboard     : msg.channel.send({files: [bduckStickerPath+"keyboard.gif"]});
-        break;
-        case command.bduck.phone        : msg.channel.send({files: [bduckStickerPath+"phone.gif"]});
-        break;
-        case command.bduck.play         : msg.channel.send({files: [bduckStickerPath+"play.gif"]});
-        break;
-        case command.bduck.laugh        : msg.channel.send({files: [bduckStickerPath+"laugh.gif"]});
-        break;
-        case command.bduck.bye          : msg.channel.send({files: [bduckStickerPath+"bye.gif"]});
-        break;
-        case command.bduck.dizzy        : msg.channel.send({files: [bduckStickerPath+"dizzy.gif"]});
-        break;
-        case command.bduck.hello        : msg.channel.send({files: [bduckStickerPath+"hello.gif"]});
-        break;
-        case command.bduck.lol          : msg.channel.send({files: [bduckStickerPath+"lol.gif"]});
-        break;
-        case command.bduck.love         : msg.channel.send({files: [bduckStickerPath+"love.gif"]});
-        break;
-        case command.bduck.no           : msg.channel.send({files: [bduckStickerPath+"no.gif"]});
-        break;
-        case command.bduck.noodle       : msg.channel.send({files: [bduckStickerPath+"noodle.gif"]});
-        break;
-        case command.bduck.ok           : msg.channel.send({files: [bduckStickerPath+"ok.gif"]});
-        break;
-        case command.bduck.omg          : msg.channel.send({files: [bduckStickerPath+"omg.gif"]});
-        break;
-        case command.bduck.sad          : msg.channel.send({files: [bduckStickerPath+"sad.gif"]});
-        break;
-        case command.bduck.sleep        : msg.channel.send({files: [bduckStickerPath+"sleep.gif"]});
-        break;
-        case command.bduck.woo          : msg.channel.send({files: [bduckStickerPath+"woo.gif"]});
-        break;
-    }
+    
 
 /*
 |-----------------------------------------------------------------------------
@@ -966,7 +938,7 @@ client.on('message', msg => {
 
 // Prevent from idling, send request to url every 5 minutes
 setInterval(function() {
-    https.get("https://hisako-dev.glitch.me");
+    https.get("https://rokusinao.glitch.me");
     console.log("ping!");
     
     var date = new Date();
