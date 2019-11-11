@@ -32,14 +32,13 @@
         "barrier" : "Anti-Personnel Barrier",
         "beacon" : "Distractor Beacon",
         "drone" : "Humblebee UAV drone",
-        "explosive_mine" : "Airdropped Anti-Personnel Mines",
-        "launcher_turret" : "A/GL-8 Launcher Turret",
-        "minigun_turret" : "A/MG-11 Minigun Turret",
-        "railcannon_turret" : "A/RX-34 Railcannon Turret",
-        "smoke_round" : "Thunderer Smoke Round",
-        "stun_mine" : "Airdropped Stun Mines",
-        "tesla_tower" : "A/AC-6 Tesla Tower",
-        "turrets" : "List of turret stratagems in Helldivers: \n"
+        "mines" : "Airdropped Anti-Personnel Mines",
+        "launcherturret" : "A/GL-8 Launcher Turret",
+        "minigunturret" : "A/MG-11 Minigun Turret",
+        "railcannonturret" : "A/RX-34 Railcannon Turret",
+        "smokeround" : "Thunderer Smoke Round",
+        "stunmines" : "Airdropped Stun Mines",
+        "tesla" : "A/AC-6 Tesla Tower"
     },
     "objective" :
     {
