@@ -339,7 +339,7 @@ client.on('message', (msg) => {
         
         // HD Weapon Image
         if (fs.existsSync(hdWeaponImagePath)) {
-          msg.channel.send({files: [hdWeaponImagePath]});
+          msg.channel.send(message.weapon[content], {files: [hdWeaponImagePath]});
         }
 
         // HD Defensive Stratagem Image
@@ -607,6 +607,7 @@ client.on('message', msg => {
         for (cmd in command.intensecat) {
           commandList.push("`"+command.intensecat[cmd]+"` | ");
         }
+        
       
         const iCatEmbed = new Discord.RichEmbed()
         .setColor('#fafafa')
@@ -641,7 +642,7 @@ client.on('message', msg => {
 
 // Prevent from idling, send request to url every 1 minutes
 setInterval(function() {
-    https.get("https://hisako-dev.glitch.me");
+    https.get("https://rokusinao.glitch.me");
     console.log("ping!");
     
     var date = new Date();
