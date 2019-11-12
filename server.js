@@ -1,6 +1,6 @@
 const express     = require('express');
 const app         = express();
-// const keepAlive   = express();
+const keepAlive   = express();
 const fs          = require('fs');
 const Discord     = require('discord.js');
 const path        = require('path');
@@ -17,7 +17,7 @@ let message     = JSON.parse(jsonMessage);
 let command     = JSON.parse(jsonCommand);
 let flattenCmd  = flatten({command});
 
-// keepAlive.use(keepalive);
+keepAlive.use(keepalive);
 
 app.use(express.static('public'));
  
@@ -47,7 +47,7 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);  
   
     // const channel = client.channels.find(ch => ch.name === 'hisako🌐');
-    // channel.send(":new: Command \nYou're now able to delete lists from Hisako's personal bucket by using `/list del` command");
+    // channel.send(":star: Command Update :star: \nAll sticker commands are now using prefix `/` \ne.g. `/ic1212` | `/bdhello`");
 });
 
 
@@ -610,10 +610,10 @@ client.on('message', msg => {
       
         const iCatEmbed = new Discord.RichEmbed()
         .setColor('#fafafa')
-        .attachFile('stickers_intensecat/evil1.gif')
-        .setAuthor('Intense Cat', 'attachment://evil1.gif')
+        .attachFile('stickers_intensecat/icevil1.gif')
+        .setAuthor('Intense Cat', 'attachment://icevil1.gif')
         .setDescription('Command Prefix : `/`')
-        .setThumbnail('attachment://evil1.gif')
+        .setThumbnail('attachment://icevil1.gif')
         .addField('❯ Available stickers', commandList.join(" "), true)
         .setTimestamp()
         .setFooter('Hisako');
@@ -641,7 +641,7 @@ client.on('message', msg => {
 
 // Prevent from idling, send request to url every 1 minutes
 setInterval(function() {
-    https.get("https://rokusinao.glitch.me");
+    https.get("https://hisako-dev.glitch.me");
     console.log("ping!");
     
     var date = new Date();
