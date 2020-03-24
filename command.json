@@ -121,14 +121,13 @@
           "barrier" : "barrier",
           "beacon" : "beacon",
           "drone" : "drone",
-          "explosive_mine" : "mines",
-          "launcher_turret" : "launcherturret",
-          "minigun_turret" : "minigunturret",
-          "railcannon_turret" : "railcannonturret",
+          "mines" : "mines",
+          "launcherturret" : "launcherturret",
+          "minigunturret" : "minigunturret",
+          "railcannonturret" : "railcannonturret",
           "smoke_round" : "smokeround",
-          "stun_mine" : "stunmines",
-          "tesla_tower" : "tesla",
-          "turrets" : "turrets"
+          "stunmines" : "stunmines",
+          "tesla" : "tesla"
       },
       "supply" :
       {
@@ -145,7 +144,7 @@
           "exo48" : "exo48",
           "exo51" : "exo51",
           "flam40" : "flam40",
-          "guard_dog" : "guarddog",
+          "guarddog" : "guarddog",
           "hav" : "hav",
           "las98" : "las98",
           "lift850" : "lift850",
@@ -168,7 +167,7 @@
           "camper" : "camper",
           "constitution" : "constitution",
           "defender" : "defender",
-          "double_freedom" : "doublefreedom",
+          "doublefreedom" : "doublefreedom",
           "gunslinger" : "gunslinger",
           "justice" : "justice",
           "knight" : "knight",
