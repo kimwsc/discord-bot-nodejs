@@ -81,8 +81,8 @@
     },
     "weapon" :
     {
-          "shotgun" : "電弧散彈槍",
-          "thrower" : "電弧發射器",
+          "arcshotgun" : "電弧散彈槍",
+          "arcthrower" : "電弧發射器",
           "breaker" : "破裂者",
           "camper" : "野營者",
           "constitution" : "憲法",

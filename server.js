@@ -46,7 +46,7 @@ client.on('ready', () => {
     client.user.setActivity('/help', {type: 'LISTENING'});
     console.log(`Logged in as ${client.user.tag}!`);  
   
-    // const channel = client.channels.find(ch => ch.name === 'hisako🌐');
+    // const channel = client.channels.cache.find(ch => ch.name === 'hisako🌐');
     // channel.send(":star: Command Update :star: \nAll sticker commands are now using prefix `/` \ne.g. `/ic1212` | `/bdhello`");
 });
 
@@ -163,9 +163,9 @@ function processCommand(receivedMessage) {
             receivedMessage.channel.send(":x: Bucket is empty.");
           } 
           else {            
-              const allListEmbed = new Discord.RichEmbed()
+              const allListEmbed = new Discord.MessageEmbed()
               .setColor('#fafafa')
-              .attachFile('img_misc/bucket.png')
+              .attachFiles('img_misc/bucket.png')
               .setAuthor("Hisako's Personal Bucket", 'attachment://bucket.png')
               .setDescription('A bucket list to keep some notes for you')
               .addField("❯ Page 1", entryWithId.slice(0, 10).join("\n"), true)
@@ -194,9 +194,9 @@ function processCommand(receivedMessage) {
             }
             else {
 
-                const allListEmbed = new Discord.RichEmbed()
+                const allListEmbed = new Discord.MessageEmbed()
                 .setColor('#fafafa')
-                .attachFile('img_misc/bucket.png')
+                .attachFiles('img_misc/bucket.png')
                 .setAuthor("Hisako's Personal Bucket", 'attachment://bucket.png')
                 .setDescription('A bucket list to keep some notes for you')
                 .addField("❯ Page 2", entryWithId.slice(10).join("\n"), true)
@@ -211,9 +211,9 @@ function processCommand(receivedMessage) {
       
     }
     else {
-        const listEmbed = new Discord.RichEmbed()
+        const listEmbed = new Discord.MessageEmbed()
         .setColor('#fafafa')
-        .attachFile('img_misc/bucket.png')
+        .attachFiles('img_misc/bucket.png')
         .setAuthor("Hisako's Personal Bucket", 'attachment://bucket.png')
         .setDescription('Command Prefix : `/`')
         .addField('❯ Personal Bucket List', "`list add` | `list all`", true)
@@ -412,9 +412,9 @@ client.on('message', msg => {
   
     if (msgContent == prefix+command.help) {
         
-        const helpCommandEmbed = new Discord.RichEmbed()
+        const helpCommandEmbed = new Discord.MessageEmbed()
         .setColor('#fbb3ff')
-        .attachFile('img_misc/hisako.jpg')
+        .attachFiles('img_misc/hisako.jpg')
         .setAuthor("Hi, I'm Hisako, how can I help you?", 'attachment://hisako.jpg')
         .setDescription('Command Prefix : `/`')
         .setThumbnail('attachment://hisako.jpg')
@@ -442,7 +442,7 @@ client.on('message', msg => {
           commandList.push("`"+command.bduck[cmd]+"` | ");
         }
       
-        const bduckEmbed = new Discord.RichEmbed()
+        const bduckEmbed = new Discord.MessageEmbed()
         .setColor('#ffd321')
         .setAuthor('B.Duck', 'https://cdn.glitch.com/57f834b4-edf0-4a1e-87fa-b3b6ed3b8dcf%2Fbd_yes.gif?v=1569554599171')
         .setDescription('Command Prefix : `/`')
@@ -468,9 +468,9 @@ client.on('message', msg => {
           commandList.push("`"+command.misc[cmd]+"` | ");
         }
         
-        const miscEmbed = new Discord.RichEmbed()
+        const miscEmbed = new Discord.MessageEmbed()
         .setColor('#fafafa')
-        .attachFile('img_misc/hisako.jpg')
+        .attachFiles('img_misc/hisako.jpg')
         .setAuthor('MISC', 'attachment://hisako.jpg')
         .setDescription('Here are some MISC commands')
         .addField('❯ Miscellaneous', commandList.join(" "), true)
@@ -511,17 +511,17 @@ client.on('message', msg => {
           special.push("`"+command.hd.special[cmd]+"` | ");
         }
       
-        const helldiversEmbed = new Discord.RichEmbed()
+        const helldiversEmbed = new Discord.MessageEmbed()
         .setColor('#d4d4d4')
         .setAuthor('HELLDIVERS™', 'https://steamuserimages-a.akamaihd.net/ugc/88224496145598035/E12BE9A061F526B4898A69E81B26D19148525FC3/','https://helldivers.gamepedia.com/Stratagems')
         .setDescription('Command Prefix : `/`')
         .setThumbnail('https://steamuserimages-a.akamaihd.net/ugc/88224496145598035/E12BE9A061F526B4898A69E81B26D19148525FC3/')
-        .addField('❯ Offensive Stratagems', offensive.join(" "), true)
-        .addField('❯ Defensive Stratagems', defensive.join(" "), true)
-        .addField('❯ Supply Stratagems', supply.join(" "), true)
-        .addField('❯ Weapons', weapon.join(" "), true)
-        .addField('❯ Special Stratagems', special.join(" "), true)
-        .addField('❯ Transmitter Objective Key','`trans`',true)
+        .addField('❯ Offensive Stratagems', offensive.join(" "))
+        .addField('❯ Defensive Stratagems', defensive.join(" "))
+        .addField('❯ Supply Stratagems', supply.join(" "))
+        .addField('❯ Weapons', weapon.join(" "))
+        .addField('❯ Special Stratagems', special.join(" "))
+        .addField('❯ Transmitter Objective Key','`trans`')
         .setTimestamp()
         .setFooter('Hisako');
 
@@ -545,9 +545,9 @@ client.on('message', msg => {
     
     if (msgContent === prefix+command.help_portalknights) {
         
-        const helpCommandEmbed = new Discord.RichEmbed()
+        const helpCommandEmbed = new Discord.MessageEmbed()
         .setColor('#6583fc')
-        .attachFile('img_misc/portal_knights.png')
+        .attachFiles('img_misc/portal_knights.png')
         .setAuthor("Portal Knights", 'attachment://hisako.jpg')
         .setDescription('Command Prefix : `pk`')
         .setThumbnail('attachment://portal_knights.png')
@@ -609,9 +609,9 @@ client.on('message', msg => {
         }
         
       
-        const iCatEmbed = new Discord.RichEmbed()
+        const iCatEmbed = new Discord.MessageEmbed()
         .setColor('#fafafa')
-        .attachFile('stickers_intensecat/icevil1.gif')
+        .attachFiles('stickers_intensecat/icevil1.gif')
         .setAuthor('Intense Cat', 'attachment://icevil1.gif')
         .setDescription('Command Prefix : `/`')
         .setThumbnail('attachment://icevil1.gif')
@@ -642,7 +642,7 @@ client.on('message', msg => {
 
 // Prevent from idling, send request to url every 1 minutes
 setInterval(function() {
-    https.get("https://rokusinao.glitch.me");
+    https.get("https://hisako-dev.glitch.me");
     console.log("ping!");
     
     var date = new Date();
@@ -693,8 +693,8 @@ setInterval(function() {
         
             console.log("Time is matched");
             
-            const channel = client.channels.find(ch => ch.id === process.env.CHAT_CHANNEL_ID);
-            const reminderEmbed = new Discord.RichEmbed()
+            const channel = client.channels.cache.find(ch => ch.id === process.env.CHAT_CHANNEL_ID);
+            const reminderEmbed = new Discord.MessageEmbed()
             .setColor('#bf00ff')
             .addField(':bell: Reminder ',text, true)
             .setTimestamp()
@@ -713,7 +713,7 @@ setInterval(function() {
   .catch(console.error)
 
 
-}, 60 * 1000);
+}, 30 * 1000);
 
 // Log our bot in using the token
 client.login(process.env.SECRET);
